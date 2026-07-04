@@ -1,0 +1,53 @@
+# ── Godot 4 project ─────────────────────────────────────────────
+
+# Engine cache + imported assets. Regenerated whenever the project is
+# opened, so it must never be committed. (Godot 4's replacement for the
+# old Godot 3 ".import/" directory.)
+.godot/
+
+# Compiled / exported game builds
+*.pck
+*.exe
+*.x86_64
+*.dmg
+*.apk
+*.aab
+*.gdc
+*.gde
+/build/
+/exports/
+
+# Android signing secrets — NEVER commit these
+*.keystore
+*.jks
+
+# export_presets.cfg is tracked by default so build settings are shared,
+# but it can store secrets (e.g. Android keystore passwords) in plaintext.
+# Keep secrets out of it, or uncomment to ignore the file entirely:
+# export_presets.cfg
+
+# ── PatternDB ───────────────────────────────────────────────────
+
+# PatternDB writes a per-developer history/undo sidecar to .patterndb/,
+# keyed to each database and never load-bearing. It's local, machine-
+# specific state, so it's ignored by default. To share it anyway,
+# comment the next line.
+.patterndb/
+
+# ── OS / editor crap ───────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+.vs/
+
+# ── Dev utils ───────────────────────────────────────────────────
+.lastrun
+# CAUTION: the next line ignores ALL Python files repo-wide, including any
+# build/CI/export scripts you might add later. Narrow it to a scratch dir
+# if you ever start committing Python.
+*.py

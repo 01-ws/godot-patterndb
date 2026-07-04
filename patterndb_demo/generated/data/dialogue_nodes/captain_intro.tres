@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueNode" load_steps=3 format=3]
+
+[ext_resource type="Script" uid="uid://cc30jqepj5h2a" path="res://patterndb_demo/generated/model/dialogue_node.gd" id="1"]
+[ext_resource type="Texture2D" path="res://icon.svg" id="2"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "CaptainIntro"
+speaker = &"captain_reyes"
+text = "The goblins grow bold. Will you help us?"
+mood = 0
+responses = {
+"I'll help.": "CaptainAccept",
+"Not my problem.": "CaptainRefuse"
+}
+next_nodes = [&"CaptainAccept", &"CaptainRefuse"]
+portrait = ExtResource("2")

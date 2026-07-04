@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://cuj6ktt2geext" path="res://patterndb_demo/generated/model/consumable.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "HasteDraught"
+metadata/pdb_tags = PackedStringArray("elixir", "buff")
+heal_amount = 0
+restores_mana = 0
+applies_status = 9
+duration = 20.0
+stack_size = 5

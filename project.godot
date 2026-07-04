@@ -1,0 +1,60 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
+[application]
+
+config/name="PatternDB"
+config/description="PatternDB — A Schema-Backed Godot-native data forge.
+Godot's native approach of individual .tres files works great, but becomes unwieldy when you're dealing with hundreds of items, enemies, abilities, quests, and their relationships.
+
+What PatternDB does:
+Define schemas (called Definitions) with typed fields, then create instances of those schemas
+Centralize enums and constants in one place
+Edit everything through a single panel — form editor, spreadsheet-style Table view for bulk edits, and a branchable history timeline with undo and crash recovery for unsaved work
+Rename a Definition or field and every reference repoints automatically
+Store your entire database in a single .pdb file (native Godot resource format, version-control friendly)
+Load the .pdb directly at runtime to read your data
+
+One database, several ways to ship it:
+Your .pdb is the working source of truth, and you're never locked into it. Ship the .pdb directly and read it at runtime, generate typed .gd classes and .tres resources for autocomplete and static typing, or export type-exact JSON for backups and external tools. All three round-trip without losing types or references, so you author centrally and hand off in whatever form the rest of your project expects. References stay lightweight — cross-instance links travel as ids, engine resources (textures, scenes) as paths.
+
+Utilizing in how it suits you:
+Run PatternDB as the in-editor plugin, a standalone desktop app, or a web build — so data can be authored inside Godot or entirely outside it, then finalized back into your project. One version-controlled file, a real history timeline, and automatic recovery of unsaved changes keep the whole thing dependable whether you're working solo or alongside collaborators and other tooling.
+
+Core concepts:
+Enums: Shared value sets (Rarity, DamageType, ItemSlot, etc.)
+Constants: Configuration dictionaries (balance values, drop rates, etc.)
+Definitions: Your data schemas with typed fields (Item, Enemy, Quest, etc.)
+Instances: Actual data entries based on those definitions
+Tags: Optional hierarchical labels for classifying and querying across definitions"
+run/main_scene="res://addons/pdb/standalone/pdb_app.tscn"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="res://addons/pdb/icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=800
+window/size/window_width_override=1280
+window/size/window_height_override=800
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/pdb/plugin.cfg")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

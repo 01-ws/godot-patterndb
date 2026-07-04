@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bbgrxj5m0jrk3" path="res://patterndb_demo/generated/model/enemy.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Dragon"
+name = "Ancient Dragon"
+level = 40
+health = 3200
+faction = 4
+behavior = 2
+is_boss = true
+abilities = [&"Fireball", &"ArrowRain", &"Blizzard"]
+loot_table = &"DragonLoot"
+tint = Color(0.69999998807907, 0.10000000149012, 0.10000000149012, 1.0)

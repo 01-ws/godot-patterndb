@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://3olu5ufucxgw" path="res://patterndb_demo/generated/model/weapon.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "WarAxe"
+metadata/pdb_tags = PackedStringArray("weapon")
+weapon_type = 1
+damage_type = 0
+base_damage = 30.0
+attack_speed = 0.8
+two_handed = true
+granted_ability = &"Cleave"

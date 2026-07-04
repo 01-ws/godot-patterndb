@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bgrmm5l7p7vah" path="res://patterndb_demo/generated/model/ability.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "PoisonBlade"
+metadata/pdb_tags = PackedStringArray("dps", "poison", "dot")
+name = "Poison Blade"
+description = "Coats the blade in venom."
+damage_type = 7
+power = 18.0
+mana_cost = 8
+cooldown = 1.0
+aoe_radius = 0.0
+required_class = 2
+applies_status = 3
+scaling = {
+"agility": 0.7
+}

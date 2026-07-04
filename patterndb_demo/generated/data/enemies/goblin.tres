@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bbgrxj5m0jrk3" path="res://patterndb_demo/generated/model/enemy.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Goblin"
+name = "Goblin Raider"
+level = 3
+health = 45
+faction = 4
+behavior = 2
+is_boss = false
+abilities = [&"Slash"]
+loot_table = &"GoblinLoot"
+tint = Color(0.30000001192093, 0.60000002384186, 0.20000000298023, 1.0)

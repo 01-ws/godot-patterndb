@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Zone" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://cj447tg341bpx" path="res://patterndb_demo/generated/model/zone.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "FrozenPeak"
+name = "Frozen Peak"
+biome = 2
+min_level = 10
+max_level = 18
+merchants = [&"Alchemist"]
+ambient_color = Color(0.60000002384186, 0.69999998807907, 0.89999997615814, 1.0)

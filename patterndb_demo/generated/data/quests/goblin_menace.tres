@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://cs1mj0s50q3ej" path="res://patterndb_demo/generated/model/quest.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "GoblinMenace"
+name = "The Goblin Menace"
+quest_type = 1
+giver = &"Goblin"
+prerequisite = &""
+reward_item = &"IronSword"
+reward_gold = 100
+objectives = PackedStringArray("Slay 5 goblins", "Report to the captain")
+stage_flags = {
+"report": false,
+"slay": false
+}
+turn_in_biome = 0

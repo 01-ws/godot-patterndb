@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Merchant" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://d036kfuu2svaj" path="res://patterndb_demo/generated/model/merchant.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Alchemist"
+name = "Mira the Alchemist"
+merchant_type = 2
+faction = 6
+inventory = [&"HealthPotion", &"ManaPotion", &"ElixirOfFire", &"Antidote"]
+price_overrides = {
+"HealthPotion": 8
+}
+open_hour = 6
+close_hour = 22

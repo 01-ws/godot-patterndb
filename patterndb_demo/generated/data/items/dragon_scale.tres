@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bkgigbs4wgqxv" path="res://patterndb_demo/generated/model/item.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "DragonScale"
+metadata/pdb_tags = PackedStringArray("material", "rare")
+name = "Dragon Scale"
+description = ""
+rarity = 3
+value = 120
+weight = 1.0
+is_unique = false
+tint = Color(0.69999998807907, 0.10000000149012, 0.10000000149012, 1.0)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://wltnpp4lhrtk" path="res://patterndb_demo/generated/model/recipe.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "ForgeIronSword"
+name = "Forge: Iron Sword"
+result = &"IronSword"
+ingredients = [&"IronOre"]
+quantities = {
+"IronOre": 3
+}
+station = 1
+craft_time = 4.0

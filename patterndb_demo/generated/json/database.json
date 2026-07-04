@@ -1,0 +1,5909 @@
+{
+	"consts": {
+		"BuildInfo": {
+			"data": {
+				"channel": "beta",
+				"codename": "Emberfall",
+				"version": "1.0.0"
+			},
+			"description": "String-valued build metadata.",
+			"tags": [
+				"config"
+			]
+		},
+		"CameraRig": {
+			"data": {
+				"distance": 8.0,
+				"fov": 68.0,
+				"pitch_max": 20.0,
+				"pitch_min": -40.0
+			},
+			"description": "Camera defaults.",
+			"tags": [
+				"config"
+			]
+		},
+		"CombatTuning": {
+			"data": {
+				"armor_k": 0.06,
+				"block_value": 0.25,
+				"dodge_cap": 0.4
+			},
+			"description": "Armor, dodge and block formulas.",
+			"tags": [
+				"config"
+			]
+		},
+		"DropRates": {
+			"data": {
+				"common": 55.0,
+				"epic": 4.0,
+				"legendary": 1.0,
+				"rare": 12.0,
+				"uncommon": 28.0
+			},
+			"description": "Percent chance per rarity band.",
+			"tags": [
+				"config"
+			]
+		},
+		"Economy": {
+			"data": {
+				"repair_cost_per_point": {
+					"_type": "int",
+					"value": 2
+				},
+				"starting_gold": {
+					"_type": "int",
+					"value": 50
+				},
+				"vendor_markup": 1.5
+			},
+			"description": "Gold, vendor and repair economy.",
+			"tags": [
+				"config"
+			]
+		},
+		"GameBalance": {
+			"data": {
+				"base_health": {
+					"_type": "int",
+					"value": 100
+				},
+				"base_mana": {
+					"_type": "int",
+					"value": 50
+				},
+				"crit_multiplier": 2.0,
+				"exp_curve_base": 1.15,
+				"level_cap": {
+					"_type": "int",
+					"value": 60
+				}
+			},
+			"description": "Core level/health/mana tuning.",
+			"tags": [
+				"config"
+			]
+		},
+		"UITheme": {
+			"data": {
+				"accent": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 1.0,
+					"g": 0.620000004768372,
+					"r": 0.360000014305115
+				},
+				"danger": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.239999994635582,
+					"g": 0.239999994635582,
+					"r": 0.850000023841858
+				},
+				"gold": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.25,
+					"g": 0.779999971389771,
+					"r": 0.949999988079071
+				}
+			},
+			"description": "Named UI colors (Color-valued constants).",
+			"tags": [
+				"config"
+			]
+		},
+		"WorldSettings": {
+			"data": {
+				"day_length_sec": 1200.0,
+				"gravity": -9.8,
+				"tile_size": {
+					"_type": "int",
+					"value": 64
+				}
+			},
+			"description": "World tuning constants.",
+			"tags": [
+				"config"
+			]
+		}
+	},
+	"definitions": {
+		"Ability": {
+			"description": "An active skill an actor can use.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "Display name.",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "Tooltip text.",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "description",
+					"required": false,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "Element used for resist checks.",
+					"export_group": "Combat",
+					"hint": 2,
+					"hint_string": "DamageType",
+					"name": "damage_type",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": 10.0,
+					"description": "Base magnitude.",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "power",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 0
+					},
+					"description": "",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "mana_cost",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": 1.0,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "cooldown",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": null,
+					"description": "0 = single target.",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "aoe_radius",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Requirements",
+					"hint": 2,
+					"hint_string": "CharacterClass",
+					"name": "required_class",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 2,
+					"hint_string": "StatusEffect",
+					"name": "applies_status",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "Per-stat scaling coefficients (nested dict).",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "stat",
+					"name": "scaling",
+					"required": false,
+					"type": 27
+				}
+			],
+			"icon_name": "Play",
+			"tags": [
+				"combat"
+			]
+		},
+		"Achievement": {
+			"description": "An unlockable achievement.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "title",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "description",
+					"required": false,
+					"type": 4
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 10
+					},
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "points",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "hidden",
+					"required": false,
+					"type": 1
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Rewards",
+					"hint": 17,
+					"hint_string": "Item",
+					"name": "reward_item",
+					"required": false,
+					"type": 24
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Unlock",
+					"hint": 17,
+					"hint_string": "Quest",
+					"name": "required_quest",
+					"required": false,
+					"type": 24
+				}
+			],
+			"icon_name": "Favorites",
+			"tags": [
+				"meta"
+			]
+		},
+		"Armor": {
+			"description": "Wearable protection.",
+			"extends_type": "Item",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "EquipSlot",
+					"name": "slot",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "ArmorMaterial",
+					"name": "material",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Defense",
+					"hint": 0,
+					"hint_string": "",
+					"name": "armor_value",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "Element -> reduction fraction (nested dict).",
+					"export_group": "Defense",
+					"hint": 0,
+					"hint_string": "DamageType",
+					"name": "resistances",
+					"required": false,
+					"type": 27
+				},
+				{
+					"default_value": null,
+					"description": "Other Armor instances in the same set.",
+					"export_group": "Sets",
+					"hint": 31,
+					"hint_string": "Armor",
+					"name": "set_pieces",
+					"required": false,
+					"type": 28
+				}
+			],
+			"icon_name": "MeshInstance3D",
+			"tags": [
+				"items"
+			]
+		},
+		"Character": {
+			"description": "A playable or party character.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "CharacterClass",
+					"name": "char_class",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Loadout",
+					"hint": 17,
+					"hint_string": "Weapon",
+					"name": "starting_weapon",
+					"required": false,
+					"type": 24
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Loadout",
+					"hint": 31,
+					"hint_string": "Ability",
+					"name": "starting_abilities",
+					"required": false,
+					"type": 28
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Progression",
+					"hint": 31,
+					"hint_string": "SkillNode",
+					"name": "skills",
+					"required": false,
+					"type": 28
+				},
+				{
+					"default_value": null,
+					"description": "Named base stats (nested dict; try the Table nesting slider).",
+					"export_group": "Stats",
+					"hint": 0,
+					"hint_string": "",
+					"name": "stats",
+					"required": false,
+					"type": 27
+				}
+			],
+			"icon_name": "Player",
+			"tags": [
+				"characters"
+			]
+		},
+		"Consumable": {
+			"description": "Single-use item.",
+			"extends_type": "Item",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Effect",
+					"hint": 0,
+					"hint_string": "",
+					"name": "heal_amount",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Effect",
+					"hint": 0,
+					"hint_string": "",
+					"name": "restores_mana",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Effect",
+					"hint": 2,
+					"hint_string": "StatusEffect",
+					"name": "applies_status",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "Effect duration in seconds.",
+					"export_group": "Effect",
+					"hint": 0,
+					"hint_string": "",
+					"name": "duration",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 1
+					},
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "stack_size",
+					"required": false,
+					"type": 2
+				}
+			],
+			"icon_name": "Timer",
+			"tags": [
+				"items"
+			]
+		},
+		"DialogueNode": {
+			"description": "One line in a branching conversation.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "Speaker id (StringName field).",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "speaker",
+					"required": false,
+					"type": 21
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "text",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "StatusEffect",
+					"name": "mood",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "Reply text -> next node id (nested dict).",
+					"export_group": "Flow",
+					"hint": 0,
+					"hint_string": "",
+					"name": "responses",
+					"required": false,
+					"type": 27
+				},
+				{
+					"default_value": null,
+					"description": "Self-referential dialogue tree.",
+					"export_group": "Flow",
+					"hint": 31,
+					"hint_string": "DialogueNode",
+					"name": "next_nodes",
+					"required": false,
+					"type": 28
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Presentation",
+					"hint": 17,
+					"hint_string": "Texture2D",
+					"name": "portrait",
+					"required": false,
+					"type": 24
+				}
+			],
+			"icon_name": "RichTextLabel",
+			"tags": [
+				"world"
+			]
+		},
+		"Enemy": {
+			"description": "A hostile actor.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 1
+					},
+					"description": "",
+					"export_group": "Stats",
+					"hint": 0,
+					"hint_string": "",
+					"name": "level",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 10
+					},
+					"description": "",
+					"export_group": "Stats",
+					"hint": 0,
+					"hint_string": "",
+					"name": "health",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "Faction",
+					"name": "faction",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "AI",
+					"hint": 2,
+					"hint_string": "AIBehavior",
+					"name": "behavior",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "is_boss",
+					"required": false,
+					"type": 1
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 31,
+					"hint_string": "Ability",
+					"name": "abilities",
+					"required": false,
+					"type": 28
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Rewards",
+					"hint": 17,
+					"hint_string": "LootTable",
+					"name": "loot_table",
+					"required": false,
+					"type": 24
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Presentation",
+					"hint": 0,
+					"hint_string": "",
+					"name": "tint",
+					"required": false,
+					"type": 20
+				}
+			],
+			"icon_name": "Enemy",
+			"tags": [
+				"world"
+			]
+		},
+		"FactionRelation": {
+			"description": "Standing between two factions.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "Faction",
+					"name": "faction_a",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "Faction",
+					"name": "faction_b",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "-100 hostile .. +100 allied.",
+					"export_group": "Relation",
+					"hint": 0,
+					"hint_string": "",
+					"name": "standing",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Relation",
+					"hint": 0,
+					"hint_string": "",
+					"name": "at_war",
+					"required": false,
+					"type": 1
+				},
+				{
+					"default_value": null,
+					"description": "Contextual standing modifiers.",
+					"export_group": "Relation",
+					"hint": 0,
+					"hint_string": "",
+					"name": "modifiers",
+					"required": false,
+					"type": 27
+				}
+			],
+			"icon_name": "Signals",
+			"tags": [
+				"world"
+			]
+		},
+		"Item": {
+			"description": "Base item every pickup inherits from.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "Display name.",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "description",
+					"required": false,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "ItemRarity",
+					"name": "rarity",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "Base vendor value in gold.",
+					"export_group": "Economy",
+					"hint": 0,
+					"hint_string": "",
+					"name": "value",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": 1.0,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "weight",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "is_unique",
+					"required": false,
+					"type": 1
+				},
+				{
+					"default_value": null,
+					"description": "Engine resource reference (stored as a res:// path).",
+					"export_group": "Presentation",
+					"hint": 17,
+					"hint_string": "Texture2D",
+					"name": "icon",
+					"required": false,
+					"type": 24
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Presentation",
+					"hint": 0,
+					"hint_string": "",
+					"name": "tint",
+					"required": false,
+					"type": 20
+				}
+			],
+			"icon_name": "Object",
+			"tags": [
+				"items"
+			]
+		},
+		"LootTable": {
+			"description": "Weighted drop table.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "Item id -> weight (nested dict).",
+					"export_group": "Drops",
+					"hint": 0,
+					"hint_string": "",
+					"name": "entries",
+					"required": false,
+					"type": 27
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Drops",
+					"hint": 31,
+					"hint_string": "Item",
+					"name": "guaranteed",
+					"required": false,
+					"type": 28
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 0
+					},
+					"description": "",
+					"export_group": "Drops",
+					"hint": 0,
+					"hint_string": "",
+					"name": "gold_min",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 0
+					},
+					"description": "",
+					"export_group": "Drops",
+					"hint": 0,
+					"hint_string": "",
+					"name": "gold_max",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 1
+					},
+					"description": "",
+					"export_group": "Drops",
+					"hint": 0,
+					"hint_string": "",
+					"name": "rolls",
+					"required": false,
+					"type": 2
+				}
+			],
+			"icon_name": "AnimationTrackList",
+			"tags": [
+				"world"
+			]
+		},
+		"Merchant": {
+			"description": "A vendor NPC.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "MerchantType",
+					"name": "merchant_type",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "Faction",
+					"name": "faction",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Stock",
+					"hint": 31,
+					"hint_string": "Item",
+					"name": "inventory",
+					"required": false,
+					"type": 28
+				},
+				{
+					"default_value": null,
+					"description": "Item id -> fixed price (nested dict).",
+					"export_group": "Stock",
+					"hint": 0,
+					"hint_string": "",
+					"name": "price_overrides",
+					"required": false,
+					"type": 27
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 8
+					},
+					"description": "",
+					"export_group": "Schedule",
+					"hint": 0,
+					"hint_string": "",
+					"name": "open_hour",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 20
+					},
+					"description": "",
+					"export_group": "Schedule",
+					"hint": 0,
+					"hint_string": "",
+					"name": "close_hour",
+					"required": false,
+					"type": 2
+				}
+			],
+			"icon_name": "FileDialog",
+			"tags": [
+				"world"
+			]
+		},
+		"Quest": {
+			"description": "A journal quest.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "QuestType",
+					"name": "quest_type",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Flow",
+					"hint": 17,
+					"hint_string": "Enemy",
+					"name": "giver",
+					"required": false,
+					"type": 24
+				},
+				{
+					"default_value": null,
+					"description": "Self-referential quest chain.",
+					"export_group": "Flow",
+					"hint": 17,
+					"hint_string": "Quest",
+					"name": "prerequisite",
+					"required": false,
+					"type": 24
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Rewards",
+					"hint": 17,
+					"hint_string": "Item",
+					"name": "reward_item",
+					"required": false,
+					"type": 24
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Rewards",
+					"hint": 0,
+					"hint_string": "",
+					"name": "reward_gold",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Flow",
+					"hint": 0,
+					"hint_string": "",
+					"name": "objectives",
+					"required": false,
+					"type": 34
+				},
+				{
+					"default_value": null,
+					"description": "Objective id -> completed bool.",
+					"export_group": "Flow",
+					"hint": 0,
+					"hint_string": "",
+					"name": "stage_flags",
+					"required": false,
+					"type": 27
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Flow",
+					"hint": 2,
+					"hint_string": "Biome",
+					"name": "turn_in_biome",
+					"required": false,
+					"type": 2
+				}
+			],
+			"icon_name": "Bookmark",
+			"tags": [
+				"world"
+			]
+		},
+		"RangedWeapon": {
+			"description": "A weapon that fires projectiles (3rd inheritance level).",
+			"extends_type": "Weapon",
+			"fields": [
+				{
+					"default_value": 20.0,
+					"description": "",
+					"export_group": "Ranged",
+					"hint": 0,
+					"hint_string": "",
+					"name": "range",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": 30.0,
+					"description": "",
+					"export_group": "Ranged",
+					"hint": 0,
+					"hint_string": "",
+					"name": "projectile_speed",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": 2.0,
+					"description": "Cone spread in degrees.",
+					"export_group": "Ranged",
+					"hint": 0,
+					"hint_string": "",
+					"name": "spread_degrees",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": null,
+					"description": "Consumed ammunition (item reference).",
+					"export_group": "Ranged",
+					"hint": 17,
+					"hint_string": "Item",
+					"name": "ammo_item",
+					"required": false,
+					"type": 24
+				}
+			],
+			"icon_name": "Path2D",
+			"tags": [
+				"items"
+			]
+		},
+		"Recipe": {
+			"description": "A crafting recipe.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Craft",
+					"hint": 17,
+					"hint_string": "Item",
+					"name": "result",
+					"required": false,
+					"type": 24
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Craft",
+					"hint": 31,
+					"hint_string": "Item",
+					"name": "ingredients",
+					"required": false,
+					"type": 28
+				},
+				{
+					"default_value": null,
+					"description": "Ingredient id -> count (nested dict).",
+					"export_group": "Craft",
+					"hint": 0,
+					"hint_string": "",
+					"name": "quantities",
+					"required": false,
+					"type": 27
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Craft",
+					"hint": 2,
+					"hint_string": "MerchantType",
+					"name": "station",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": 2.0,
+					"description": "",
+					"export_group": "Craft",
+					"hint": 0,
+					"hint_string": "",
+					"name": "craft_time",
+					"required": false,
+					"type": 3
+				}
+			],
+			"icon_name": "Tools",
+			"tags": [
+				"world"
+			]
+		},
+		"SkillNode": {
+			"description": "A node in a branching skill tree.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "SkillCategory",
+					"name": "category",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 1
+					},
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "cost",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "Self-referential: nodes required first.",
+					"export_group": "Tree",
+					"hint": 31,
+					"hint_string": "SkillNode",
+					"name": "prerequisites",
+					"required": false,
+					"type": 28
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Grants",
+					"hint": 17,
+					"hint_string": "Ability",
+					"name": "grants_ability",
+					"required": false,
+					"type": 24
+				}
+			],
+			"icon_name": "GraphNode",
+			"tags": [
+				"characters"
+			]
+		},
+		"StatusEffectDef": {
+			"description": "Data for a buff/debuff.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "StatusEffect",
+					"name": "effect",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "tick_damage",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": 3.0,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "duration",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "stacks",
+					"required": false,
+					"type": 1
+				},
+				{
+					"default_value": null,
+					"description": "Flat stat modifiers while active.",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "modifiers",
+					"required": false,
+					"type": 27
+				}
+			],
+			"icon_name": "Time",
+			"tags": [
+				"combat"
+			]
+		},
+		"Weapon": {
+			"description": "A wieldable weapon.",
+			"extends_type": "Item",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 2,
+					"hint_string": "WeaponType",
+					"name": "weapon_type",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 2,
+					"hint_string": "DamageType",
+					"name": "damage_type",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": 5.0,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "base_damage",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": 1.0,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "attack_speed",
+					"required": false,
+					"type": 3
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Combat",
+					"hint": 0,
+					"hint_string": "",
+					"name": "two_handed",
+					"required": false,
+					"type": 1
+				},
+				{
+					"default_value": null,
+					"description": "Cross-instance reference to an Ability.",
+					"export_group": "Effects",
+					"hint": 17,
+					"hint_string": "Ability",
+					"name": "granted_ability",
+					"required": false,
+					"type": 24
+				}
+			],
+			"icon_name": "BoxMesh",
+			"tags": [
+				"items"
+			]
+		},
+		"Zone": {
+			"description": "A playable area of the map.",
+			"extends_type": "Resource",
+			"fields": [
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 0,
+					"hint_string": "",
+					"name": "name",
+					"required": true,
+					"type": 4
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Basic",
+					"hint": 2,
+					"hint_string": "Biome",
+					"name": "biome",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 1
+					},
+					"description": "",
+					"export_group": "Difficulty",
+					"hint": 0,
+					"hint_string": "",
+					"name": "min_level",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": {
+						"_type": "int",
+						"value": 10
+					},
+					"description": "",
+					"export_group": "Difficulty",
+					"hint": 0,
+					"hint_string": "",
+					"name": "max_level",
+					"required": false,
+					"type": 2
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Content",
+					"hint": 31,
+					"hint_string": "Merchant",
+					"name": "merchants",
+					"required": false,
+					"type": 28
+				},
+				{
+					"default_value": null,
+					"description": "",
+					"export_group": "Presentation",
+					"hint": 0,
+					"hint_string": "",
+					"name": "ambient_color",
+					"required": false,
+					"type": 20
+				}
+			],
+			"icon_name": "Environment",
+			"tags": [
+				"world"
+			]
+		}
+	},
+	"enums": {
+		"AIBehavior": {
+			"description": "Default combat/idle behaviour for an enemy.",
+			"tags": [
+				"world"
+			],
+			"values": {
+				"AGGRESSIVE": 2,
+				"AMBUSH": 4,
+				"CASTER": 5,
+				"DEFENSIVE": 1,
+				"PASSIVE": 0,
+				"PATROL": 3
+			}
+		},
+		"ArmorMaterial": {
+			"description": "Material class of armor; affects weight and resist.",
+			"tags": [
+				"items"
+			],
+			"values": {
+				"CLOTH": 0,
+				"DRAGONSCALE": 4,
+				"LEATHER": 1,
+				"MAIL": 2,
+				"PLATE": 3
+			}
+		},
+		"Biome": {
+			"description": "Environmental theme of a zone.",
+			"tags": [
+				"world"
+			],
+			"values": {
+				"CAVERN": 6,
+				"CITY": 7,
+				"COAST": 8,
+				"DESERT": 1,
+				"DUNGEON": 4,
+				"FOREST": 0,
+				"SWAMP": 5,
+				"TUNDRA": 2,
+				"VOLCANO": 3
+			}
+		},
+		"CharacterClass": {
+			"description": "Playable and NPC archetypes.",
+			"tags": [
+				"characters"
+			],
+			"values": {
+				"CLERIC": 3,
+				"DRUID": 5,
+				"MAGE": 1,
+				"NECROMANCER": 6,
+				"RANGER": 4,
+				"ROGUE": 2,
+				"WARRIOR": 0
+			}
+		},
+		"DamageType": {
+			"description": "Elemental and physical damage schools.",
+			"tags": [
+				"combat"
+			],
+			"values": {
+				"ARCANE": 6,
+				"FIRE": 1,
+				"FROST": 2,
+				"HOLY": 5,
+				"LIGHTNING": 3,
+				"PHYSICAL": 0,
+				"POISON": 7,
+				"SHADOW": 4,
+				"TRUE": 8
+			}
+		},
+		"EquipSlot": {
+			"description": "Where a piece of gear is worn.",
+			"tags": [
+				"items"
+			],
+			"values": {
+				"AMULET": 8,
+				"BACK": 9,
+				"CHEST": 3,
+				"FEET": 6,
+				"HANDS": 4,
+				"HEAD": 2,
+				"LEGS": 5,
+				"OFFHAND": 1,
+				"RING": 7,
+				"WEAPON": 0
+			}
+		},
+		"Faction": {
+			"description": "Allegiance groups used for reputation and hostility.",
+			"tags": [
+				"world"
+			],
+			"values": {
+				"ALLIANCE": 0,
+				"ARCANE_ORDER": 6,
+				"BANDIT": 3,
+				"HORDE": 1,
+				"MERCHANT_GUILD": 5,
+				"MONSTER": 4,
+				"NEUTRAL": 2
+			}
+		},
+		"ItemRarity": {
+			"description": "Rarity tiers driving drop chance, tint, and value.",
+			"tags": [
+				"items"
+			],
+			"values": {
+				"COMMON": 0,
+				"EPIC": 3,
+				"LEGENDARY": 4,
+				"MYTHIC": 5,
+				"RARE": 2,
+				"UNCOMMON": 1
+			}
+		},
+		"MerchantType": {
+			"description": "What a vendor stocks and buys.",
+			"tags": [
+				"world"
+			],
+			"values": {
+				"ALCHEMIST": 2,
+				"BLACKSMITH": 1,
+				"FENCE": 4,
+				"GENERAL": 0,
+				"JEWELER": 3
+			}
+		},
+		"QuestType": {
+			"description": "Categorises quests for the journal.",
+			"tags": [
+				"world"
+			],
+			"values": {
+				"BOUNTY": 2,
+				"EVENT": 4,
+				"MAIN": 0,
+				"REPEATABLE": 3,
+				"SIDE": 1
+			}
+		},
+		"SkillCategory": {
+			"description": "Branch of the skill tree a node belongs to.",
+			"tags": [
+				"characters"
+			],
+			"values": {
+				"DEFENSE": 1,
+				"OFFENSE": 0,
+				"PASSIVE": 3,
+				"UTILITY": 2
+			}
+		},
+		"StatusEffect": {
+			"description": "Buffs and debuffs applied in combat.",
+			"tags": [
+				"combat"
+			],
+			"values": {
+				"BLESSED": 5,
+				"BURNING": 1,
+				"FROZEN": 2,
+				"HASTED": 9,
+				"NONE": 0,
+				"POISONED": 3,
+				"REGEN": 6,
+				"SHIELDED": 7,
+				"SILENCED": 8,
+				"SLOWED": 10,
+				"STUNNED": 4
+			}
+		},
+		"TimeOfDay": {
+			"description": "Ambient time bracket that gates events and spawns.",
+			"tags": [
+				"world"
+			],
+			"values": {
+				"DAWN": 0,
+				"DAY": 1,
+				"DUSK": 2,
+				"NIGHT": 3
+			}
+		},
+		"WeaponType": {
+			"description": "Physical form of a weapon; drives animations.",
+			"tags": [
+				"items"
+			],
+			"values": {
+				"AXE": 1,
+				"BOW": 5,
+				"CROSSBOW": 6,
+				"DAGGER": 3,
+				"MACE": 2,
+				"SPEAR": 4,
+				"STAFF": 7,
+				"SWORD": 0,
+				"WAND": 8
+			}
+		}
+	},
+	"exported_at": "2026-07-03T23:47:15",
+	"instances": {
+		"Alchemist": {
+			"data": {
+				"close_hour": {
+					"_type": "int",
+					"value": 22
+				},
+				"faction": {
+					"_type": "int",
+					"value": 6
+				},
+				"inventory": [
+					{
+						"_type": "StringName",
+						"value": "HealthPotion"
+					},
+					{
+						"_type": "StringName",
+						"value": "ManaPotion"
+					},
+					{
+						"_type": "StringName",
+						"value": "ElixirOfFire"
+					},
+					{
+						"_type": "StringName",
+						"value": "Antidote"
+					}
+				],
+				"merchant_type": {
+					"_type": "int",
+					"value": 2
+				},
+				"name": "Mira the Alchemist",
+				"open_hour": {
+					"_type": "int",
+					"value": 6
+				},
+				"price_overrides": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"HealthPotion",
+							{
+								"_type": "int",
+								"value": 8
+							}
+						]
+					]
+				}
+			},
+			"definition_id": "Merchant",
+			"description": "",
+			"tags": []
+		},
+		"AllianceHorde": {
+			"data": {
+				"at_war": true,
+				"faction_a": {
+					"_type": "int",
+					"value": 0
+				},
+				"faction_b": {
+					"_type": "int",
+					"value": 1
+				},
+				"modifiers": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"trade",
+							-0.5
+						]
+					]
+				},
+				"standing": {
+					"_type": "int",
+					"value": -80
+				}
+			},
+			"definition_id": "FactionRelation",
+			"description": "",
+			"tags": []
+		},
+		"AllianceMerchants": {
+			"data": {
+				"at_war": false,
+				"faction_a": {
+					"_type": "int",
+					"value": 0
+				},
+				"faction_b": {
+					"_type": "int",
+					"value": 5
+				},
+				"modifiers": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"trade",
+							0.2
+						]
+					]
+				},
+				"standing": {
+					"_type": "int",
+					"value": 60
+				}
+			},
+			"definition_id": "FactionRelation",
+			"description": "",
+			"tags": []
+		},
+		"Antidote": {
+			"data": {
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"duration": 0.0,
+				"heal_amount": {
+					"_type": "int",
+					"value": 0
+				},
+				"name": "Antidote",
+				"rarity": {
+					"_type": "int",
+					"value": 0
+				},
+				"restores_mana": {
+					"_type": "int",
+					"value": 0
+				},
+				"stack_size": {
+					"_type": "int",
+					"value": 10
+				},
+				"value": {
+					"_type": "int",
+					"value": 12
+				}
+			},
+			"definition_id": "Consumable",
+			"description": "",
+			"tags": [
+				"potion",
+				"cure"
+			]
+		},
+		"ArcaneMissiles": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"cooldown": 2.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 6
+				},
+				"description": "A barrage of homing bolts.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 18
+				},
+				"name": "Arcane Missiles",
+				"power": 34.0,
+				"required_class": {
+					"_type": "int",
+					"value": 1
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"intellect",
+							1.0
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"arcane"
+			]
+		},
+		"ArcaneNeutral": {
+			"data": {
+				"at_war": false,
+				"faction_a": {
+					"_type": "int",
+					"value": 6
+				},
+				"faction_b": {
+					"_type": "int",
+					"value": 2
+				},
+				"modifiers": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"trade",
+							0.1
+						]
+					]
+				},
+				"standing": {
+					"_type": "int",
+					"value": 20
+				}
+			},
+			"definition_id": "FactionRelation",
+			"description": "",
+			"tags": []
+		},
+		"ArrowRain": {
+			"data": {
+				"aoe_radius": 6.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"cooldown": 6.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"description": "A volley of arrows over an area.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 14
+				},
+				"name": "Arrow Rain",
+				"power": 22.0,
+				"required_class": {
+					"_type": "int",
+					"value": 4
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"agility",
+							0.9
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"ranged",
+				"aoe"
+			]
+		},
+		"Backstab": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"cooldown": 4.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"description": "Massive damage from stealth.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 10
+				},
+				"name": "Backstab",
+				"power": 55.0,
+				"required_class": {
+					"_type": "int",
+					"value": 2
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"agility",
+							1.3
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"melee",
+				"stealth"
+			]
+		},
+		"Bandit": {
+			"data": {
+				"abilities": [
+					{
+						"_type": "StringName",
+						"value": "Backstab"
+					}
+				],
+				"behavior": {
+					"_type": "int",
+					"value": 4
+				},
+				"faction": {
+					"_type": "int",
+					"value": 3
+				},
+				"health": {
+					"_type": "int",
+					"value": 70
+				},
+				"is_boss": false,
+				"level": {
+					"_type": "int",
+					"value": 5
+				},
+				"loot_table": {
+					"_type": "StringName",
+					"value": "BanditLoot"
+				},
+				"name": "Bandit",
+				"tint": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.25,
+					"g": 0.300000011920929,
+					"r": 0.400000005960464
+				}
+			},
+			"definition_id": "Enemy",
+			"description": "",
+			"tags": []
+		},
+		"BanditAll": {
+			"data": {
+				"at_war": true,
+				"faction_a": {
+					"_type": "int",
+					"value": 3
+				},
+				"faction_b": {
+					"_type": "int",
+					"value": 0
+				},
+				"modifiers": {
+					"_type": "Dictionary",
+					"entries": []
+				},
+				"standing": {
+					"_type": "int",
+					"value": -100
+				}
+			},
+			"definition_id": "FactionRelation",
+			"description": "",
+			"tags": []
+		},
+		"BanditChief": {
+			"data": {
+				"abilities": [
+					{
+						"_type": "StringName",
+						"value": "Backstab"
+					},
+					{
+						"_type": "StringName",
+						"value": "Cleave"
+					}
+				],
+				"behavior": {
+					"_type": "int",
+					"value": 2
+				},
+				"faction": {
+					"_type": "int",
+					"value": 3
+				},
+				"health": {
+					"_type": "int",
+					"value": 220
+				},
+				"is_boss": true,
+				"level": {
+					"_type": "int",
+					"value": 9
+				},
+				"loot_table": {
+					"_type": "StringName",
+					"value": "BanditLoot"
+				},
+				"name": "Bandit Chief",
+				"tint": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.200000002980232,
+					"g": 0.25,
+					"r": 0.5
+				}
+			},
+			"definition_id": "Enemy",
+			"description": "",
+			"tags": []
+		},
+		"BanditLoot": {
+			"data": {
+				"entries": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"GoldRing",
+							{
+								"_type": "int",
+								"value": 10
+							}
+						],
+						[
+							"LeatherVest",
+							{
+								"_type": "int",
+								"value": 30
+							}
+						],
+						[
+							"ManaPotion",
+							{
+								"_type": "int",
+								"value": 40
+							}
+						]
+					]
+				},
+				"gold_max": {
+					"_type": "int",
+					"value": 25
+				},
+				"gold_min": {
+					"_type": "int",
+					"value": 5
+				},
+				"guaranteed": [],
+				"name": "Bandit Loot",
+				"rolls": {
+					"_type": "int",
+					"value": 1
+				}
+			},
+			"definition_id": "LootTable",
+			"description": "",
+			"tags": []
+		},
+		"BanditTrouble": {
+			"data": {
+				"giver": {
+					"_type": "StringName",
+					"value": "BanditChief"
+				},
+				"name": "Bandit Trouble",
+				"objectives": {
+					"_type": "PackedStringArray",
+					"value": [
+						"Clear the bandit camp",
+						"Defeat the Bandit Chief"
+					]
+				},
+				"prerequisite": {
+					"_type": "StringName",
+					"value": "GoblinMenace"
+				},
+				"quest_type": {
+					"_type": "int",
+					"value": 1
+				},
+				"reward_gold": {
+					"_type": "int",
+					"value": 180
+				},
+				"reward_item": {
+					"_type": "StringName",
+					"value": "LeatherVest"
+				},
+				"stage_flags": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"camp",
+							false
+						],
+						[
+							"chief",
+							false
+						]
+					]
+				},
+				"turn_in_biome": {
+					"_type": "int",
+					"value": 0
+				}
+			},
+			"definition_id": "Quest",
+			"description": "",
+			"tags": []
+		},
+		"Bless": {
+			"data": {
+				"aoe_radius": 5.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 5
+				},
+				"cooldown": 12.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 5
+				},
+				"description": "Grants a protective blessing.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 25
+				},
+				"name": "Bless",
+				"power": 0.0,
+				"required_class": {
+					"_type": "int",
+					"value": 3
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"wisdom",
+							0.5
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"support",
+				"buff"
+			]
+		},
+		"Blizzard": {
+			"data": {
+				"aoe_radius": 6.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 10
+				},
+				"cooldown": 10.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 2
+				},
+				"description": "A storm of ice over a wide area.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 40
+				},
+				"name": "Blizzard",
+				"power": 55.0,
+				"required_class": {
+					"_type": "int",
+					"value": 1
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"intellect",
+							1.4
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"frost",
+				"aoe",
+				"ultimate"
+			]
+		},
+		"BrewElixirFire": {
+			"data": {
+				"craft_time": 3.0,
+				"ingredients": [
+					{
+						"_type": "StringName",
+						"value": "Emberdust"
+					},
+					{
+						"_type": "StringName",
+						"value": "ManaPotion"
+					}
+				],
+				"name": "Brew: Elixir of Fire",
+				"quantities": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"Emberdust",
+							{
+								"_type": "int",
+								"value": 2
+							}
+						],
+						[
+							"ManaPotion",
+							{
+								"_type": "int",
+								"value": 1
+							}
+						]
+					]
+				},
+				"result": {
+					"_type": "StringName",
+					"value": "ElixirOfFire"
+				},
+				"station": {
+					"_type": "int",
+					"value": 2
+				}
+			},
+			"definition_id": "Recipe",
+			"description": "",
+			"tags": []
+		},
+		"Burn": {
+			"data": {
+				"duration": 4.0,
+				"effect": {
+					"_type": "int",
+					"value": 1
+				},
+				"modifiers": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"move_speed",
+							-0.1
+						]
+					]
+				},
+				"name": "Burning",
+				"stacks": true,
+				"tick_damage": 6.0
+			},
+			"definition_id": "StatusEffectDef",
+			"description": "",
+			"tags": []
+		},
+		"CaptainAccept": {
+			"data": {
+				"mood": {
+					"_type": "int",
+					"value": 5
+				},
+				"next_nodes": [],
+				"responses": {
+					"_type": "Dictionary",
+					"entries": []
+				},
+				"speaker": {
+					"_type": "StringName",
+					"value": "captain_reyes"
+				},
+				"text": "Bless you, traveler. Clear the forest."
+			},
+			"definition_id": "DialogueNode",
+			"description": "",
+			"tags": []
+		},
+		"CaptainIntro": {
+			"data": {
+				"mood": {
+					"_type": "int",
+					"value": 0
+				},
+				"next_nodes": [
+					{
+						"_type": "StringName",
+						"value": "CaptainAccept"
+					},
+					{
+						"_type": "StringName",
+						"value": "CaptainRefuse"
+					}
+				],
+				"portrait": "res://icon.svg",
+				"responses": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"I'll help.",
+							"CaptainAccept"
+						],
+						[
+							"Not my problem.",
+							"CaptainRefuse"
+						]
+					]
+				},
+				"speaker": {
+					"_type": "StringName",
+					"value": "captain_reyes"
+				},
+				"text": "The goblins grow bold. Will you help us?"
+			},
+			"definition_id": "DialogueNode",
+			"description": "",
+			"tags": []
+		},
+		"CaptainRefuse": {
+			"data": {
+				"mood": {
+					"_type": "int",
+					"value": 3
+				},
+				"next_nodes": [],
+				"responses": {
+					"_type": "Dictionary",
+					"entries": []
+				},
+				"speaker": {
+					"_type": "StringName",
+					"value": "captain_reyes"
+				},
+				"text": "Then we are doomed..."
+			},
+			"definition_id": "DialogueNode",
+			"description": "",
+			"tags": []
+		},
+		"Chill": {
+			"data": {
+				"duration": 2.0,
+				"effect": {
+					"_type": "int",
+					"value": 2
+				},
+				"modifiers": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"attack_speed",
+							-0.4
+						]
+					]
+				},
+				"name": "Frozen",
+				"stacks": false,
+				"tick_damage": 0.0
+			},
+			"definition_id": "StatusEffectDef",
+			"description": "",
+			"tags": []
+		},
+		"Cleave": {
+			"data": {
+				"aoe_radius": 3.5,
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"cooldown": 3.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"description": "Sweeps all enemies in front.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 8
+				},
+				"name": "Cleave",
+				"power": 26.0,
+				"required_class": {
+					"_type": "int",
+					"value": 0
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"strength",
+							0.9
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"melee",
+				"aoe"
+			]
+		},
+		"ClothRobe": {
+			"data": {
+				"armor_value": {
+					"_type": "int",
+					"value": 4
+				},
+				"material": {
+					"_type": "int",
+					"value": 0
+				},
+				"name": "Cloth Robe",
+				"rarity": {
+					"_type": "int",
+					"value": 0
+				},
+				"resistances": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"FROST",
+							0.1
+						]
+					]
+				},
+				"set_pieces": [],
+				"slot": {
+					"_type": "int",
+					"value": 3
+				},
+				"value": {
+					"_type": "int",
+					"value": 10
+				}
+			},
+			"definition_id": "Armor",
+			"description": "",
+			"tags": [
+				"chest"
+			]
+		},
+		"Collector": {
+			"data": {
+				"description": "Own one item of every rarity.",
+				"hidden": true,
+				"points": {
+					"_type": "int",
+					"value": 50
+				},
+				"required_quest": {
+					"_type": "StringName",
+					"value": ""
+				},
+				"reward_item": {
+					"_type": "StringName",
+					"value": "GoldRing"
+				},
+				"title": "Collector"
+			},
+			"definition_id": "Achievement",
+			"description": "",
+			"tags": []
+		},
+		"CraftDragonHelm": {
+			"data": {
+				"craft_time": 10.0,
+				"ingredients": [
+					{
+						"_type": "StringName",
+						"value": "DragonScale"
+					},
+					{
+						"_type": "StringName",
+						"value": "IronOre"
+					}
+				],
+				"name": "Craft: Dragonscale Helm",
+				"quantities": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"DragonScale",
+							{
+								"_type": "int",
+								"value": 5
+							}
+						],
+						[
+							"IronOre",
+							{
+								"_type": "int",
+								"value": 4
+							}
+						]
+					]
+				},
+				"result": {
+					"_type": "StringName",
+					"value": "DragonHelm"
+				},
+				"station": {
+					"_type": "int",
+					"value": 1
+				}
+			},
+			"definition_id": "Recipe",
+			"description": "",
+			"tags": []
+		},
+		"Crossbow": {
+			"data": {
+				"ammo_item": {
+					"_type": "StringName",
+					"value": "IronBolt"
+				},
+				"attack_speed": 0.6,
+				"base_damage": 34.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": ""
+				},
+				"name": "Heavy Crossbow",
+				"projectile_speed": 60.0,
+				"range": 26.0,
+				"rarity": {
+					"_type": "int",
+					"value": 2
+				},
+				"spread_degrees": 1.0,
+				"two_handed": true,
+				"value": {
+					"_type": "int",
+					"value": 300
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 6
+				}
+			},
+			"definition_id": "RangedWeapon",
+			"description": "",
+			"tags": [
+				"weapon",
+				"ranged"
+			]
+		},
+		"DailyBounty": {
+			"data": {
+				"giver": {
+					"_type": "StringName",
+					"value": "Skeleton"
+				},
+				"name": "Bounty: Skeletons",
+				"objectives": {
+					"_type": "PackedStringArray",
+					"value": [
+						"Destroy 10 skeletons"
+					]
+				},
+				"prerequisite": {
+					"_type": "StringName",
+					"value": ""
+				},
+				"quest_type": {
+					"_type": "int",
+					"value": 3
+				},
+				"reward_gold": {
+					"_type": "int",
+					"value": 30
+				},
+				"reward_item": {
+					"_type": "StringName",
+					"value": "HealthPotion"
+				},
+				"stage_flags": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"count",
+							false
+						]
+					]
+				},
+				"turn_in_biome": {
+					"_type": "int",
+					"value": 4
+				}
+			},
+			"definition_id": "Quest",
+			"description": "",
+			"tags": []
+		},
+		"DarkForest": {
+			"data": {
+				"ambient_color": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.200000002980232,
+					"g": 0.300000011920929,
+					"r": 0.200000002980232
+				},
+				"biome": {
+					"_type": "int",
+					"value": 0
+				},
+				"max_level": {
+					"_type": "int",
+					"value": 8
+				},
+				"merchants": [
+					{
+						"_type": "StringName",
+						"value": "General"
+					},
+					{
+						"_type": "StringName",
+						"value": "Smith"
+					}
+				],
+				"min_level": {
+					"_type": "int",
+					"value": 1
+				},
+				"name": "Darkwood Forest"
+			},
+			"definition_id": "Zone",
+			"description": "",
+			"tags": []
+		},
+		"Dragon": {
+			"data": {
+				"abilities": [
+					{
+						"_type": "StringName",
+						"value": "Fireball"
+					},
+					{
+						"_type": "StringName",
+						"value": "ArrowRain"
+					},
+					{
+						"_type": "StringName",
+						"value": "Blizzard"
+					}
+				],
+				"behavior": {
+					"_type": "int",
+					"value": 2
+				},
+				"faction": {
+					"_type": "int",
+					"value": 4
+				},
+				"health": {
+					"_type": "int",
+					"value": 3200
+				},
+				"is_boss": true,
+				"level": {
+					"_type": "int",
+					"value": 40
+				},
+				"loot_table": {
+					"_type": "StringName",
+					"value": "DragonLoot"
+				},
+				"name": "Ancient Dragon",
+				"tint": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.100000001490116,
+					"g": 0.100000001490116,
+					"r": 0.699999988079071
+				}
+			},
+			"definition_id": "Enemy",
+			"description": "",
+			"tags": []
+		},
+		"DragonChest": {
+			"data": {
+				"armor_value": {
+					"_type": "int",
+					"value": 55
+				},
+				"material": {
+					"_type": "int",
+					"value": 4
+				},
+				"name": "Dragonscale Cuirass",
+				"rarity": {
+					"_type": "int",
+					"value": 4
+				},
+				"resistances": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"FIRE",
+							0.6
+						],
+						[
+							"PHYSICAL",
+							0.2
+						]
+					]
+				},
+				"set_pieces": [
+					{
+						"_type": "StringName",
+						"value": "DragonHelm"
+					},
+					{
+						"_type": "StringName",
+						"value": "DragonGreaves"
+					}
+				],
+				"slot": {
+					"_type": "int",
+					"value": 3
+				},
+				"value": {
+					"_type": "int",
+					"value": 2200
+				}
+			},
+			"definition_id": "Armor",
+			"description": "",
+			"tags": [
+				"chest",
+				"dragon",
+				"fire"
+			]
+		},
+		"DragonGreaves": {
+			"data": {
+				"armor_value": {
+					"_type": "int",
+					"value": 38
+				},
+				"material": {
+					"_type": "int",
+					"value": 4
+				},
+				"name": "Dragonscale Greaves",
+				"rarity": {
+					"_type": "int",
+					"value": 4
+				},
+				"resistances": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"FIRE",
+							0.5
+						]
+					]
+				},
+				"set_pieces": [
+					{
+						"_type": "StringName",
+						"value": "DragonHelm"
+					},
+					{
+						"_type": "StringName",
+						"value": "DragonChest"
+					}
+				],
+				"slot": {
+					"_type": "int",
+					"value": 5
+				},
+				"value": {
+					"_type": "int",
+					"value": 1600
+				}
+			},
+			"definition_id": "Armor",
+			"description": "",
+			"tags": [
+				"legs",
+				"dragon",
+				"fire"
+			]
+		},
+		"DragonHelm": {
+			"data": {
+				"armor_value": {
+					"_type": "int",
+					"value": 30
+				},
+				"material": {
+					"_type": "int",
+					"value": 4
+				},
+				"name": "Dragonscale Helm",
+				"rarity": {
+					"_type": "int",
+					"value": 4
+				},
+				"resistances": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"FIRE",
+							0.5
+						],
+						[
+							"FROST",
+							0.15
+						]
+					]
+				},
+				"set_pieces": [
+					{
+						"_type": "StringName",
+						"value": "DragonChest"
+					},
+					{
+						"_type": "StringName",
+						"value": "DragonGreaves"
+					}
+				],
+				"slot": {
+					"_type": "int",
+					"value": 2
+				},
+				"value": {
+					"_type": "int",
+					"value": 1400
+				}
+			},
+			"definition_id": "Armor",
+			"description": "",
+			"tags": [
+				"head",
+				"dragon",
+				"fire"
+			]
+		},
+		"DragonLoot": {
+			"data": {
+				"entries": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"DragonChest",
+							{
+								"_type": "int",
+								"value": 20
+							}
+						],
+						[
+							"DragonHelm",
+							{
+								"_type": "int",
+								"value": 20
+							}
+						],
+						[
+							"DragonScale",
+							{
+								"_type": "int",
+								"value": 60
+							}
+						],
+						[
+							"Flamebrand",
+							{
+								"_type": "int",
+								"value": 5
+							}
+						]
+					]
+				},
+				"gold_max": {
+					"_type": "int",
+					"value": 600
+				},
+				"gold_min": {
+					"_type": "int",
+					"value": 200
+				},
+				"guaranteed": [
+					{
+						"_type": "StringName",
+						"value": "DragonScale"
+					}
+				],
+				"name": "Dragon Hoard",
+				"rolls": {
+					"_type": "int",
+					"value": 3
+				}
+			},
+			"definition_id": "LootTable",
+			"description": "",
+			"tags": []
+		},
+		"DragonScale": {
+			"data": {
+				"name": "Dragon Scale",
+				"rarity": {
+					"_type": "int",
+					"value": 3
+				},
+				"tint": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.100000001490116,
+					"g": 0.100000001490116,
+					"r": 0.699999988079071
+				},
+				"value": {
+					"_type": "int",
+					"value": 120
+				}
+			},
+			"definition_id": "Item",
+			"description": "",
+			"tags": [
+				"material",
+				"rare"
+			]
+		},
+		"DragonSlayer": {
+			"data": {
+				"description": "Defeat the Ancient Dragon.",
+				"hidden": false,
+				"points": {
+					"_type": "int",
+					"value": 100
+				},
+				"required_quest": {
+					"_type": "StringName",
+					"value": "SlayTheDragon"
+				},
+				"reward_item": {
+					"_type": "StringName",
+					"value": "DragonScale"
+				},
+				"title": "Dragonslayer"
+			},
+			"definition_id": "Achievement",
+			"description": "",
+			"tags": []
+		},
+		"DragonsLair": {
+			"data": {
+				"ambient_color": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.100000001490116,
+					"g": 0.200000002980232,
+					"r": 0.800000011920929
+				},
+				"biome": {
+					"_type": "int",
+					"value": 3
+				},
+				"max_level": {
+					"_type": "int",
+					"value": 45
+				},
+				"merchants": [],
+				"min_level": {
+					"_type": "int",
+					"value": 35
+				},
+				"name": "Dragon's Lair"
+			},
+			"definition_id": "Zone",
+			"description": "",
+			"tags": []
+		},
+		"DrainLife": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 3
+				},
+				"cooldown": 2.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 4
+				},
+				"description": "Siphons health from the target.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 16
+				},
+				"name": "Drain Life",
+				"power": 26.0,
+				"required_class": {
+					"_type": "int",
+					"value": 6
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"intellect",
+							0.9
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"shadow",
+				"lifesteal"
+			]
+		},
+		"ElixirOfFire": {
+			"data": {
+				"applies_status": {
+					"_type": "int",
+					"value": 1
+				},
+				"duration": 30.0,
+				"heal_amount": {
+					"_type": "int",
+					"value": 0
+				},
+				"name": "Elixir of Fire",
+				"rarity": {
+					"_type": "int",
+					"value": 2
+				},
+				"restores_mana": {
+					"_type": "int",
+					"value": 0
+				},
+				"stack_size": {
+					"_type": "int",
+					"value": 5
+				},
+				"value": {
+					"_type": "int",
+					"value": 60
+				}
+			},
+			"definition_id": "Consumable",
+			"description": "",
+			"tags": [
+				"elixir",
+				"fire",
+				"buff"
+			]
+		},
+		"Emberdust": {
+			"data": {
+				"name": "Emberdust",
+				"rarity": {
+					"_type": "int",
+					"value": 2
+				},
+				"value": {
+					"_type": "int",
+					"value": 40
+				}
+			},
+			"definition_id": "Item",
+			"description": "",
+			"tags": [
+				"material",
+				"reagent"
+			]
+		},
+		"Entangle": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 10
+				},
+				"cooldown": 4.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 7
+				},
+				"description": "Roots the target in vines.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 12
+				},
+				"name": "Entangle",
+				"power": 8.0,
+				"required_class": {
+					"_type": "int",
+					"value": 5
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"wisdom",
+							0.6
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"support",
+				"root"
+			]
+		},
+		"Fence": {
+			"data": {
+				"close_hour": {
+					"_type": "int",
+					"value": 4
+				},
+				"faction": {
+					"_type": "int",
+					"value": 3
+				},
+				"inventory": [
+					{
+						"_type": "StringName",
+						"value": "ShadowDagger"
+					},
+					{
+						"_type": "StringName",
+						"value": "GoldRing"
+					}
+				],
+				"merchant_type": {
+					"_type": "int",
+					"value": 4
+				},
+				"name": "Sly Pete",
+				"open_hour": {
+					"_type": "int",
+					"value": 20
+				},
+				"price_overrides": {
+					"_type": "Dictionary",
+					"entries": []
+				}
+			},
+			"definition_id": "Merchant",
+			"description": "",
+			"tags": []
+		},
+		"Fireball": {
+			"data": {
+				"aoe_radius": 4.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 1
+				},
+				"cooldown": 3.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 1
+				},
+				"description": "Hurls an explosive ball of flame.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 20
+				},
+				"name": "Fireball",
+				"power": 40.0,
+				"required_class": {
+					"_type": "int",
+					"value": 1
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"intellect",
+							1.1
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"fire",
+				"aoe"
+			]
+		},
+		"FirstBlood": {
+			"data": {
+				"description": "Defeat your first enemy.",
+				"hidden": false,
+				"points": {
+					"_type": "int",
+					"value": 10
+				},
+				"required_quest": {
+					"_type": "StringName",
+					"value": ""
+				},
+				"reward_item": {
+					"_type": "StringName",
+					"value": "HealthPotion"
+				},
+				"title": "First Blood"
+			},
+			"definition_id": "Achievement",
+			"description": "",
+			"tags": []
+		},
+		"Flamebrand": {
+			"data": {
+				"attack_speed": 1.0,
+				"base_damage": 42.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 1
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": "Fireball"
+				},
+				"icon": "res://icon.svg",
+				"is_unique": true,
+				"name": "Flamebrand",
+				"rarity": {
+					"_type": "int",
+					"value": 4
+				},
+				"tint": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.100000001490116,
+					"g": 0.400000005960464,
+					"r": 0.899999976158142
+				},
+				"two_handed": true,
+				"value": {
+					"_type": "int",
+					"value": 2500
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 0
+				}
+			},
+			"definition_id": "Weapon",
+			"description": "",
+			"tags": [
+				"fire",
+				"weapon",
+				"unique"
+			]
+		},
+		"ForgeIronSword": {
+			"data": {
+				"craft_time": 4.0,
+				"ingredients": [
+					{
+						"_type": "StringName",
+						"value": "IronOre"
+					}
+				],
+				"name": "Forge: Iron Sword",
+				"quantities": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"IronOre",
+							{
+								"_type": "int",
+								"value": 3
+							}
+						]
+					]
+				},
+				"result": {
+					"_type": "StringName",
+					"value": "IronSword"
+				},
+				"station": {
+					"_type": "int",
+					"value": 1
+				}
+			},
+			"definition_id": "Recipe",
+			"description": "",
+			"tags": []
+		},
+		"FrostWraith": {
+			"data": {
+				"abilities": [
+					{
+						"_type": "StringName",
+						"value": "Frostbolt"
+					}
+				],
+				"behavior": {
+					"_type": "int",
+					"value": 1
+				},
+				"faction": {
+					"_type": "int",
+					"value": 4
+				},
+				"health": {
+					"_type": "int",
+					"value": 140
+				},
+				"is_boss": false,
+				"level": {
+					"_type": "int",
+					"value": 12
+				},
+				"loot_table": {
+					"_type": "StringName",
+					"value": "WraithLoot"
+				},
+				"name": "Frost Wraith",
+				"tint": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.949999988079071,
+					"g": 0.699999988079071,
+					"r": 0.5
+				}
+			},
+			"definition_id": "Enemy",
+			"description": "",
+			"tags": []
+		},
+		"Frostbolt": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 2
+				},
+				"cooldown": 1.5,
+				"damage_type": {
+					"_type": "int",
+					"value": 2
+				},
+				"description": "A shard of ice that chills foes.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 12
+				},
+				"name": "Frostbolt",
+				"power": 28.0,
+				"required_class": {
+					"_type": "int",
+					"value": 1
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"intellect",
+							0.8
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"frost"
+			]
+		},
+		"FrozenPeak": {
+			"data": {
+				"ambient_color": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.899999976158142,
+					"g": 0.699999988079071,
+					"r": 0.600000023841858
+				},
+				"biome": {
+					"_type": "int",
+					"value": 2
+				},
+				"max_level": {
+					"_type": "int",
+					"value": 18
+				},
+				"merchants": [
+					{
+						"_type": "StringName",
+						"value": "Alchemist"
+					}
+				],
+				"min_level": {
+					"_type": "int",
+					"value": 10
+				},
+				"name": "Frozen Peak"
+			},
+			"definition_id": "Zone",
+			"description": "",
+			"tags": []
+		},
+		"FrozenSecrets": {
+			"data": {
+				"giver": {
+					"_type": "StringName",
+					"value": "FrostWraith"
+				},
+				"name": "Frozen Secrets",
+				"objectives": {
+					"_type": "PackedStringArray",
+					"value": [
+						"Reach Frozen Peak",
+						"Banish the Frost Wraith"
+					]
+				},
+				"prerequisite": {
+					"_type": "StringName",
+					"value": "BanditTrouble"
+				},
+				"quest_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"reward_gold": {
+					"_type": "int",
+					"value": 400
+				},
+				"reward_item": {
+					"_type": "StringName",
+					"value": "StaffOfWisdom"
+				},
+				"stage_flags": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"banish",
+							false
+						],
+						[
+							"reach",
+							false
+						]
+					]
+				},
+				"turn_in_biome": {
+					"_type": "int",
+					"value": 2
+				}
+			},
+			"definition_id": "Quest",
+			"description": "",
+			"tags": []
+		},
+		"General": {
+			"data": {
+				"close_hour": {
+					"_type": "int",
+					"value": 21
+				},
+				"faction": {
+					"_type": "int",
+					"value": 2
+				},
+				"inventory": [
+					{
+						"_type": "StringName",
+						"value": "WoodArrow"
+					},
+					{
+						"_type": "StringName",
+						"value": "IronBolt"
+					},
+					{
+						"_type": "StringName",
+						"value": "HealthPotion"
+					},
+					{
+						"_type": "StringName",
+						"value": "RustySword"
+					}
+				],
+				"merchant_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"name": "Tanner's Goods",
+				"open_hour": {
+					"_type": "int",
+					"value": 7
+				},
+				"price_overrides": {
+					"_type": "Dictionary",
+					"entries": []
+				}
+			},
+			"definition_id": "Merchant",
+			"description": "",
+			"tags": []
+		},
+		"Goblin": {
+			"data": {
+				"abilities": [
+					{
+						"_type": "StringName",
+						"value": "Slash"
+					}
+				],
+				"behavior": {
+					"_type": "int",
+					"value": 2
+				},
+				"faction": {
+					"_type": "int",
+					"value": 4
+				},
+				"health": {
+					"_type": "int",
+					"value": 45
+				},
+				"is_boss": false,
+				"level": {
+					"_type": "int",
+					"value": 3
+				},
+				"loot_table": {
+					"_type": "StringName",
+					"value": "GoblinLoot"
+				},
+				"name": "Goblin Raider",
+				"tint": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.200000002980232,
+					"g": 0.600000023841858,
+					"r": 0.300000011920929
+				}
+			},
+			"definition_id": "Enemy",
+			"description": "",
+			"tags": []
+		},
+		"GoblinLoot": {
+			"data": {
+				"entries": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"HealthPotion",
+							{
+								"_type": "int",
+								"value": 50
+							}
+						],
+						[
+							"IronOre",
+							{
+								"_type": "int",
+								"value": 30
+							}
+						],
+						[
+							"RustySword",
+							{
+								"_type": "int",
+								"value": 40
+							}
+						]
+					]
+				},
+				"gold_max": {
+					"_type": "int",
+					"value": 12
+				},
+				"gold_min": {
+					"_type": "int",
+					"value": 2
+				},
+				"guaranteed": [
+					{
+						"_type": "StringName",
+						"value": "HealthPotion"
+					}
+				],
+				"name": "Goblin Loot",
+				"rolls": {
+					"_type": "int",
+					"value": 1
+				}
+			},
+			"definition_id": "LootTable",
+			"description": "",
+			"tags": []
+		},
+		"GoblinMenace": {
+			"data": {
+				"giver": {
+					"_type": "StringName",
+					"value": "Goblin"
+				},
+				"name": "The Goblin Menace",
+				"objectives": {
+					"_type": "PackedStringArray",
+					"value": [
+						"Slay 5 goblins",
+						"Report to the captain"
+					]
+				},
+				"prerequisite": {
+					"_type": "StringName",
+					"value": ""
+				},
+				"quest_type": {
+					"_type": "int",
+					"value": 1
+				},
+				"reward_gold": {
+					"_type": "int",
+					"value": 100
+				},
+				"reward_item": {
+					"_type": "StringName",
+					"value": "IronSword"
+				},
+				"stage_flags": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"report",
+							false
+						],
+						[
+							"slay",
+							false
+						]
+					]
+				},
+				"turn_in_biome": {
+					"_type": "int",
+					"value": 0
+				}
+			},
+			"definition_id": "Quest",
+			"description": "",
+			"tags": []
+		},
+		"GoblinShaman": {
+			"data": {
+				"abilities": [
+					{
+						"_type": "StringName",
+						"value": "Frostbolt"
+					}
+				],
+				"behavior": {
+					"_type": "int",
+					"value": 5
+				},
+				"faction": {
+					"_type": "int",
+					"value": 4
+				},
+				"health": {
+					"_type": "int",
+					"value": 60
+				},
+				"is_boss": false,
+				"level": {
+					"_type": "int",
+					"value": 5
+				},
+				"loot_table": {
+					"_type": "StringName",
+					"value": "GoblinLoot"
+				},
+				"name": "Goblin Shaman",
+				"tint": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.300000011920929,
+					"g": 0.699999988079071,
+					"r": 0.349999994039536
+				}
+			},
+			"definition_id": "Enemy",
+			"description": "",
+			"tags": []
+		},
+		"GoldRing": {
+			"data": {
+				"name": "Gold Ring",
+				"rarity": {
+					"_type": "int",
+					"value": 1
+				},
+				"value": {
+					"_type": "int",
+					"value": 75
+				}
+			},
+			"definition_id": "Item",
+			"description": "",
+			"tags": [
+				"trinket",
+				"ring"
+			]
+		},
+		"GreaterHealthPotion": {
+			"data": {
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"duration": 0.0,
+				"heal_amount": {
+					"_type": "int",
+					"value": 120
+				},
+				"name": "Greater Health Potion",
+				"rarity": {
+					"_type": "int",
+					"value": 1
+				},
+				"restores_mana": {
+					"_type": "int",
+					"value": 0
+				},
+				"stack_size": {
+					"_type": "int",
+					"value": 10
+				},
+				"value": {
+					"_type": "int",
+					"value": 30
+				}
+			},
+			"definition_id": "Consumable",
+			"description": "",
+			"tags": [
+				"potion",
+				"heal"
+			]
+		},
+		"HasteDraught": {
+			"data": {
+				"applies_status": {
+					"_type": "int",
+					"value": 9
+				},
+				"duration": 20.0,
+				"heal_amount": {
+					"_type": "int",
+					"value": 0
+				},
+				"name": "Haste Draught",
+				"rarity": {
+					"_type": "int",
+					"value": 2
+				},
+				"restores_mana": {
+					"_type": "int",
+					"value": 0
+				},
+				"stack_size": {
+					"_type": "int",
+					"value": 5
+				},
+				"value": {
+					"_type": "int",
+					"value": 55
+				}
+			},
+			"definition_id": "Consumable",
+			"description": "",
+			"tags": [
+				"elixir",
+				"buff"
+			]
+		},
+		"Heal": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 6
+				},
+				"cooldown": 2.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 5
+				},
+				"description": "Restores health to an ally.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 18
+				},
+				"name": "Heal",
+				"power": 35.0,
+				"required_class": {
+					"_type": "int",
+					"value": 3
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"wisdom",
+							1.2
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"healer",
+				"holy"
+			]
+		},
+		"HealthPotion": {
+			"data": {
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"duration": 0.0,
+				"heal_amount": {
+					"_type": "int",
+					"value": 50
+				},
+				"name": "Health Potion",
+				"rarity": {
+					"_type": "int",
+					"value": 0
+				},
+				"restores_mana": {
+					"_type": "int",
+					"value": 0
+				},
+				"stack_size": {
+					"_type": "int",
+					"value": 20
+				},
+				"value": {
+					"_type": "int",
+					"value": 8
+				}
+			},
+			"definition_id": "Consumable",
+			"description": "",
+			"tags": [
+				"potion",
+				"heal"
+			]
+		},
+		"HeroCleric": {
+			"data": {
+				"char_class": {
+					"_type": "int",
+					"value": 3
+				},
+				"name": "Sister Anwen",
+				"skills": [
+					{
+						"_type": "StringName",
+						"value": "SkFaith"
+					},
+					{
+						"_type": "StringName",
+						"value": "SkRadiance"
+					}
+				],
+				"starting_abilities": [
+					{
+						"_type": "StringName",
+						"value": "Heal"
+					},
+					{
+						"_type": "StringName",
+						"value": "Smite"
+					}
+				],
+				"starting_weapon": {
+					"_type": "StringName",
+					"value": "HolyMace"
+				},
+				"stats": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"agility",
+							{
+								"_type": "int",
+								"value": 5
+							}
+						],
+						[
+							"intellect",
+							{
+								"_type": "int",
+								"value": 8
+							}
+						],
+						[
+							"strength",
+							{
+								"_type": "int",
+								"value": 7
+							}
+						],
+						[
+							"vitality",
+							{
+								"_type": "int",
+								"value": 11
+							}
+						],
+						[
+							"wisdom",
+							{
+								"_type": "int",
+								"value": 14
+							}
+						]
+					]
+				}
+			},
+			"definition_id": "Character",
+			"description": "",
+			"tags": []
+		},
+		"HeroMage": {
+			"data": {
+				"char_class": {
+					"_type": "int",
+					"value": 1
+				},
+				"name": "Lyra",
+				"skills": [
+					{
+						"_type": "StringName",
+						"value": "SkPyromancy"
+					},
+					{
+						"_type": "StringName",
+						"value": "SkFrost"
+					}
+				],
+				"starting_abilities": [
+					{
+						"_type": "StringName",
+						"value": "Fireball"
+					},
+					{
+						"_type": "StringName",
+						"value": "Frostbolt"
+					}
+				],
+				"starting_weapon": {
+					"_type": "StringName",
+					"value": "StaffOfWisdom"
+				},
+				"stats": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"agility",
+							{
+								"_type": "int",
+								"value": 6
+							}
+						],
+						[
+							"intellect",
+							{
+								"_type": "int",
+								"value": 16
+							}
+						],
+						[
+							"strength",
+							{
+								"_type": "int",
+								"value": 5
+							}
+						],
+						[
+							"vitality",
+							{
+								"_type": "int",
+								"value": 7
+							}
+						],
+						[
+							"wisdom",
+							{
+								"_type": "int",
+								"value": 9
+							}
+						]
+					]
+				}
+			},
+			"definition_id": "Character",
+			"description": "",
+			"tags": []
+		},
+		"HeroNecro": {
+			"data": {
+				"char_class": {
+					"_type": "int",
+					"value": 6
+				},
+				"name": "Mortis",
+				"skills": [
+					{
+						"_type": "StringName",
+						"value": "SkNecromancy"
+					}
+				],
+				"starting_abilities": [
+					{
+						"_type": "StringName",
+						"value": "RaiseDead"
+					},
+					{
+						"_type": "StringName",
+						"value": "DrainLife"
+					}
+				],
+				"starting_weapon": {
+					"_type": "StringName",
+					"value": "NecroWand"
+				},
+				"stats": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"agility",
+							{
+								"_type": "int",
+								"value": 7
+							}
+						],
+						[
+							"intellect",
+							{
+								"_type": "int",
+								"value": 15
+							}
+						],
+						[
+							"strength",
+							{
+								"_type": "int",
+								"value": 6
+							}
+						],
+						[
+							"vitality",
+							{
+								"_type": "int",
+								"value": 8
+							}
+						],
+						[
+							"wisdom",
+							{
+								"_type": "int",
+								"value": 11
+							}
+						]
+					]
+				}
+			},
+			"definition_id": "Character",
+			"description": "",
+			"tags": []
+		},
+		"HeroRanger": {
+			"data": {
+				"char_class": {
+					"_type": "int",
+					"value": 4
+				},
+				"name": "Kael",
+				"skills": [
+					{
+						"_type": "StringName",
+						"value": "SkShadowArts"
+					}
+				],
+				"starting_abilities": [
+					{
+						"_type": "StringName",
+						"value": "ArrowRain"
+					}
+				],
+				"starting_weapon": {
+					"_type": "StringName",
+					"value": "Longbow"
+				},
+				"stats": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"agility",
+							{
+								"_type": "int",
+								"value": 14
+							}
+						],
+						[
+							"intellect",
+							{
+								"_type": "int",
+								"value": 7
+							}
+						],
+						[
+							"strength",
+							{
+								"_type": "int",
+								"value": 8
+							}
+						],
+						[
+							"vitality",
+							{
+								"_type": "int",
+								"value": 9
+							}
+						],
+						[
+							"wisdom",
+							{
+								"_type": "int",
+								"value": 8
+							}
+						]
+					]
+				}
+			},
+			"definition_id": "Character",
+			"description": "",
+			"tags": []
+		},
+		"HeroRogue": {
+			"data": {
+				"char_class": {
+					"_type": "int",
+					"value": 2
+				},
+				"name": "Vex",
+				"skills": [
+					{
+						"_type": "StringName",
+						"value": "SkShadowArts"
+					}
+				],
+				"starting_abilities": [
+					{
+						"_type": "StringName",
+						"value": "Backstab"
+					},
+					{
+						"_type": "StringName",
+						"value": "PoisonBlade"
+					}
+				],
+				"starting_weapon": {
+					"_type": "StringName",
+					"value": "ShadowDagger"
+				},
+				"stats": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"agility",
+							{
+								"_type": "int",
+								"value": 15
+							}
+						],
+						[
+							"intellect",
+							{
+								"_type": "int",
+								"value": 6
+							}
+						],
+						[
+							"strength",
+							{
+								"_type": "int",
+								"value": 9
+							}
+						],
+						[
+							"vitality",
+							{
+								"_type": "int",
+								"value": 8
+							}
+						],
+						[
+							"wisdom",
+							{
+								"_type": "int",
+								"value": 5
+							}
+						]
+					]
+				}
+			},
+			"definition_id": "Character",
+			"description": "",
+			"tags": []
+		},
+		"HeroWarrior": {
+			"data": {
+				"char_class": {
+					"_type": "int",
+					"value": 0
+				},
+				"name": "Garruk",
+				"skills": [
+					{
+						"_type": "StringName",
+						"value": "SkBladework"
+					},
+					{
+						"_type": "StringName",
+						"value": "SkCleave"
+					}
+				],
+				"starting_abilities": [
+					{
+						"_type": "StringName",
+						"value": "Slash"
+					}
+				],
+				"starting_weapon": {
+					"_type": "StringName",
+					"value": "IronSword"
+				},
+				"stats": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"agility",
+							{
+								"_type": "int",
+								"value": 9
+							}
+						],
+						[
+							"intellect",
+							{
+								"_type": "int",
+								"value": 6
+							}
+						],
+						[
+							"strength",
+							{
+								"_type": "int",
+								"value": 14
+							}
+						],
+						[
+							"vitality",
+							{
+								"_type": "int",
+								"value": 12
+							}
+						],
+						[
+							"wisdom",
+							{
+								"_type": "int",
+								"value": 4
+							}
+						]
+					]
+				}
+			},
+			"definition_id": "Character",
+			"description": "",
+			"tags": []
+		},
+		"HolyMace": {
+			"data": {
+				"attack_speed": 1.0,
+				"base_damage": 28.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 5
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": "Smite"
+				},
+				"name": "Dawnbreaker",
+				"rarity": {
+					"_type": "int",
+					"value": 3
+				},
+				"two_handed": false,
+				"value": {
+					"_type": "int",
+					"value": 840
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 2
+				}
+			},
+			"definition_id": "Weapon",
+			"description": "",
+			"tags": [
+				"holy",
+				"weapon"
+			]
+		},
+		"HolyShield": {
+			"data": {
+				"duration": 5.0,
+				"effect": {
+					"_type": "int",
+					"value": 7
+				},
+				"modifiers": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"armor",
+							{
+								"_type": "int",
+								"value": 20
+							}
+						]
+					]
+				},
+				"name": "Shielded",
+				"stacks": false,
+				"tick_damage": 0.0
+			},
+			"definition_id": "StatusEffectDef",
+			"description": "",
+			"tags": []
+		},
+		"HuntingBow": {
+			"data": {
+				"ammo_item": {
+					"_type": "StringName",
+					"value": "WoodArrow"
+				},
+				"attack_speed": 1.2,
+				"base_damage": 16.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": "ArrowRain"
+				},
+				"name": "Hunting Bow",
+				"projectile_speed": 40.0,
+				"range": 24.0,
+				"rarity": {
+					"_type": "int",
+					"value": 1
+				},
+				"spread_degrees": 3.0,
+				"two_handed": true,
+				"value": {
+					"_type": "int",
+					"value": 60
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 5
+				}
+			},
+			"definition_id": "RangedWeapon",
+			"description": "",
+			"tags": [
+				"weapon",
+				"ranged"
+			]
+		},
+		"IronBolt": {
+			"data": {
+				"name": "Iron Bolt",
+				"rarity": {
+					"_type": "int",
+					"value": 0
+				},
+				"value": {
+					"_type": "int",
+					"value": 2
+				},
+				"weight": 0.08
+			},
+			"definition_id": "Item",
+			"description": "",
+			"tags": [
+				"ammo",
+				"stackable"
+			]
+		},
+		"IronOre": {
+			"data": {
+				"name": "Iron Ore",
+				"rarity": {
+					"_type": "int",
+					"value": 0
+				},
+				"value": {
+					"_type": "int",
+					"value": 6
+				}
+			},
+			"definition_id": "Item",
+			"description": "",
+			"tags": [
+				"material",
+				"stackable"
+			]
+		},
+		"IronSword": {
+			"data": {
+				"attack_speed": 1.1,
+				"base_damage": 18.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": "Slash"
+				},
+				"name": "Iron Sword",
+				"rarity": {
+					"_type": "int",
+					"value": 1
+				},
+				"two_handed": false,
+				"value": {
+					"_type": "int",
+					"value": 45
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 0
+				}
+			},
+			"definition_id": "Weapon",
+			"description": "",
+			"tags": [
+				"weapon"
+			]
+		},
+		"LeatherCap": {
+			"data": {
+				"armor_value": {
+					"_type": "int",
+					"value": 6
+				},
+				"material": {
+					"_type": "int",
+					"value": 1
+				},
+				"name": "Leather Cap",
+				"rarity": {
+					"_type": "int",
+					"value": 1
+				},
+				"resistances": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"PHYSICAL",
+							0.05
+						]
+					]
+				},
+				"set_pieces": [],
+				"slot": {
+					"_type": "int",
+					"value": 2
+				},
+				"value": {
+					"_type": "int",
+					"value": 25
+				}
+			},
+			"definition_id": "Armor",
+			"description": "",
+			"tags": [
+				"head"
+			]
+		},
+		"LeatherVest": {
+			"data": {
+				"armor_value": {
+					"_type": "int",
+					"value": 12
+				},
+				"material": {
+					"_type": "int",
+					"value": 1
+				},
+				"name": "Leather Vest",
+				"rarity": {
+					"_type": "int",
+					"value": 1
+				},
+				"resistances": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"PHYSICAL",
+							0.1
+						]
+					]
+				},
+				"set_pieces": [],
+				"slot": {
+					"_type": "int",
+					"value": 3
+				},
+				"value": {
+					"_type": "int",
+					"value": 40
+				}
+			},
+			"definition_id": "Armor",
+			"description": "",
+			"tags": [
+				"chest"
+			]
+		},
+		"Longbow": {
+			"data": {
+				"ammo_item": {
+					"_type": "StringName",
+					"value": "WoodArrow"
+				},
+				"attack_speed": 1.0,
+				"base_damage": 26.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": "ArrowRain"
+				},
+				"name": "Elven Longbow",
+				"projectile_speed": 52.0,
+				"range": 32.0,
+				"rarity": {
+					"_type": "int",
+					"value": 2
+				},
+				"spread_degrees": 2.0,
+				"two_handed": true,
+				"value": {
+					"_type": "int",
+					"value": 340
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 5
+				}
+			},
+			"definition_id": "RangedWeapon",
+			"description": "",
+			"tags": [
+				"weapon",
+				"ranged"
+			]
+		},
+		"MailHauberk": {
+			"data": {
+				"armor_value": {
+					"_type": "int",
+					"value": 22
+				},
+				"material": {
+					"_type": "int",
+					"value": 2
+				},
+				"name": "Mail Hauberk",
+				"rarity": {
+					"_type": "int",
+					"value": 2
+				},
+				"resistances": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"LIGHTNING",
+							-0.1
+						],
+						[
+							"PHYSICAL",
+							0.2
+						]
+					]
+				},
+				"set_pieces": [],
+				"slot": {
+					"_type": "int",
+					"value": 3
+				},
+				"value": {
+					"_type": "int",
+					"value": 180
+				}
+			},
+			"definition_id": "Armor",
+			"description": "",
+			"tags": [
+				"chest"
+			]
+		},
+		"ManaPotion": {
+			"data": {
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"duration": 0.0,
+				"heal_amount": {
+					"_type": "int",
+					"value": 0
+				},
+				"name": "Mana Potion",
+				"rarity": {
+					"_type": "int",
+					"value": 0
+				},
+				"restores_mana": {
+					"_type": "int",
+					"value": 40
+				},
+				"stack_size": {
+					"_type": "int",
+					"value": 20
+				},
+				"value": {
+					"_type": "int",
+					"value": 8
+				}
+			},
+			"definition_id": "Consumable",
+			"description": "",
+			"tags": [
+				"potion",
+				"mana"
+			]
+		},
+		"MiraGreet": {
+			"data": {
+				"mood": {
+					"_type": "int",
+					"value": 0
+				},
+				"next_nodes": [
+					{
+						"_type": "StringName",
+						"value": "MiraShop"
+					}
+				],
+				"responses": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"Just browsing.",
+							""
+						],
+						[
+							"Show me your wares.",
+							"MiraShop"
+						]
+					]
+				},
+				"speaker": {
+					"_type": "StringName",
+					"value": "mira_alchemist"
+				},
+				"text": "Fresh potions! What do you need?"
+			},
+			"definition_id": "DialogueNode",
+			"description": "",
+			"tags": []
+		},
+		"MiraShop": {
+			"data": {
+				"mood": {
+					"_type": "int",
+					"value": 0
+				},
+				"next_nodes": [],
+				"responses": {
+					"_type": "Dictionary",
+					"entries": []
+				},
+				"speaker": {
+					"_type": "StringName",
+					"value": "mira_alchemist"
+				},
+				"text": "Everything's fairly priced, I assure you."
+			},
+			"definition_id": "DialogueNode",
+			"description": "",
+			"tags": []
+		},
+		"NecroWand": {
+			"data": {
+				"attack_speed": 1.3,
+				"base_damage": 16.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 4
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": "DrainLife"
+				},
+				"name": "Wand of Whispers",
+				"rarity": {
+					"_type": "int",
+					"value": 3
+				},
+				"two_handed": false,
+				"value": {
+					"_type": "int",
+					"value": 760
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 8
+				}
+			},
+			"definition_id": "Weapon",
+			"description": "",
+			"tags": [
+				"shadow",
+				"weapon"
+			]
+		},
+		"PlateGuard": {
+			"data": {
+				"armor_value": {
+					"_type": "int",
+					"value": 40
+				},
+				"material": {
+					"_type": "int",
+					"value": 3
+				},
+				"name": "Plate Guard",
+				"rarity": {
+					"_type": "int",
+					"value": 3
+				},
+				"resistances": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"PHYSICAL",
+							0.35
+						]
+					]
+				},
+				"set_pieces": [],
+				"slot": {
+					"_type": "int",
+					"value": 3
+				},
+				"value": {
+					"_type": "int",
+					"value": 700
+				}
+			},
+			"definition_id": "Armor",
+			"description": "",
+			"tags": [
+				"chest"
+			]
+		},
+		"PoisonBlade": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 3
+				},
+				"cooldown": 1.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 7
+				},
+				"description": "Coats the blade in venom.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 8
+				},
+				"name": "Poison Blade",
+				"power": 18.0,
+				"required_class": {
+					"_type": "int",
+					"value": 2
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"agility",
+							0.7
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"poison",
+				"dot"
+			]
+		},
+		"RaiseDead": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"cooldown": 20.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 4
+				},
+				"description": "Summons a skeletal minion.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 35
+				},
+				"name": "Raise Dead",
+				"power": 0.0,
+				"required_class": {
+					"_type": "int",
+					"value": 6
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"intellect",
+							1.2
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"summon",
+				"shadow",
+				"ultimate"
+			]
+		},
+		"RegenTonic": {
+			"data": {
+				"applies_status": {
+					"_type": "int",
+					"value": 6
+				},
+				"duration": 15.0,
+				"heal_amount": {
+					"_type": "int",
+					"value": 0
+				},
+				"name": "Regeneration Tonic",
+				"rarity": {
+					"_type": "int",
+					"value": 1
+				},
+				"restores_mana": {
+					"_type": "int",
+					"value": 0
+				},
+				"stack_size": {
+					"_type": "int",
+					"value": 10
+				},
+				"value": {
+					"_type": "int",
+					"value": 35
+				}
+			},
+			"definition_id": "Consumable",
+			"description": "",
+			"tags": [
+				"potion",
+				"buff"
+			]
+		},
+		"Regeneration": {
+			"data": {
+				"duration": 3.0,
+				"effect": {
+					"_type": "int",
+					"value": 6
+				},
+				"modifiers": {
+					"_type": "Dictionary",
+					"entries": []
+				},
+				"name": "Regeneration",
+				"stacks": false,
+				"tick_damage": -8.0
+			},
+			"definition_id": "StatusEffectDef",
+			"description": "",
+			"tags": []
+		},
+		"RustySword": {
+			"data": {
+				"attack_speed": 1.2,
+				"base_damage": 8.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": ""
+				},
+				"name": "Rusty Sword",
+				"rarity": {
+					"_type": "int",
+					"value": 0
+				},
+				"two_handed": false,
+				"value": {
+					"_type": "int",
+					"value": 5
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 0
+				}
+			},
+			"definition_id": "Weapon",
+			"description": "",
+			"tags": [
+				"starter",
+				"weapon"
+			]
+		},
+		"ShadowDagger": {
+			"data": {
+				"attack_speed": 1.6,
+				"base_damage": 24.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 4
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": "Backstab"
+				},
+				"name": "Shadow Dagger",
+				"rarity": {
+					"_type": "int",
+					"value": 2
+				},
+				"two_handed": false,
+				"value": {
+					"_type": "int",
+					"value": 320
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 3
+				}
+			},
+			"definition_id": "Weapon",
+			"description": "",
+			"tags": [
+				"shadow",
+				"weapon",
+				"stealth"
+			]
+		},
+		"ShieldBash": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 4
+				},
+				"cooldown": 5.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"description": "Stuns a single target.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 6
+				},
+				"name": "Shield Bash",
+				"power": 12.0,
+				"required_class": {
+					"_type": "int",
+					"value": 0
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"strength",
+							0.4
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"tank",
+				"stun"
+			]
+		},
+		"SkBladework": {
+			"data": {
+				"category": {
+					"_type": "int",
+					"value": 0
+				},
+				"cost": {
+					"_type": "int",
+					"value": 1
+				},
+				"grants_ability": {
+					"_type": "StringName",
+					"value": "Slash"
+				},
+				"name": "Bladework",
+				"prerequisites": []
+			},
+			"definition_id": "SkillNode",
+			"description": "",
+			"tags": []
+		},
+		"SkCleave": {
+			"data": {
+				"category": {
+					"_type": "int",
+					"value": 0
+				},
+				"cost": {
+					"_type": "int",
+					"value": 2
+				},
+				"grants_ability": {
+					"_type": "StringName",
+					"value": "Cleave"
+				},
+				"name": "Cleaving Strikes",
+				"prerequisites": [
+					{
+						"_type": "StringName",
+						"value": "SkBladework"
+					}
+				]
+			},
+			"definition_id": "SkillNode",
+			"description": "",
+			"tags": []
+		},
+		"SkFaith": {
+			"data": {
+				"category": {
+					"_type": "int",
+					"value": 2
+				},
+				"cost": {
+					"_type": "int",
+					"value": 1
+				},
+				"grants_ability": {
+					"_type": "StringName",
+					"value": "Heal"
+				},
+				"name": "Faith",
+				"prerequisites": []
+			},
+			"definition_id": "SkillNode",
+			"description": "",
+			"tags": []
+		},
+		"SkFrost": {
+			"data": {
+				"category": {
+					"_type": "int",
+					"value": 0
+				},
+				"cost": {
+					"_type": "int",
+					"value": 2
+				},
+				"grants_ability": {
+					"_type": "StringName",
+					"value": "Frostbolt"
+				},
+				"name": "Cryomancy",
+				"prerequisites": []
+			},
+			"definition_id": "SkillNode",
+			"description": "",
+			"tags": []
+		},
+		"SkGuard": {
+			"data": {
+				"category": {
+					"_type": "int",
+					"value": 1
+				},
+				"cost": {
+					"_type": "int",
+					"value": 1
+				},
+				"grants_ability": {
+					"_type": "StringName",
+					"value": "ShieldBash"
+				},
+				"name": "Guardian",
+				"prerequisites": []
+			},
+			"definition_id": "SkillNode",
+			"description": "",
+			"tags": []
+		},
+		"SkInferno": {
+			"data": {
+				"category": {
+					"_type": "int",
+					"value": 0
+				},
+				"cost": {
+					"_type": "int",
+					"value": 3
+				},
+				"grants_ability": {
+					"_type": "StringName",
+					"value": "Blizzard"
+				},
+				"name": "Inferno",
+				"prerequisites": [
+					{
+						"_type": "StringName",
+						"value": "SkPyromancy"
+					}
+				]
+			},
+			"definition_id": "SkillNode",
+			"description": "",
+			"tags": []
+		},
+		"SkNecromancy": {
+			"data": {
+				"category": {
+					"_type": "int",
+					"value": 0
+				},
+				"cost": {
+					"_type": "int",
+					"value": 3
+				},
+				"grants_ability": {
+					"_type": "StringName",
+					"value": "RaiseDead"
+				},
+				"name": "Necromancy",
+				"prerequisites": [
+					{
+						"_type": "StringName",
+						"value": "SkShadowArts"
+					}
+				]
+			},
+			"definition_id": "SkillNode",
+			"description": "",
+			"tags": []
+		},
+		"SkPyromancy": {
+			"data": {
+				"category": {
+					"_type": "int",
+					"value": 0
+				},
+				"cost": {
+					"_type": "int",
+					"value": 2
+				},
+				"grants_ability": {
+					"_type": "StringName",
+					"value": "Fireball"
+				},
+				"name": "Pyromancy",
+				"prerequisites": []
+			},
+			"definition_id": "SkillNode",
+			"description": "",
+			"tags": []
+		},
+		"SkRadiance": {
+			"data": {
+				"category": {
+					"_type": "int",
+					"value": 2
+				},
+				"cost": {
+					"_type": "int",
+					"value": 2
+				},
+				"grants_ability": {
+					"_type": "StringName",
+					"value": "Bless"
+				},
+				"name": "Radiance",
+				"prerequisites": [
+					{
+						"_type": "StringName",
+						"value": "SkFaith"
+					}
+				]
+			},
+			"definition_id": "SkillNode",
+			"description": "",
+			"tags": []
+		},
+		"SkShadowArts": {
+			"data": {
+				"category": {
+					"_type": "int",
+					"value": 0
+				},
+				"cost": {
+					"_type": "int",
+					"value": 2
+				},
+				"grants_ability": {
+					"_type": "StringName",
+					"value": "Backstab"
+				},
+				"name": "Shadow Arts",
+				"prerequisites": []
+			},
+			"definition_id": "SkillNode",
+			"description": "",
+			"tags": []
+		},
+		"Skeleton": {
+			"data": {
+				"abilities": [
+					{
+						"_type": "StringName",
+						"value": "Slash"
+					}
+				],
+				"behavior": {
+					"_type": "int",
+					"value": 2
+				},
+				"faction": {
+					"_type": "int",
+					"value": 4
+				},
+				"health": {
+					"_type": "int",
+					"value": 55
+				},
+				"is_boss": false,
+				"level": {
+					"_type": "int",
+					"value": 6
+				},
+				"loot_table": {
+					"_type": "StringName",
+					"value": "GoblinLoot"
+				},
+				"name": "Risen Skeleton",
+				"tint": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.75,
+					"g": 0.800000011920929,
+					"r": 0.800000011920929
+				}
+			},
+			"definition_id": "Enemy",
+			"description": "",
+			"tags": []
+		},
+		"Slash": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"cooldown": 0.5,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"description": "A quick sword strike.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 0
+				},
+				"name": "Slash",
+				"power": 15.0,
+				"required_class": {
+					"_type": "int",
+					"value": 0
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"strength",
+							0.6
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"melee",
+				"starter"
+			]
+		},
+		"SlayTheDragon": {
+			"data": {
+				"giver": {
+					"_type": "StringName",
+					"value": "Dragon"
+				},
+				"name": "Slay the Ancient Dragon",
+				"objectives": {
+					"_type": "PackedStringArray",
+					"value": [
+						"Reach the Volcano",
+						"Defeat the Ancient Dragon"
+					]
+				},
+				"prerequisite": {
+					"_type": "StringName",
+					"value": "FrozenSecrets"
+				},
+				"quest_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"reward_gold": {
+					"_type": "int",
+					"value": 5000
+				},
+				"reward_item": {
+					"_type": "StringName",
+					"value": "Flamebrand"
+				},
+				"stage_flags": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"reach",
+							false
+						],
+						[
+							"slain",
+							false
+						]
+					]
+				},
+				"turn_in_biome": {
+					"_type": "int",
+					"value": 3
+				}
+			},
+			"definition_id": "Quest",
+			"description": "",
+			"tags": []
+		},
+		"Smite": {
+			"data": {
+				"aoe_radius": 0.0,
+				"applies_status": {
+					"_type": "int",
+					"value": 0
+				},
+				"cooldown": 2.5,
+				"damage_type": {
+					"_type": "int",
+					"value": 5
+				},
+				"description": "Holy damage that burns the wicked.",
+				"mana_cost": {
+					"_type": "int",
+					"value": 15
+				},
+				"name": "Smite",
+				"power": 30.0,
+				"required_class": {
+					"_type": "int",
+					"value": 3
+				},
+				"scaling": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"wisdom",
+							0.8
+						]
+					]
+				}
+			},
+			"definition_id": "Ability",
+			"description": "",
+			"tags": [
+				"dps",
+				"holy"
+			]
+		},
+		"Smith": {
+			"data": {
+				"close_hour": {
+					"_type": "int",
+					"value": 20
+				},
+				"faction": {
+					"_type": "int",
+					"value": 5
+				},
+				"inventory": [
+					{
+						"_type": "StringName",
+						"value": "IronSword"
+					},
+					{
+						"_type": "StringName",
+						"value": "WarAxe"
+					},
+					{
+						"_type": "StringName",
+						"value": "MailHauberk"
+					}
+				],
+				"merchant_type": {
+					"_type": "int",
+					"value": 1
+				},
+				"name": "Borin the Smith",
+				"open_hour": {
+					"_type": "int",
+					"value": 8
+				},
+				"price_overrides": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"IronSword",
+							{
+								"_type": "int",
+								"value": 40
+							}
+						]
+					]
+				}
+			},
+			"definition_id": "Merchant",
+			"description": "",
+			"tags": []
+		},
+		"StaffOfWisdom": {
+			"data": {
+				"attack_speed": 0.9,
+				"base_damage": 12.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 2
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": "Frostbolt"
+				},
+				"name": "Staff of Wisdom",
+				"rarity": {
+					"_type": "int",
+					"value": 3
+				},
+				"two_handed": true,
+				"value": {
+					"_type": "int",
+					"value": 900
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 7
+				}
+			},
+			"definition_id": "Weapon",
+			"description": "",
+			"tags": [
+				"frost",
+				"weapon"
+			]
+		},
+		"SwampLurker": {
+			"data": {
+				"abilities": [
+					{
+						"_type": "StringName",
+						"value": "PoisonBlade"
+					},
+					{
+						"_type": "StringName",
+						"value": "Entangle"
+					}
+				],
+				"behavior": {
+					"_type": "int",
+					"value": 4
+				},
+				"faction": {
+					"_type": "int",
+					"value": 4
+				},
+				"health": {
+					"_type": "int",
+					"value": 110
+				},
+				"is_boss": false,
+				"level": {
+					"_type": "int",
+					"value": 8
+				},
+				"loot_table": {
+					"_type": "StringName",
+					"value": "WraithLoot"
+				},
+				"name": "Swamp Lurker",
+				"tint": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.200000002980232,
+					"g": 0.400000005960464,
+					"r": 0.300000011920929
+				}
+			},
+			"definition_id": "Enemy",
+			"description": "",
+			"tags": []
+		},
+		"Thornmarsh": {
+			"data": {
+				"ambient_color": {
+					"_type": "Color",
+					"a": 1.0,
+					"b": 0.219999998807907,
+					"g": 0.349999994039536,
+					"r": 0.25
+				},
+				"biome": {
+					"_type": "int",
+					"value": 5
+				},
+				"max_level": {
+					"_type": "int",
+					"value": 14
+				},
+				"merchants": [
+					{
+						"_type": "StringName",
+						"value": "Fence"
+					}
+				],
+				"min_level": {
+					"_type": "int",
+					"value": 6
+				},
+				"name": "Thornmarsh"
+			},
+			"definition_id": "Zone",
+			"description": "",
+			"tags": []
+		},
+		"Venom": {
+			"data": {
+				"duration": 6.0,
+				"effect": {
+					"_type": "int",
+					"value": 3
+				},
+				"modifiers": {
+					"_type": "Dictionary",
+					"entries": []
+				},
+				"name": "Poisoned",
+				"stacks": true,
+				"tick_damage": 4.0
+			},
+			"definition_id": "StatusEffectDef",
+			"description": "",
+			"tags": []
+		},
+		"WarAxe": {
+			"data": {
+				"attack_speed": 0.8,
+				"base_damage": 30.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 0
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": "Cleave"
+				},
+				"name": "War Axe",
+				"rarity": {
+					"_type": "int",
+					"value": 2
+				},
+				"two_handed": true,
+				"value": {
+					"_type": "int",
+					"value": 280
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 1
+				}
+			},
+			"definition_id": "Weapon",
+			"description": "",
+			"tags": [
+				"weapon"
+			]
+		},
+		"Windforce": {
+			"data": {
+				"ammo_item": {
+					"_type": "StringName",
+					"value": "WoodArrow"
+				},
+				"attack_speed": 1.4,
+				"base_damage": 44.0,
+				"damage_type": {
+					"_type": "int",
+					"value": 3
+				},
+				"granted_ability": {
+					"_type": "StringName",
+					"value": "ArrowRain"
+				},
+				"name": "Windforce",
+				"projectile_speed": 70.0,
+				"range": 40.0,
+				"rarity": {
+					"_type": "int",
+					"value": 4
+				},
+				"spread_degrees": 1.5,
+				"two_handed": true,
+				"value": {
+					"_type": "int",
+					"value": 2800
+				},
+				"weapon_type": {
+					"_type": "int",
+					"value": 5
+				}
+			},
+			"definition_id": "RangedWeapon",
+			"description": "",
+			"tags": [
+				"weapon",
+				"ranged",
+				"lightning",
+				"unique"
+			]
+		},
+		"WoodArrow": {
+			"data": {
+				"name": "Wooden Arrow",
+				"rarity": {
+					"_type": "int",
+					"value": 0
+				},
+				"value": {
+					"_type": "int",
+					"value": 1
+				},
+				"weight": 0.05
+			},
+			"definition_id": "Item",
+			"description": "",
+			"tags": [
+				"ammo",
+				"stackable"
+			]
+		},
+		"WraithLoot": {
+			"data": {
+				"entries": {
+					"_type": "Dictionary",
+					"entries": [
+						[
+							"ClothRobe",
+							{
+								"_type": "int",
+								"value": 35
+							}
+						],
+						[
+							"ElixirOfFire",
+							{
+								"_type": "int",
+								"value": 15
+							}
+						],
+						[
+							"Emberdust",
+							{
+								"_type": "int",
+								"value": 25
+							}
+						]
+					]
+				},
+				"gold_max": {
+					"_type": "int",
+					"value": 30
+				},
+				"gold_min": {
+					"_type": "int",
+					"value": 8
+				},
+				"guaranteed": [],
+				"name": "Wraith Loot",
+				"rolls": {
+					"_type": "int",
+					"value": 2
+				}
+			},
+			"definition_id": "LootTable",
+			"description": "",
+			"tags": []
+		}
+	},
+	"version": 3
+}

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://ds7v4yqbc31gr" path="res://patterndb_demo/generated/model/armor.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "DragonGreaves"
+metadata/pdb_tags = PackedStringArray("legs", "dragon", "fire")
+slot = 5
+material = 4
+armor_value = 38
+resistances = {
+"FIRE": 0.5
+}
+set_pieces = [&"DragonHelm", &"DragonChest"]

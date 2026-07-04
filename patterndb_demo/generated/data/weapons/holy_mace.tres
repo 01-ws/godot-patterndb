@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://3olu5ufucxgw" path="res://patterndb_demo/generated/model/weapon.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "HolyMace"
+metadata/pdb_tags = PackedStringArray("holy", "weapon")
+weapon_type = 2
+damage_type = 5
+base_damage = 28.0
+attack_speed = 1.0
+two_handed = false
+granted_ability = &"Smite"

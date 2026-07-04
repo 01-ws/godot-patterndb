@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Merchant" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://d036kfuu2svaj" path="res://patterndb_demo/generated/model/merchant.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Fence"
+name = "Sly Pete"
+merchant_type = 4
+faction = 3
+inventory = [&"ShadowDagger", &"GoldRing"]
+price_overrides = {}
+open_hour = 20
+close_hour = 4

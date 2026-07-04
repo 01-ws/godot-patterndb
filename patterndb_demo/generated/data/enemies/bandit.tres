@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bbgrxj5m0jrk3" path="res://patterndb_demo/generated/model/enemy.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Bandit"
+name = "Bandit"
+level = 5
+health = 70
+faction = 3
+behavior = 4
+is_boss = false
+abilities = [&"Backstab"]
+loot_table = &"BanditLoot"
+tint = Color(0.40000000596046, 0.30000001192093, 0.25, 1.0)

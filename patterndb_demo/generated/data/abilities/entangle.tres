@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bgrmm5l7p7vah" path="res://patterndb_demo/generated/model/ability.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Entangle"
+metadata/pdb_tags = PackedStringArray("support", "root")
+name = "Entangle"
+description = "Roots the target in vines."
+damage_type = 7
+power = 8.0
+mana_cost = 12
+cooldown = 4.0
+aoe_radius = 0.0
+required_class = 5
+applies_status = 10
+scaling = {
+"wisdom": 0.6
+}

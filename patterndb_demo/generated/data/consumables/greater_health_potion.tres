@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://cuj6ktt2geext" path="res://patterndb_demo/generated/model/consumable.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "GreaterHealthPotion"
+metadata/pdb_tags = PackedStringArray("potion", "heal")
+heal_amount = 120
+restores_mana = 0
+applies_status = 0
+duration = 0.0
+stack_size = 10

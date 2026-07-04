@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bgrmm5l7p7vah" path="res://patterndb_demo/generated/model/ability.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Slash"
+metadata/pdb_tags = PackedStringArray("dps", "melee", "starter")
+name = "Slash"
+description = "A quick sword strike."
+damage_type = 0
+power = 15.0
+mana_cost = 0
+cooldown = 0.5
+aoe_radius = 0.0
+required_class = 0
+applies_status = 0
+scaling = {
+"strength": 0.6
+}

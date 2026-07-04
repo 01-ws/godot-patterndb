@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://ds7v4yqbc31gr" path="res://patterndb_demo/generated/model/armor.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "ClothRobe"
+metadata/pdb_tags = PackedStringArray("chest")
+slot = 3
+material = 0
+armor_value = 4
+resistances = {
+"FROST": 0.1
+}
+set_pieces = []

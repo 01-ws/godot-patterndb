@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Achievement" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bsxlf4hg436nu" path="res://patterndb_demo/generated/model/achievement.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "DragonSlayer"
+title = "Dragonslayer"
+description = "Defeat the Ancient Dragon."
+points = 100
+hidden = false
+reward_item = &"DragonScale"
+required_quest = &"SlayTheDragon"

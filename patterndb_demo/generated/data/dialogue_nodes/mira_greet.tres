@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DialogueNode" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://cc30jqepj5h2a" path="res://patterndb_demo/generated/model/dialogue_node.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "MiraGreet"
+speaker = &"mira_alchemist"
+text = "Fresh potions! What do you need?"
+mood = 0
+responses = {
+"Just browsing.": "",
+"Show me your wares.": "MiraShop"
+}
+next_nodes = [&"MiraShop"]

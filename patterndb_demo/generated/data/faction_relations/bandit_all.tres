@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FactionRelation" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://dvubykcmnwc2j" path="res://patterndb_demo/generated/model/faction_relation.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "BanditAll"
+faction_a = 3
+faction_b = 0
+standing = -100
+at_war = true
+modifiers = {}

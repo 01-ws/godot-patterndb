@@ -1,0 +1,3393 @@
+[gd_resource type="Resource" script_class="PatternDatabaseFile" load_steps=272 format=3]
+
+[ext_resource type="Script" uid="uid://cdw4goo7iog76" path="res://addons/pdb/core/pdb_enum.gd" id="1_jcylg"]
+[ext_resource type="Script" uid="uid://blp8p53avj2ir" path="res://addons/pdb/core/pdb_const.gd" id="2_smfls"]
+[ext_resource type="Script" uid="uid://cqllcd7ldy011" path="res://addons/pdb/core/pdb_field_definition.gd" id="3_3a4gy"]
+[ext_resource type="Script" uid="uid://dxuxi8l46jq6y" path="res://addons/pdb/core/pdb_model_definition.gd" id="4_cn12a"]
+[ext_resource type="Script" uid="uid://bhki7ewlb68yj" path="res://addons/pdb/core/pdb_model_instance.gd" id="5_5sdof"]
+[ext_resource type="Script" uid="uid://dcwdakw8d7bbd" path="res://addons/pdb/core/pattern_database_file.gd" id="6_x05dw"]
+
+[sub_resource type="Resource" id="Resource_ipwha"]
+script = ExtResource("1_jcylg")
+values = {
+"COMMON": 0,
+"EPIC": 3,
+"LEGENDARY": 4,
+"MYTHIC": 5,
+"RARE": 2,
+"UNCOMMON": 1
+}
+id = &"ItemRarity"
+tags = PackedStringArray("items")
+description = "Rarity tiers driving drop chance, tint, and value."
+
+[sub_resource type="Resource" id="Resource_xw1sy"]
+script = ExtResource("1_jcylg")
+values = {
+"ARCANE": 6,
+"FIRE": 1,
+"FROST": 2,
+"HOLY": 5,
+"LIGHTNING": 3,
+"PHYSICAL": 0,
+"POISON": 7,
+"SHADOW": 4,
+"TRUE": 8
+}
+id = &"DamageType"
+tags = PackedStringArray("combat")
+description = "Elemental and physical damage schools."
+
+[sub_resource type="Resource" id="Resource_rilsh"]
+script = ExtResource("1_jcylg")
+values = {
+"AMULET": 8,
+"BACK": 9,
+"CHEST": 3,
+"FEET": 6,
+"HANDS": 4,
+"HEAD": 2,
+"LEGS": 5,
+"OFFHAND": 1,
+"RING": 7,
+"WEAPON": 0
+}
+id = &"EquipSlot"
+tags = PackedStringArray("items")
+description = "Where a piece of gear is worn."
+
+[sub_resource type="Resource" id="Resource_r1k82"]
+script = ExtResource("1_jcylg")
+values = {
+"CLERIC": 3,
+"DRUID": 5,
+"MAGE": 1,
+"NECROMANCER": 6,
+"RANGER": 4,
+"ROGUE": 2,
+"WARRIOR": 0
+}
+id = &"CharacterClass"
+tags = PackedStringArray("characters")
+description = "Playable and NPC archetypes."
+
+[sub_resource type="Resource" id="Resource_wi5k1"]
+script = ExtResource("1_jcylg")
+values = {
+"BLESSED": 5,
+"BURNING": 1,
+"FROZEN": 2,
+"HASTED": 9,
+"NONE": 0,
+"POISONED": 3,
+"REGEN": 6,
+"SHIELDED": 7,
+"SILENCED": 8,
+"SLOWED": 10,
+"STUNNED": 4
+}
+id = &"StatusEffect"
+tags = PackedStringArray("combat")
+description = "Buffs and debuffs applied in combat."
+
+[sub_resource type="Resource" id="Resource_xwb2e"]
+script = ExtResource("1_jcylg")
+values = {
+"BOUNTY": 2,
+"EVENT": 4,
+"MAIN": 0,
+"REPEATABLE": 3,
+"SIDE": 1
+}
+id = &"QuestType"
+tags = PackedStringArray("world")
+description = "Categorises quests for the journal."
+
+[sub_resource type="Resource" id="Resource_5dnmq"]
+script = ExtResource("1_jcylg")
+values = {
+"ALLIANCE": 0,
+"ARCANE_ORDER": 6,
+"BANDIT": 3,
+"HORDE": 1,
+"MERCHANT_GUILD": 5,
+"MONSTER": 4,
+"NEUTRAL": 2
+}
+id = &"Faction"
+tags = PackedStringArray("world")
+description = "Allegiance groups used for reputation and hostility."
+
+[sub_resource type="Resource" id="Resource_25gj1"]
+script = ExtResource("1_jcylg")
+values = {
+"CAVERN": 6,
+"CITY": 7,
+"COAST": 8,
+"DESERT": 1,
+"DUNGEON": 4,
+"FOREST": 0,
+"SWAMP": 5,
+"TUNDRA": 2,
+"VOLCANO": 3
+}
+id = &"Biome"
+tags = PackedStringArray("world")
+description = "Environmental theme of a zone."
+
+[sub_resource type="Resource" id="Resource_8lmc8"]
+script = ExtResource("1_jcylg")
+values = {
+"AXE": 1,
+"BOW": 5,
+"CROSSBOW": 6,
+"DAGGER": 3,
+"MACE": 2,
+"SPEAR": 4,
+"STAFF": 7,
+"SWORD": 0,
+"WAND": 8
+}
+id = &"WeaponType"
+tags = PackedStringArray("items")
+description = "Physical form of a weapon; drives animations."
+
+[sub_resource type="Resource" id="Resource_tlt3b"]
+script = ExtResource("1_jcylg")
+values = {
+"CLOTH": 0,
+"DRAGONSCALE": 4,
+"LEATHER": 1,
+"MAIL": 2,
+"PLATE": 3
+}
+id = &"ArmorMaterial"
+tags = PackedStringArray("items")
+description = "Material class of armor; affects weight and resist."
+
+[sub_resource type="Resource" id="Resource_6q325"]
+script = ExtResource("1_jcylg")
+values = {
+"AGGRESSIVE": 2,
+"AMBUSH": 4,
+"CASTER": 5,
+"DEFENSIVE": 1,
+"PASSIVE": 0,
+"PATROL": 3
+}
+id = &"AIBehavior"
+tags = PackedStringArray("world")
+description = "Default combat/idle behaviour for an enemy."
+
+[sub_resource type="Resource" id="Resource_mskyi"]
+script = ExtResource("1_jcylg")
+values = {
+"DAWN": 0,
+"DAY": 1,
+"DUSK": 2,
+"NIGHT": 3
+}
+id = &"TimeOfDay"
+tags = PackedStringArray("world")
+description = "Ambient time bracket that gates events and spawns."
+
+[sub_resource type="Resource" id="Resource_dkhv4"]
+script = ExtResource("1_jcylg")
+values = {
+"ALCHEMIST": 2,
+"BLACKSMITH": 1,
+"FENCE": 4,
+"GENERAL": 0,
+"JEWELER": 3
+}
+id = &"MerchantType"
+tags = PackedStringArray("world")
+description = "What a vendor stocks and buys."
+
+[sub_resource type="Resource" id="Resource_ljhr1"]
+script = ExtResource("1_jcylg")
+values = {
+"DEFENSE": 1,
+"OFFENSE": 0,
+"PASSIVE": 3,
+"UTILITY": 2
+}
+id = &"SkillCategory"
+tags = PackedStringArray("characters")
+description = "Branch of the skill tree a node belongs to."
+
+[sub_resource type="Resource" id="Resource_omf5m"]
+script = ExtResource("2_smfls")
+data = {
+"base_health": 100,
+"base_mana": 50,
+"crit_multiplier": 2.0,
+"exp_curve_base": 1.15,
+"level_cap": 60
+}
+id = &"GameBalance"
+tags = PackedStringArray("config")
+description = "Core level/health/mana tuning."
+
+[sub_resource type="Resource" id="Resource_erlnp"]
+script = ExtResource("2_smfls")
+data = {
+"common": 55.0,
+"epic": 4.0,
+"legendary": 1.0,
+"rare": 12.0,
+"uncommon": 28.0
+}
+id = &"DropRates"
+tags = PackedStringArray("config")
+description = "Percent chance per rarity band."
+
+[sub_resource type="Resource" id="Resource_h8f2q"]
+script = ExtResource("2_smfls")
+data = {
+"repair_cost_per_point": 2,
+"starting_gold": 50,
+"vendor_markup": 1.5
+}
+id = &"Economy"
+tags = PackedStringArray("config")
+description = "Gold, vendor and repair economy."
+
+[sub_resource type="Resource" id="Resource_miijr"]
+script = ExtResource("2_smfls")
+data = {
+"armor_k": 0.06,
+"block_value": 0.25,
+"dodge_cap": 0.4
+}
+id = &"CombatTuning"
+tags = PackedStringArray("config")
+description = "Armor, dodge and block formulas."
+
+[sub_resource type="Resource" id="Resource_vnuqp"]
+script = ExtResource("2_smfls")
+data = {
+"day_length_sec": 1200.0,
+"gravity": -9.8,
+"tile_size": 64
+}
+id = &"WorldSettings"
+tags = PackedStringArray("config")
+description = "World tuning constants."
+
+[sub_resource type="Resource" id="Resource_q5fc3"]
+script = ExtResource("2_smfls")
+data = {
+"accent": Color(0.36, 0.62, 1, 1),
+"danger": Color(0.85, 0.24, 0.24, 1),
+"gold": Color(0.95, 0.78, 0.25, 1)
+}
+id = &"UITheme"
+tags = PackedStringArray("config")
+description = "Named UI colors (Color-valued constants)."
+
+[sub_resource type="Resource" id="Resource_0ewt6"]
+script = ExtResource("2_smfls")
+data = {
+"channel": "beta",
+"codename": "Emberfall",
+"version": "1.0.0"
+}
+id = &"BuildInfo"
+tags = PackedStringArray("config")
+description = "String-valued build metadata."
+
+[sub_resource type="Resource" id="Resource_dot4c"]
+script = ExtResource("2_smfls")
+data = {
+"distance": 8.0,
+"fov": 68.0,
+"pitch_max": 20.0,
+"pitch_min": -40.0
+}
+id = &"CameraRig"
+tags = PackedStringArray("config")
+description = "Camera defaults."
+
+[sub_resource type="Resource" id="Resource_xgkta"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+description = "Display name."
+required = true
+
+[sub_resource type="Resource" id="Resource_7hvx6"]
+script = ExtResource("3_3a4gy")
+field_name = &"description"
+default_value = null
+export_group = "Basic"
+description = "Tooltip text."
+
+[sub_resource type="Resource" id="Resource_rtpbp"]
+script = ExtResource("3_3a4gy")
+field_name = &"damage_type"
+field_type = 2
+hint = 2
+hint_string = "DamageType"
+default_value = null
+export_group = "Combat"
+description = "Element used for resist checks."
+
+[sub_resource type="Resource" id="Resource_twybn"]
+script = ExtResource("3_3a4gy")
+field_name = &"power"
+field_type = 3
+default_value = 10.0
+export_group = "Combat"
+description = "Base magnitude."
+
+[sub_resource type="Resource" id="Resource_25xwx"]
+script = ExtResource("3_3a4gy")
+field_name = &"mana_cost"
+field_type = 2
+default_value = 0
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_dyomd"]
+script = ExtResource("3_3a4gy")
+field_name = &"cooldown"
+field_type = 3
+default_value = 1.0
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_v58m4"]
+script = ExtResource("3_3a4gy")
+field_name = &"aoe_radius"
+field_type = 3
+default_value = null
+export_group = "Combat"
+description = "0 = single target."
+
+[sub_resource type="Resource" id="Resource_cskb4"]
+script = ExtResource("3_3a4gy")
+field_name = &"required_class"
+field_type = 2
+hint = 2
+hint_string = "CharacterClass"
+default_value = null
+export_group = "Requirements"
+
+[sub_resource type="Resource" id="Resource_8uifp"]
+script = ExtResource("3_3a4gy")
+field_name = &"applies_status"
+field_type = 2
+hint = 2
+hint_string = "StatusEffect"
+default_value = null
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_h8cxb"]
+script = ExtResource("3_3a4gy")
+field_name = &"scaling"
+field_type = 27
+hint_string = "stat"
+default_value = null
+export_group = "Combat"
+description = "Per-stat scaling coefficients (nested dict)."
+
+[sub_resource type="Resource" id="Resource_mnp74"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_xgkta"), SubResource("Resource_7hvx6"), SubResource("Resource_rtpbp"), SubResource("Resource_twybn"), SubResource("Resource_25xwx"), SubResource("Resource_dyomd"), SubResource("Resource_v58m4"), SubResource("Resource_cskb4"), SubResource("Resource_8uifp"), SubResource("Resource_h8cxb")])
+icon_name = "Play"
+id = &"Ability"
+tags = PackedStringArray("combat")
+description = "An active skill an actor can use."
+
+[sub_resource type="Resource" id="Resource_qvwnu"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+description = "Display name."
+required = true
+
+[sub_resource type="Resource" id="Resource_r214e"]
+script = ExtResource("3_3a4gy")
+field_name = &"description"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_xm03g"]
+script = ExtResource("3_3a4gy")
+field_name = &"rarity"
+field_type = 2
+hint = 2
+hint_string = "ItemRarity"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_36gdr"]
+script = ExtResource("3_3a4gy")
+field_name = &"value"
+field_type = 2
+default_value = null
+export_group = "Economy"
+description = "Base vendor value in gold."
+
+[sub_resource type="Resource" id="Resource_enl0a"]
+script = ExtResource("3_3a4gy")
+field_name = &"weight"
+field_type = 3
+default_value = 1.0
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_qanys"]
+script = ExtResource("3_3a4gy")
+field_name = &"is_unique"
+field_type = 1
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_be5d1"]
+script = ExtResource("3_3a4gy")
+field_name = &"icon"
+field_type = 24
+hint = 17
+hint_string = "Texture2D"
+default_value = null
+export_group = "Presentation"
+description = "Engine resource reference (stored as a res:// path)."
+
+[sub_resource type="Resource" id="Resource_3705n"]
+script = ExtResource("3_3a4gy")
+field_name = &"tint"
+field_type = 20
+default_value = null
+export_group = "Presentation"
+
+[sub_resource type="Resource" id="Resource_1mlby"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_qvwnu"), SubResource("Resource_r214e"), SubResource("Resource_xm03g"), SubResource("Resource_36gdr"), SubResource("Resource_enl0a"), SubResource("Resource_qanys"), SubResource("Resource_be5d1"), SubResource("Resource_3705n")])
+id = &"Item"
+tags = PackedStringArray("items")
+description = "Base item every pickup inherits from."
+
+[sub_resource type="Resource" id="Resource_8ye0i"]
+script = ExtResource("3_3a4gy")
+field_name = &"weapon_type"
+field_type = 2
+hint = 2
+hint_string = "WeaponType"
+default_value = null
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_d430i"]
+script = ExtResource("3_3a4gy")
+field_name = &"damage_type"
+field_type = 2
+hint = 2
+hint_string = "DamageType"
+default_value = null
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_njo2i"]
+script = ExtResource("3_3a4gy")
+field_name = &"base_damage"
+field_type = 3
+default_value = 5.0
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_nuc2m"]
+script = ExtResource("3_3a4gy")
+field_name = &"attack_speed"
+field_type = 3
+default_value = 1.0
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_7vkji"]
+script = ExtResource("3_3a4gy")
+field_name = &"two_handed"
+field_type = 1
+default_value = null
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_hbg8w"]
+script = ExtResource("3_3a4gy")
+field_name = &"granted_ability"
+field_type = 24
+hint = 17
+hint_string = "Ability"
+default_value = null
+export_group = "Effects"
+description = "Cross-instance reference to an Ability."
+
+[sub_resource type="Resource" id="Resource_hn2cx"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_8ye0i"), SubResource("Resource_d430i"), SubResource("Resource_njo2i"), SubResource("Resource_nuc2m"), SubResource("Resource_7vkji"), SubResource("Resource_hbg8w")])
+extends_type = "Item"
+icon_name = "BoxMesh"
+id = &"Weapon"
+tags = PackedStringArray("items")
+description = "A wieldable weapon."
+
+[sub_resource type="Resource" id="Resource_7m4ti"]
+script = ExtResource("3_3a4gy")
+field_name = &"range"
+field_type = 3
+default_value = 20.0
+export_group = "Ranged"
+
+[sub_resource type="Resource" id="Resource_4lfnl"]
+script = ExtResource("3_3a4gy")
+field_name = &"projectile_speed"
+field_type = 3
+default_value = 30.0
+export_group = "Ranged"
+
+[sub_resource type="Resource" id="Resource_k03n1"]
+script = ExtResource("3_3a4gy")
+field_name = &"spread_degrees"
+field_type = 3
+default_value = 2.0
+export_group = "Ranged"
+description = "Cone spread in degrees."
+
+[sub_resource type="Resource" id="Resource_om81h"]
+script = ExtResource("3_3a4gy")
+field_name = &"ammo_item"
+field_type = 24
+hint = 17
+hint_string = "Item"
+default_value = null
+export_group = "Ranged"
+description = "Consumed ammunition (item reference)."
+
+[sub_resource type="Resource" id="Resource_npcw6"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_7m4ti"), SubResource("Resource_4lfnl"), SubResource("Resource_k03n1"), SubResource("Resource_om81h")])
+extends_type = "Weapon"
+icon_name = "Path2D"
+id = &"RangedWeapon"
+tags = PackedStringArray("items")
+description = "A weapon that fires projectiles (3rd inheritance level)."
+
+[sub_resource type="Resource" id="Resource_daj7t"]
+script = ExtResource("3_3a4gy")
+field_name = &"slot"
+field_type = 2
+hint = 2
+hint_string = "EquipSlot"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_mufuq"]
+script = ExtResource("3_3a4gy")
+field_name = &"material"
+field_type = 2
+hint = 2
+hint_string = "ArmorMaterial"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_x5gum"]
+script = ExtResource("3_3a4gy")
+field_name = &"armor_value"
+field_type = 2
+default_value = null
+export_group = "Defense"
+
+[sub_resource type="Resource" id="Resource_me4vt"]
+script = ExtResource("3_3a4gy")
+field_name = &"resistances"
+field_type = 27
+hint_string = "DamageType"
+default_value = null
+export_group = "Defense"
+description = "Element -> reduction fraction (nested dict)."
+
+[sub_resource type="Resource" id="Resource_u6hft"]
+script = ExtResource("3_3a4gy")
+field_name = &"set_pieces"
+field_type = 28
+hint = 31
+hint_string = "Armor"
+default_value = null
+export_group = "Sets"
+description = "Other Armor instances in the same set."
+
+[sub_resource type="Resource" id="Resource_1jh6j"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_daj7t"), SubResource("Resource_mufuq"), SubResource("Resource_x5gum"), SubResource("Resource_me4vt"), SubResource("Resource_u6hft")])
+extends_type = "Item"
+icon_name = "MeshInstance3D"
+id = &"Armor"
+tags = PackedStringArray("items")
+description = "Wearable protection."
+
+[sub_resource type="Resource" id="Resource_ttsbj"]
+script = ExtResource("3_3a4gy")
+field_name = &"heal_amount"
+field_type = 2
+default_value = null
+export_group = "Effect"
+
+[sub_resource type="Resource" id="Resource_y718k"]
+script = ExtResource("3_3a4gy")
+field_name = &"restores_mana"
+field_type = 2
+default_value = null
+export_group = "Effect"
+
+[sub_resource type="Resource" id="Resource_gnqch"]
+script = ExtResource("3_3a4gy")
+field_name = &"applies_status"
+field_type = 2
+hint = 2
+hint_string = "StatusEffect"
+default_value = null
+export_group = "Effect"
+
+[sub_resource type="Resource" id="Resource_leh5m"]
+script = ExtResource("3_3a4gy")
+field_name = &"duration"
+field_type = 3
+default_value = null
+export_group = "Effect"
+description = "Effect duration in seconds."
+
+[sub_resource type="Resource" id="Resource_rnlmf"]
+script = ExtResource("3_3a4gy")
+field_name = &"stack_size"
+field_type = 2
+default_value = 1
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_6fa5u"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_ttsbj"), SubResource("Resource_y718k"), SubResource("Resource_gnqch"), SubResource("Resource_leh5m"), SubResource("Resource_rnlmf")])
+extends_type = "Item"
+icon_name = "Timer"
+id = &"Consumable"
+tags = PackedStringArray("items")
+description = "Single-use item."
+
+[sub_resource type="Resource" id="Resource_qeyib"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_1odkm"]
+script = ExtResource("3_3a4gy")
+field_name = &"effect"
+field_type = 2
+hint = 2
+hint_string = "StatusEffect"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_btbvv"]
+script = ExtResource("3_3a4gy")
+field_name = &"tick_damage"
+field_type = 3
+default_value = null
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_rutmt"]
+script = ExtResource("3_3a4gy")
+field_name = &"duration"
+field_type = 3
+default_value = 3.0
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_efw0i"]
+script = ExtResource("3_3a4gy")
+field_name = &"stacks"
+field_type = 1
+default_value = null
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_c2d2b"]
+script = ExtResource("3_3a4gy")
+field_name = &"modifiers"
+field_type = 27
+default_value = null
+export_group = "Combat"
+description = "Flat stat modifiers while active."
+
+[sub_resource type="Resource" id="Resource_v24vf"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_qeyib"), SubResource("Resource_1odkm"), SubResource("Resource_btbvv"), SubResource("Resource_rutmt"), SubResource("Resource_efw0i"), SubResource("Resource_c2d2b")])
+icon_name = "Time"
+id = &"StatusEffectDef"
+tags = PackedStringArray("combat")
+description = "Data for a buff/debuff."
+
+[sub_resource type="Resource" id="Resource_i1hmc"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_qn6pc"]
+script = ExtResource("3_3a4gy")
+field_name = &"category"
+field_type = 2
+hint = 2
+hint_string = "SkillCategory"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_35ccf"]
+script = ExtResource("3_3a4gy")
+field_name = &"cost"
+field_type = 2
+default_value = 1
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_6lswt"]
+script = ExtResource("3_3a4gy")
+field_name = &"prerequisites"
+field_type = 28
+hint = 31
+hint_string = "SkillNode"
+default_value = null
+export_group = "Tree"
+description = "Self-referential: nodes required first."
+
+[sub_resource type="Resource" id="Resource_px31u"]
+script = ExtResource("3_3a4gy")
+field_name = &"grants_ability"
+field_type = 24
+hint = 17
+hint_string = "Ability"
+default_value = null
+export_group = "Grants"
+
+[sub_resource type="Resource" id="Resource_svlwg"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_i1hmc"), SubResource("Resource_qn6pc"), SubResource("Resource_35ccf"), SubResource("Resource_6lswt"), SubResource("Resource_px31u")])
+icon_name = "GraphNode"
+id = &"SkillNode"
+tags = PackedStringArray("characters")
+description = "A node in a branching skill tree."
+
+[sub_resource type="Resource" id="Resource_ymgwg"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_lu14n"]
+script = ExtResource("3_3a4gy")
+field_name = &"level"
+field_type = 2
+default_value = 1
+export_group = "Stats"
+
+[sub_resource type="Resource" id="Resource_jhe8a"]
+script = ExtResource("3_3a4gy")
+field_name = &"health"
+field_type = 2
+default_value = 10
+export_group = "Stats"
+
+[sub_resource type="Resource" id="Resource_bopbu"]
+script = ExtResource("3_3a4gy")
+field_name = &"faction"
+field_type = 2
+hint = 2
+hint_string = "Faction"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_snlfd"]
+script = ExtResource("3_3a4gy")
+field_name = &"behavior"
+field_type = 2
+hint = 2
+hint_string = "AIBehavior"
+default_value = null
+export_group = "AI"
+
+[sub_resource type="Resource" id="Resource_ww1j0"]
+script = ExtResource("3_3a4gy")
+field_name = &"is_boss"
+field_type = 1
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_shesp"]
+script = ExtResource("3_3a4gy")
+field_name = &"abilities"
+field_type = 28
+hint = 31
+hint_string = "Ability"
+default_value = null
+export_group = "Combat"
+
+[sub_resource type="Resource" id="Resource_qfyau"]
+script = ExtResource("3_3a4gy")
+field_name = &"loot_table"
+field_type = 24
+hint = 17
+hint_string = "LootTable"
+default_value = null
+export_group = "Rewards"
+
+[sub_resource type="Resource" id="Resource_06uh3"]
+script = ExtResource("3_3a4gy")
+field_name = &"tint"
+field_type = 20
+default_value = null
+export_group = "Presentation"
+
+[sub_resource type="Resource" id="Resource_rsjrs"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_ymgwg"), SubResource("Resource_lu14n"), SubResource("Resource_jhe8a"), SubResource("Resource_bopbu"), SubResource("Resource_snlfd"), SubResource("Resource_ww1j0"), SubResource("Resource_shesp"), SubResource("Resource_qfyau"), SubResource("Resource_06uh3")])
+icon_name = "Enemy"
+id = &"Enemy"
+tags = PackedStringArray("world")
+description = "A hostile actor."
+
+[sub_resource type="Resource" id="Resource_2m0al"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_gjsok"]
+script = ExtResource("3_3a4gy")
+field_name = &"char_class"
+field_type = 2
+hint = 2
+hint_string = "CharacterClass"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_hkc6v"]
+script = ExtResource("3_3a4gy")
+field_name = &"starting_weapon"
+field_type = 24
+hint = 17
+hint_string = "Weapon"
+default_value = null
+export_group = "Loadout"
+
+[sub_resource type="Resource" id="Resource_soaso"]
+script = ExtResource("3_3a4gy")
+field_name = &"starting_abilities"
+field_type = 28
+hint = 31
+hint_string = "Ability"
+default_value = null
+export_group = "Loadout"
+
+[sub_resource type="Resource" id="Resource_yfckb"]
+script = ExtResource("3_3a4gy")
+field_name = &"skills"
+field_type = 28
+hint = 31
+hint_string = "SkillNode"
+default_value = null
+export_group = "Progression"
+
+[sub_resource type="Resource" id="Resource_426yu"]
+script = ExtResource("3_3a4gy")
+field_name = &"stats"
+field_type = 27
+default_value = null
+export_group = "Stats"
+description = "Named base stats (nested dict; try the Table nesting slider)."
+
+[sub_resource type="Resource" id="Resource_jkoee"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_2m0al"), SubResource("Resource_gjsok"), SubResource("Resource_hkc6v"), SubResource("Resource_soaso"), SubResource("Resource_yfckb"), SubResource("Resource_426yu")])
+icon_name = "Player"
+id = &"Character"
+tags = PackedStringArray("characters")
+description = "A playable or party character."
+
+[sub_resource type="Resource" id="Resource_75u1v"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_cs0kq"]
+script = ExtResource("3_3a4gy")
+field_name = &"entries"
+field_type = 27
+default_value = null
+export_group = "Drops"
+description = "Item id -> weight (nested dict)."
+
+[sub_resource type="Resource" id="Resource_xh8ct"]
+script = ExtResource("3_3a4gy")
+field_name = &"guaranteed"
+field_type = 28
+hint = 31
+hint_string = "Item"
+default_value = null
+export_group = "Drops"
+
+[sub_resource type="Resource" id="Resource_ld3cr"]
+script = ExtResource("3_3a4gy")
+field_name = &"gold_min"
+field_type = 2
+default_value = 0
+export_group = "Drops"
+
+[sub_resource type="Resource" id="Resource_r3vm4"]
+script = ExtResource("3_3a4gy")
+field_name = &"gold_max"
+field_type = 2
+default_value = 0
+export_group = "Drops"
+
+[sub_resource type="Resource" id="Resource_ruvva"]
+script = ExtResource("3_3a4gy")
+field_name = &"rolls"
+field_type = 2
+default_value = 1
+export_group = "Drops"
+
+[sub_resource type="Resource" id="Resource_da06i"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_75u1v"), SubResource("Resource_cs0kq"), SubResource("Resource_xh8ct"), SubResource("Resource_ld3cr"), SubResource("Resource_r3vm4"), SubResource("Resource_ruvva")])
+icon_name = "AnimationTrackList"
+id = &"LootTable"
+tags = PackedStringArray("world")
+description = "Weighted drop table."
+
+[sub_resource type="Resource" id="Resource_vpx0o"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_1f6mk"]
+script = ExtResource("3_3a4gy")
+field_name = &"result"
+field_type = 24
+hint = 17
+hint_string = "Item"
+default_value = null
+export_group = "Craft"
+
+[sub_resource type="Resource" id="Resource_c8e6j"]
+script = ExtResource("3_3a4gy")
+field_name = &"ingredients"
+field_type = 28
+hint = 31
+hint_string = "Item"
+default_value = null
+export_group = "Craft"
+
+[sub_resource type="Resource" id="Resource_bq8ny"]
+script = ExtResource("3_3a4gy")
+field_name = &"quantities"
+field_type = 27
+default_value = null
+export_group = "Craft"
+description = "Ingredient id -> count (nested dict)."
+
+[sub_resource type="Resource" id="Resource_k8fes"]
+script = ExtResource("3_3a4gy")
+field_name = &"station"
+field_type = 2
+hint = 2
+hint_string = "MerchantType"
+default_value = null
+export_group = "Craft"
+
+[sub_resource type="Resource" id="Resource_2ecmb"]
+script = ExtResource("3_3a4gy")
+field_name = &"craft_time"
+field_type = 3
+default_value = 2.0
+export_group = "Craft"
+
+[sub_resource type="Resource" id="Resource_ga5c0"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_vpx0o"), SubResource("Resource_1f6mk"), SubResource("Resource_c8e6j"), SubResource("Resource_bq8ny"), SubResource("Resource_k8fes"), SubResource("Resource_2ecmb")])
+icon_name = "Tools"
+id = &"Recipe"
+tags = PackedStringArray("world")
+description = "A crafting recipe."
+
+[sub_resource type="Resource" id="Resource_maiao"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_q5lv0"]
+script = ExtResource("3_3a4gy")
+field_name = &"merchant_type"
+field_type = 2
+hint = 2
+hint_string = "MerchantType"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_rtcbg"]
+script = ExtResource("3_3a4gy")
+field_name = &"faction"
+field_type = 2
+hint = 2
+hint_string = "Faction"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_g2dxv"]
+script = ExtResource("3_3a4gy")
+field_name = &"inventory"
+field_type = 28
+hint = 31
+hint_string = "Item"
+default_value = null
+export_group = "Stock"
+
+[sub_resource type="Resource" id="Resource_lq3ng"]
+script = ExtResource("3_3a4gy")
+field_name = &"price_overrides"
+field_type = 27
+default_value = null
+export_group = "Stock"
+description = "Item id -> fixed price (nested dict)."
+
+[sub_resource type="Resource" id="Resource_7gey1"]
+script = ExtResource("3_3a4gy")
+field_name = &"open_hour"
+field_type = 2
+default_value = 8
+export_group = "Schedule"
+
+[sub_resource type="Resource" id="Resource_2oy00"]
+script = ExtResource("3_3a4gy")
+field_name = &"close_hour"
+field_type = 2
+default_value = 20
+export_group = "Schedule"
+
+[sub_resource type="Resource" id="Resource_jts4m"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_maiao"), SubResource("Resource_q5lv0"), SubResource("Resource_rtcbg"), SubResource("Resource_g2dxv"), SubResource("Resource_lq3ng"), SubResource("Resource_7gey1"), SubResource("Resource_2oy00")])
+icon_name = "FileDialog"
+id = &"Merchant"
+tags = PackedStringArray("world")
+description = "A vendor NPC."
+
+[sub_resource type="Resource" id="Resource_bh2hs"]
+script = ExtResource("3_3a4gy")
+field_name = &"faction_a"
+field_type = 2
+hint = 2
+hint_string = "Faction"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_wxc0p"]
+script = ExtResource("3_3a4gy")
+field_name = &"faction_b"
+field_type = 2
+hint = 2
+hint_string = "Faction"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_5pb60"]
+script = ExtResource("3_3a4gy")
+field_name = &"standing"
+field_type = 2
+default_value = null
+export_group = "Relation"
+description = "-100 hostile .. +100 allied."
+
+[sub_resource type="Resource" id="Resource_p1yhe"]
+script = ExtResource("3_3a4gy")
+field_name = &"at_war"
+field_type = 1
+default_value = null
+export_group = "Relation"
+
+[sub_resource type="Resource" id="Resource_3na7t"]
+script = ExtResource("3_3a4gy")
+field_name = &"modifiers"
+field_type = 27
+default_value = null
+export_group = "Relation"
+description = "Contextual standing modifiers."
+
+[sub_resource type="Resource" id="Resource_66okn"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_bh2hs"), SubResource("Resource_wxc0p"), SubResource("Resource_5pb60"), SubResource("Resource_p1yhe"), SubResource("Resource_3na7t")])
+icon_name = "Signals"
+id = &"FactionRelation"
+tags = PackedStringArray("world")
+description = "Standing between two factions."
+
+[sub_resource type="Resource" id="Resource_0sck0"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_q5ft5"]
+script = ExtResource("3_3a4gy")
+field_name = &"quest_type"
+field_type = 2
+hint = 2
+hint_string = "QuestType"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_sjdbf"]
+script = ExtResource("3_3a4gy")
+field_name = &"giver"
+field_type = 24
+hint = 17
+hint_string = "Enemy"
+default_value = null
+export_group = "Flow"
+
+[sub_resource type="Resource" id="Resource_qekue"]
+script = ExtResource("3_3a4gy")
+field_name = &"prerequisite"
+field_type = 24
+hint = 17
+hint_string = "Quest"
+default_value = null
+export_group = "Flow"
+description = "Self-referential quest chain."
+
+[sub_resource type="Resource" id="Resource_30o0a"]
+script = ExtResource("3_3a4gy")
+field_name = &"reward_item"
+field_type = 24
+hint = 17
+hint_string = "Item"
+default_value = null
+export_group = "Rewards"
+
+[sub_resource type="Resource" id="Resource_r1dw8"]
+script = ExtResource("3_3a4gy")
+field_name = &"reward_gold"
+field_type = 2
+default_value = null
+export_group = "Rewards"
+
+[sub_resource type="Resource" id="Resource_dp1q1"]
+script = ExtResource("3_3a4gy")
+field_name = &"objectives"
+field_type = 34
+default_value = null
+export_group = "Flow"
+
+[sub_resource type="Resource" id="Resource_1n5mc"]
+script = ExtResource("3_3a4gy")
+field_name = &"stage_flags"
+field_type = 27
+default_value = null
+export_group = "Flow"
+description = "Objective id -> completed bool."
+
+[sub_resource type="Resource" id="Resource_fbrm0"]
+script = ExtResource("3_3a4gy")
+field_name = &"turn_in_biome"
+field_type = 2
+hint = 2
+hint_string = "Biome"
+default_value = null
+export_group = "Flow"
+
+[sub_resource type="Resource" id="Resource_jjacq"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_0sck0"), SubResource("Resource_q5ft5"), SubResource("Resource_sjdbf"), SubResource("Resource_qekue"), SubResource("Resource_30o0a"), SubResource("Resource_r1dw8"), SubResource("Resource_dp1q1"), SubResource("Resource_1n5mc"), SubResource("Resource_fbrm0")])
+icon_name = "Bookmark"
+id = &"Quest"
+tags = PackedStringArray("world")
+description = "A journal quest."
+
+[sub_resource type="Resource" id="Resource_f38il"]
+script = ExtResource("3_3a4gy")
+field_name = &"speaker"
+field_type = 21
+default_value = null
+export_group = "Basic"
+description = "Speaker id (StringName field)."
+
+[sub_resource type="Resource" id="Resource_5hmsp"]
+script = ExtResource("3_3a4gy")
+field_name = &"text"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_3ygwd"]
+script = ExtResource("3_3a4gy")
+field_name = &"mood"
+field_type = 2
+hint = 2
+hint_string = "StatusEffect"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_v3d7k"]
+script = ExtResource("3_3a4gy")
+field_name = &"responses"
+field_type = 27
+default_value = null
+export_group = "Flow"
+description = "Reply text -> next node id (nested dict)."
+
+[sub_resource type="Resource" id="Resource_42qts"]
+script = ExtResource("3_3a4gy")
+field_name = &"next_nodes"
+field_type = 28
+hint = 31
+hint_string = "DialogueNode"
+default_value = null
+export_group = "Flow"
+description = "Self-referential dialogue tree."
+
+[sub_resource type="Resource" id="Resource_fkatr"]
+script = ExtResource("3_3a4gy")
+field_name = &"portrait"
+field_type = 24
+hint = 17
+hint_string = "Texture2D"
+default_value = null
+export_group = "Presentation"
+
+[sub_resource type="Resource" id="Resource_urxri"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_f38il"), SubResource("Resource_5hmsp"), SubResource("Resource_3ygwd"), SubResource("Resource_v3d7k"), SubResource("Resource_42qts"), SubResource("Resource_fkatr")])
+icon_name = "RichTextLabel"
+id = &"DialogueNode"
+tags = PackedStringArray("world")
+description = "One line in a branching conversation."
+
+[sub_resource type="Resource" id="Resource_wbbi3"]
+script = ExtResource("3_3a4gy")
+field_name = &"title"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_3nncm"]
+script = ExtResource("3_3a4gy")
+field_name = &"description"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_l2bqb"]
+script = ExtResource("3_3a4gy")
+field_name = &"points"
+field_type = 2
+default_value = 10
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_ov3at"]
+script = ExtResource("3_3a4gy")
+field_name = &"hidden"
+field_type = 1
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_03aj4"]
+script = ExtResource("3_3a4gy")
+field_name = &"reward_item"
+field_type = 24
+hint = 17
+hint_string = "Item"
+default_value = null
+export_group = "Rewards"
+
+[sub_resource type="Resource" id="Resource_hpn6l"]
+script = ExtResource("3_3a4gy")
+field_name = &"required_quest"
+field_type = 24
+hint = 17
+hint_string = "Quest"
+default_value = null
+export_group = "Unlock"
+
+[sub_resource type="Resource" id="Resource_plhy6"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_wbbi3"), SubResource("Resource_3nncm"), SubResource("Resource_l2bqb"), SubResource("Resource_ov3at"), SubResource("Resource_03aj4"), SubResource("Resource_hpn6l")])
+icon_name = "Favorites"
+id = &"Achievement"
+tags = PackedStringArray("meta")
+description = "An unlockable achievement."
+
+[sub_resource type="Resource" id="Resource_4l84f"]
+script = ExtResource("3_3a4gy")
+field_name = &"name"
+default_value = null
+export_group = "Basic"
+required = true
+
+[sub_resource type="Resource" id="Resource_fw18y"]
+script = ExtResource("3_3a4gy")
+field_name = &"biome"
+field_type = 2
+hint = 2
+hint_string = "Biome"
+default_value = null
+export_group = "Basic"
+
+[sub_resource type="Resource" id="Resource_k2by4"]
+script = ExtResource("3_3a4gy")
+field_name = &"min_level"
+field_type = 2
+default_value = 1
+export_group = "Difficulty"
+
+[sub_resource type="Resource" id="Resource_jsyym"]
+script = ExtResource("3_3a4gy")
+field_name = &"max_level"
+field_type = 2
+default_value = 10
+export_group = "Difficulty"
+
+[sub_resource type="Resource" id="Resource_a6s7j"]
+script = ExtResource("3_3a4gy")
+field_name = &"merchants"
+field_type = 28
+hint = 31
+hint_string = "Merchant"
+default_value = null
+export_group = "Content"
+
+[sub_resource type="Resource" id="Resource_2vg5b"]
+script = ExtResource("3_3a4gy")
+field_name = &"ambient_color"
+field_type = 20
+default_value = null
+export_group = "Presentation"
+
+[sub_resource type="Resource" id="Resource_gexbe"]
+script = ExtResource("4_cn12a")
+fields = Array[ExtResource("3_3a4gy")]([SubResource("Resource_4l84f"), SubResource("Resource_fw18y"), SubResource("Resource_k2by4"), SubResource("Resource_jsyym"), SubResource("Resource_a6s7j"), SubResource("Resource_2vg5b")])
+icon_name = "Environment"
+id = &"Zone"
+tags = PackedStringArray("world")
+description = "A playable area of the map."
+
+[sub_resource type="Resource" id="Resource_tcmmt"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 0,
+"cooldown": 0.5,
+"damage_type": 0,
+"description": "A quick sword strike.",
+"mana_cost": 0,
+"name": "Slash",
+"power": 15.0,
+"required_class": 0,
+"scaling": {
+"strength": 0.6
+}
+}
+id = &"Slash"
+tags = PackedStringArray("dps", "melee", "starter")
+
+[sub_resource type="Resource" id="Resource_yyaro"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 3.5,
+"applies_status": 0,
+"cooldown": 3.0,
+"damage_type": 0,
+"description": "Sweeps all enemies in front.",
+"mana_cost": 8,
+"name": "Cleave",
+"power": 26.0,
+"required_class": 0,
+"scaling": {
+"strength": 0.9
+}
+}
+id = &"Cleave"
+tags = PackedStringArray("dps", "melee", "aoe")
+
+[sub_resource type="Resource" id="Resource_sj7dc"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 4,
+"cooldown": 5.0,
+"damage_type": 0,
+"description": "Stuns a single target.",
+"mana_cost": 6,
+"name": "Shield Bash",
+"power": 12.0,
+"required_class": 0,
+"scaling": {
+"strength": 0.4
+}
+}
+id = &"ShieldBash"
+tags = PackedStringArray("tank", "stun")
+
+[sub_resource type="Resource" id="Resource_q311k"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 4.0,
+"applies_status": 1,
+"cooldown": 3.0,
+"damage_type": 1,
+"description": "Hurls an explosive ball of flame.",
+"mana_cost": 20,
+"name": "Fireball",
+"power": 40.0,
+"required_class": 1,
+"scaling": {
+"intellect": 1.1
+}
+}
+id = &"Fireball"
+tags = PackedStringArray("dps", "fire", "aoe")
+
+[sub_resource type="Resource" id="Resource_iop35"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 2,
+"cooldown": 1.5,
+"damage_type": 2,
+"description": "A shard of ice that chills foes.",
+"mana_cost": 12,
+"name": "Frostbolt",
+"power": 28.0,
+"required_class": 1,
+"scaling": {
+"intellect": 0.8
+}
+}
+id = &"Frostbolt"
+tags = PackedStringArray("dps", "frost")
+
+[sub_resource type="Resource" id="Resource_baf7v"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 0,
+"cooldown": 2.0,
+"damage_type": 6,
+"description": "A barrage of homing bolts.",
+"mana_cost": 18,
+"name": "Arcane Missiles",
+"power": 34.0,
+"required_class": 1,
+"scaling": {
+"intellect": 1.0
+}
+}
+id = &"ArcaneMissiles"
+tags = PackedStringArray("dps", "arcane")
+
+[sub_resource type="Resource" id="Resource_dxpuk"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 6.0,
+"applies_status": 10,
+"cooldown": 10.0,
+"damage_type": 2,
+"description": "A storm of ice over a wide area.",
+"mana_cost": 40,
+"name": "Blizzard",
+"power": 55.0,
+"required_class": 1,
+"scaling": {
+"intellect": 1.4
+}
+}
+id = &"Blizzard"
+tags = PackedStringArray("dps", "frost", "aoe", "ultimate")
+
+[sub_resource type="Resource" id="Resource_gn1qv"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 6,
+"cooldown": 2.0,
+"damage_type": 5,
+"description": "Restores health to an ally.",
+"mana_cost": 18,
+"name": "Heal",
+"power": 35.0,
+"required_class": 3,
+"scaling": {
+"wisdom": 1.2
+}
+}
+id = &"Heal"
+tags = PackedStringArray("healer", "holy")
+
+[sub_resource type="Resource" id="Resource_eldl1"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 0,
+"cooldown": 2.5,
+"damage_type": 5,
+"description": "Holy damage that burns the wicked.",
+"mana_cost": 15,
+"name": "Smite",
+"power": 30.0,
+"required_class": 3,
+"scaling": {
+"wisdom": 0.8
+}
+}
+id = &"Smite"
+tags = PackedStringArray("dps", "holy")
+
+[sub_resource type="Resource" id="Resource_8yuxv"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 5.0,
+"applies_status": 5,
+"cooldown": 12.0,
+"damage_type": 5,
+"description": "Grants a protective blessing.",
+"mana_cost": 25,
+"name": "Bless",
+"power": 0.0,
+"required_class": 3,
+"scaling": {
+"wisdom": 0.5
+}
+}
+id = &"Bless"
+tags = PackedStringArray("support", "buff")
+
+[sub_resource type="Resource" id="Resource_dw2nk"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 0,
+"cooldown": 4.0,
+"damage_type": 0,
+"description": "Massive damage from stealth.",
+"mana_cost": 10,
+"name": "Backstab",
+"power": 55.0,
+"required_class": 2,
+"scaling": {
+"agility": 1.3
+}
+}
+id = &"Backstab"
+tags = PackedStringArray("dps", "melee", "stealth")
+
+[sub_resource type="Resource" id="Resource_s86di"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 3,
+"cooldown": 1.0,
+"damage_type": 7,
+"description": "Coats the blade in venom.",
+"mana_cost": 8,
+"name": "Poison Blade",
+"power": 18.0,
+"required_class": 2,
+"scaling": {
+"agility": 0.7
+}
+}
+id = &"PoisonBlade"
+tags = PackedStringArray("dps", "poison", "dot")
+
+[sub_resource type="Resource" id="Resource_klqi3"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 6.0,
+"applies_status": 0,
+"cooldown": 6.0,
+"damage_type": 0,
+"description": "A volley of arrows over an area.",
+"mana_cost": 14,
+"name": "Arrow Rain",
+"power": 22.0,
+"required_class": 4,
+"scaling": {
+"agility": 0.9
+}
+}
+id = &"ArrowRain"
+tags = PackedStringArray("dps", "ranged", "aoe")
+
+[sub_resource type="Resource" id="Resource_auel8"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 10,
+"cooldown": 4.0,
+"damage_type": 7,
+"description": "Roots the target in vines.",
+"mana_cost": 12,
+"name": "Entangle",
+"power": 8.0,
+"required_class": 5,
+"scaling": {
+"wisdom": 0.6
+}
+}
+id = &"Entangle"
+tags = PackedStringArray("support", "root")
+
+[sub_resource type="Resource" id="Resource_fb476"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 0,
+"cooldown": 20.0,
+"damage_type": 4,
+"description": "Summons a skeletal minion.",
+"mana_cost": 35,
+"name": "Raise Dead",
+"power": 0.0,
+"required_class": 6,
+"scaling": {
+"intellect": 1.2
+}
+}
+id = &"RaiseDead"
+tags = PackedStringArray("summon", "shadow", "ultimate")
+
+[sub_resource type="Resource" id="Resource_i8ueq"]
+script = ExtResource("5_5sdof")
+definition_id = &"Ability"
+data = {
+"aoe_radius": 0.0,
+"applies_status": 3,
+"cooldown": 2.0,
+"damage_type": 4,
+"description": "Siphons health from the target.",
+"mana_cost": 16,
+"name": "Drain Life",
+"power": 26.0,
+"required_class": 6,
+"scaling": {
+"intellect": 0.9
+}
+}
+id = &"DrainLife"
+tags = PackedStringArray("dps", "shadow", "lifesteal")
+
+[sub_resource type="Resource" id="Resource_ccdka"]
+script = ExtResource("5_5sdof")
+definition_id = &"Weapon"
+data = {
+"attack_speed": 1.2,
+"base_damage": 8.0,
+"damage_type": 0,
+"granted_ability": &"",
+"name": "Rusty Sword",
+"rarity": 0,
+"two_handed": false,
+"value": 5,
+"weapon_type": 0
+}
+id = &"RustySword"
+tags = PackedStringArray("starter", "weapon")
+
+[sub_resource type="Resource" id="Resource_4da11"]
+script = ExtResource("5_5sdof")
+definition_id = &"Weapon"
+data = {
+"attack_speed": 1.1,
+"base_damage": 18.0,
+"damage_type": 0,
+"granted_ability": &"Slash",
+"name": "Iron Sword",
+"rarity": 1,
+"two_handed": false,
+"value": 45,
+"weapon_type": 0
+}
+id = &"IronSword"
+tags = PackedStringArray("weapon")
+
+[sub_resource type="Resource" id="Resource_i8npf"]
+script = ExtResource("5_5sdof")
+definition_id = &"Weapon"
+data = {
+"attack_speed": 1.0,
+"base_damage": 42.0,
+"damage_type": 1,
+"granted_ability": &"Fireball",
+"icon": "res://icon.svg",
+"is_unique": true,
+"name": "Flamebrand",
+"rarity": 4,
+"tint": Color(0.9, 0.4, 0.1, 1),
+"two_handed": true,
+"value": 2500,
+"weapon_type": 0
+}
+id = &"Flamebrand"
+tags = PackedStringArray("fire", "weapon", "unique")
+
+[sub_resource type="Resource" id="Resource_1wf4r"]
+script = ExtResource("5_5sdof")
+definition_id = &"Weapon"
+data = {
+"attack_speed": 0.8,
+"base_damage": 30.0,
+"damage_type": 0,
+"granted_ability": &"Cleave",
+"name": "War Axe",
+"rarity": 2,
+"two_handed": true,
+"value": 280,
+"weapon_type": 1
+}
+id = &"WarAxe"
+tags = PackedStringArray("weapon")
+
+[sub_resource type="Resource" id="Resource_alpwh"]
+script = ExtResource("5_5sdof")
+definition_id = &"Weapon"
+data = {
+"attack_speed": 1.6,
+"base_damage": 24.0,
+"damage_type": 4,
+"granted_ability": &"Backstab",
+"name": "Shadow Dagger",
+"rarity": 2,
+"two_handed": false,
+"value": 320,
+"weapon_type": 3
+}
+id = &"ShadowDagger"
+tags = PackedStringArray("shadow", "weapon", "stealth")
+
+[sub_resource type="Resource" id="Resource_epq28"]
+script = ExtResource("5_5sdof")
+definition_id = &"Weapon"
+data = {
+"attack_speed": 0.9,
+"base_damage": 12.0,
+"damage_type": 2,
+"granted_ability": &"Frostbolt",
+"name": "Staff of Wisdom",
+"rarity": 3,
+"two_handed": true,
+"value": 900,
+"weapon_type": 7
+}
+id = &"StaffOfWisdom"
+tags = PackedStringArray("frost", "weapon")
+
+[sub_resource type="Resource" id="Resource_bfwwl"]
+script = ExtResource("5_5sdof")
+definition_id = &"Weapon"
+data = {
+"attack_speed": 1.3,
+"base_damage": 16.0,
+"damage_type": 4,
+"granted_ability": &"DrainLife",
+"name": "Wand of Whispers",
+"rarity": 3,
+"two_handed": false,
+"value": 760,
+"weapon_type": 8
+}
+id = &"NecroWand"
+tags = PackedStringArray("shadow", "weapon")
+
+[sub_resource type="Resource" id="Resource_eqndm"]
+script = ExtResource("5_5sdof")
+definition_id = &"Weapon"
+data = {
+"attack_speed": 1.0,
+"base_damage": 28.0,
+"damage_type": 5,
+"granted_ability": &"Smite",
+"name": "Dawnbreaker",
+"rarity": 3,
+"two_handed": false,
+"value": 840,
+"weapon_type": 2
+}
+id = &"HolyMace"
+tags = PackedStringArray("holy", "weapon")
+
+[sub_resource type="Resource" id="Resource_jpfkb"]
+script = ExtResource("5_5sdof")
+definition_id = &"RangedWeapon"
+data = {
+"ammo_item": &"WoodArrow",
+"attack_speed": 1.2,
+"base_damage": 16.0,
+"damage_type": 0,
+"granted_ability": &"ArrowRain",
+"name": "Hunting Bow",
+"projectile_speed": 40.0,
+"range": 24.0,
+"rarity": 1,
+"spread_degrees": 3.0,
+"two_handed": true,
+"value": 60,
+"weapon_type": 5
+}
+id = &"HuntingBow"
+tags = PackedStringArray("weapon", "ranged")
+
+[sub_resource type="Resource" id="Resource_76wru"]
+script = ExtResource("5_5sdof")
+definition_id = &"RangedWeapon"
+data = {
+"ammo_item": &"WoodArrow",
+"attack_speed": 1.0,
+"base_damage": 26.0,
+"damage_type": 0,
+"granted_ability": &"ArrowRain",
+"name": "Elven Longbow",
+"projectile_speed": 52.0,
+"range": 32.0,
+"rarity": 2,
+"spread_degrees": 2.0,
+"two_handed": true,
+"value": 340,
+"weapon_type": 5
+}
+id = &"Longbow"
+tags = PackedStringArray("weapon", "ranged")
+
+[sub_resource type="Resource" id="Resource_q6mte"]
+script = ExtResource("5_5sdof")
+definition_id = &"RangedWeapon"
+data = {
+"ammo_item": &"IronBolt",
+"attack_speed": 0.6,
+"base_damage": 34.0,
+"damage_type": 0,
+"granted_ability": &"",
+"name": "Heavy Crossbow",
+"projectile_speed": 60.0,
+"range": 26.0,
+"rarity": 2,
+"spread_degrees": 1.0,
+"two_handed": true,
+"value": 300,
+"weapon_type": 6
+}
+id = &"Crossbow"
+tags = PackedStringArray("weapon", "ranged")
+
+[sub_resource type="Resource" id="Resource_uriwd"]
+script = ExtResource("5_5sdof")
+definition_id = &"RangedWeapon"
+data = {
+"ammo_item": &"WoodArrow",
+"attack_speed": 1.4,
+"base_damage": 44.0,
+"damage_type": 3,
+"granted_ability": &"ArrowRain",
+"name": "Windforce",
+"projectile_speed": 70.0,
+"range": 40.0,
+"rarity": 4,
+"spread_degrees": 1.5,
+"two_handed": true,
+"value": 2800,
+"weapon_type": 5
+}
+id = &"Windforce"
+tags = PackedStringArray("weapon", "ranged", "lightning", "unique")
+
+[sub_resource type="Resource" id="Resource_uwhla"]
+script = ExtResource("5_5sdof")
+definition_id = &"Item"
+data = {
+"name": "Wooden Arrow",
+"rarity": 0,
+"value": 1,
+"weight": 0.05
+}
+id = &"WoodArrow"
+tags = PackedStringArray("ammo", "stackable")
+
+[sub_resource type="Resource" id="Resource_117l7"]
+script = ExtResource("5_5sdof")
+definition_id = &"Item"
+data = {
+"name": "Iron Bolt",
+"rarity": 0,
+"value": 2,
+"weight": 0.08
+}
+id = &"IronBolt"
+tags = PackedStringArray("ammo", "stackable")
+
+[sub_resource type="Resource" id="Resource_43stq"]
+script = ExtResource("5_5sdof")
+definition_id = &"Item"
+data = {
+"name": "Iron Ore",
+"rarity": 0,
+"value": 6
+}
+id = &"IronOre"
+tags = PackedStringArray("material", "stackable")
+
+[sub_resource type="Resource" id="Resource_ic8vy"]
+script = ExtResource("5_5sdof")
+definition_id = &"Item"
+data = {
+"name": "Dragon Scale",
+"rarity": 3,
+"tint": Color(0.7, 0.1, 0.1, 1),
+"value": 120
+}
+id = &"DragonScale"
+tags = PackedStringArray("material", "rare")
+
+[sub_resource type="Resource" id="Resource_g86sa"]
+script = ExtResource("5_5sdof")
+definition_id = &"Item"
+data = {
+"name": "Emberdust",
+"rarity": 2,
+"value": 40
+}
+id = &"Emberdust"
+tags = PackedStringArray("material", "reagent")
+
+[sub_resource type="Resource" id="Resource_h4x40"]
+script = ExtResource("5_5sdof")
+definition_id = &"Item"
+data = {
+"name": "Gold Ring",
+"rarity": 1,
+"value": 75
+}
+id = &"GoldRing"
+tags = PackedStringArray("trinket", "ring")
+
+[sub_resource type="Resource" id="Resource_ugmdk"]
+script = ExtResource("5_5sdof")
+definition_id = &"Armor"
+data = {
+"armor_value": 4,
+"material": 0,
+"name": "Cloth Robe",
+"rarity": 0,
+"resistances": {
+"FROST": 0.1
+},
+"set_pieces": [],
+"slot": 3,
+"value": 10
+}
+id = &"ClothRobe"
+tags = PackedStringArray("chest")
+
+[sub_resource type="Resource" id="Resource_1sflt"]
+script = ExtResource("5_5sdof")
+definition_id = &"Armor"
+data = {
+"armor_value": 12,
+"material": 1,
+"name": "Leather Vest",
+"rarity": 1,
+"resistances": {
+"PHYSICAL": 0.1
+},
+"set_pieces": [],
+"slot": 3,
+"value": 40
+}
+id = &"LeatherVest"
+tags = PackedStringArray("chest")
+
+[sub_resource type="Resource" id="Resource_pllxa"]
+script = ExtResource("5_5sdof")
+definition_id = &"Armor"
+data = {
+"armor_value": 6,
+"material": 1,
+"name": "Leather Cap",
+"rarity": 1,
+"resistances": {
+"PHYSICAL": 0.05
+},
+"set_pieces": [],
+"slot": 2,
+"value": 25
+}
+id = &"LeatherCap"
+tags = PackedStringArray("head")
+
+[sub_resource type="Resource" id="Resource_6n1xw"]
+script = ExtResource("5_5sdof")
+definition_id = &"Armor"
+data = {
+"armor_value": 22,
+"material": 2,
+"name": "Mail Hauberk",
+"rarity": 2,
+"resistances": {
+"LIGHTNING": -0.1,
+"PHYSICAL": 0.2
+},
+"set_pieces": [],
+"slot": 3,
+"value": 180
+}
+id = &"MailHauberk"
+tags = PackedStringArray("chest")
+
+[sub_resource type="Resource" id="Resource_syhdi"]
+script = ExtResource("5_5sdof")
+definition_id = &"Armor"
+data = {
+"armor_value": 40,
+"material": 3,
+"name": "Plate Guard",
+"rarity": 3,
+"resistances": {
+"PHYSICAL": 0.35
+},
+"set_pieces": [],
+"slot": 3,
+"value": 700
+}
+id = &"PlateGuard"
+tags = PackedStringArray("chest")
+
+[sub_resource type="Resource" id="Resource_pfnsa"]
+script = ExtResource("5_5sdof")
+definition_id = &"Armor"
+data = {
+"armor_value": 30,
+"material": 4,
+"name": "Dragonscale Helm",
+"rarity": 4,
+"resistances": {
+"FIRE": 0.5,
+"FROST": 0.15
+},
+"set_pieces": [&"DragonChest", &"DragonGreaves"],
+"slot": 2,
+"value": 1400
+}
+id = &"DragonHelm"
+tags = PackedStringArray("head", "dragon", "fire")
+
+[sub_resource type="Resource" id="Resource_jv8k8"]
+script = ExtResource("5_5sdof")
+definition_id = &"Armor"
+data = {
+"armor_value": 55,
+"material": 4,
+"name": "Dragonscale Cuirass",
+"rarity": 4,
+"resistances": {
+"FIRE": 0.6,
+"PHYSICAL": 0.2
+},
+"set_pieces": [&"DragonHelm", &"DragonGreaves"],
+"slot": 3,
+"value": 2200
+}
+id = &"DragonChest"
+tags = PackedStringArray("chest", "dragon", "fire")
+
+[sub_resource type="Resource" id="Resource_wnp3n"]
+script = ExtResource("5_5sdof")
+definition_id = &"Armor"
+data = {
+"armor_value": 38,
+"material": 4,
+"name": "Dragonscale Greaves",
+"rarity": 4,
+"resistances": {
+"FIRE": 0.5
+},
+"set_pieces": [&"DragonHelm", &"DragonChest"],
+"slot": 5,
+"value": 1600
+}
+id = &"DragonGreaves"
+tags = PackedStringArray("legs", "dragon", "fire")
+
+[sub_resource type="Resource" id="Resource_iugb3"]
+script = ExtResource("5_5sdof")
+definition_id = &"Consumable"
+data = {
+"applies_status": 0,
+"duration": 0.0,
+"heal_amount": 50,
+"name": "Health Potion",
+"rarity": 0,
+"restores_mana": 0,
+"stack_size": 20,
+"value": 8
+}
+id = &"HealthPotion"
+tags = PackedStringArray("potion", "heal")
+
+[sub_resource type="Resource" id="Resource_w1v33"]
+script = ExtResource("5_5sdof")
+definition_id = &"Consumable"
+data = {
+"applies_status": 0,
+"duration": 0.0,
+"heal_amount": 120,
+"name": "Greater Health Potion",
+"rarity": 1,
+"restores_mana": 0,
+"stack_size": 10,
+"value": 30
+}
+id = &"GreaterHealthPotion"
+tags = PackedStringArray("potion", "heal")
+
+[sub_resource type="Resource" id="Resource_f08w0"]
+script = ExtResource("5_5sdof")
+definition_id = &"Consumable"
+data = {
+"applies_status": 0,
+"duration": 0.0,
+"heal_amount": 0,
+"name": "Mana Potion",
+"rarity": 0,
+"restores_mana": 40,
+"stack_size": 20,
+"value": 8
+}
+id = &"ManaPotion"
+tags = PackedStringArray("potion", "mana")
+
+[sub_resource type="Resource" id="Resource_cm0bu"]
+script = ExtResource("5_5sdof")
+definition_id = &"Consumable"
+data = {
+"applies_status": 1,
+"duration": 30.0,
+"heal_amount": 0,
+"name": "Elixir of Fire",
+"rarity": 2,
+"restores_mana": 0,
+"stack_size": 5,
+"value": 60
+}
+id = &"ElixirOfFire"
+tags = PackedStringArray("elixir", "fire", "buff")
+
+[sub_resource type="Resource" id="Resource_ek1bh"]
+script = ExtResource("5_5sdof")
+definition_id = &"Consumable"
+data = {
+"applies_status": 0,
+"duration": 0.0,
+"heal_amount": 0,
+"name": "Antidote",
+"rarity": 0,
+"restores_mana": 0,
+"stack_size": 10,
+"value": 12
+}
+id = &"Antidote"
+tags = PackedStringArray("potion", "cure")
+
+[sub_resource type="Resource" id="Resource_d5hy5"]
+script = ExtResource("5_5sdof")
+definition_id = &"Consumable"
+data = {
+"applies_status": 9,
+"duration": 20.0,
+"heal_amount": 0,
+"name": "Haste Draught",
+"rarity": 2,
+"restores_mana": 0,
+"stack_size": 5,
+"value": 55
+}
+id = &"HasteDraught"
+tags = PackedStringArray("elixir", "buff")
+
+[sub_resource type="Resource" id="Resource_chfqv"]
+script = ExtResource("5_5sdof")
+definition_id = &"Consumable"
+data = {
+"applies_status": 6,
+"duration": 15.0,
+"heal_amount": 0,
+"name": "Regeneration Tonic",
+"rarity": 1,
+"restores_mana": 0,
+"stack_size": 10,
+"value": 35
+}
+id = &"RegenTonic"
+tags = PackedStringArray("potion", "buff")
+
+[sub_resource type="Resource" id="Resource_t35ku"]
+script = ExtResource("5_5sdof")
+definition_id = &"StatusEffectDef"
+data = {
+"duration": 4.0,
+"effect": 1,
+"modifiers": {
+"move_speed": -0.1
+},
+"name": "Burning",
+"stacks": true,
+"tick_damage": 6.0
+}
+id = &"Burn"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_5uscx"]
+script = ExtResource("5_5sdof")
+definition_id = &"StatusEffectDef"
+data = {
+"duration": 2.0,
+"effect": 2,
+"modifiers": {
+"attack_speed": -0.4
+},
+"name": "Frozen",
+"stacks": false,
+"tick_damage": 0.0
+}
+id = &"Chill"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_oka0h"]
+script = ExtResource("5_5sdof")
+definition_id = &"StatusEffectDef"
+data = {
+"duration": 6.0,
+"effect": 3,
+"modifiers": {},
+"name": "Poisoned",
+"stacks": true,
+"tick_damage": 4.0
+}
+id = &"Venom"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_q30eb"]
+script = ExtResource("5_5sdof")
+definition_id = &"StatusEffectDef"
+data = {
+"duration": 3.0,
+"effect": 6,
+"modifiers": {},
+"name": "Regeneration",
+"stacks": false,
+"tick_damage": -8.0
+}
+id = &"Regeneration"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_gudo0"]
+script = ExtResource("5_5sdof")
+definition_id = &"StatusEffectDef"
+data = {
+"duration": 5.0,
+"effect": 7,
+"modifiers": {
+"armor": 20
+},
+"name": "Shielded",
+"stacks": false,
+"tick_damage": 0.0
+}
+id = &"HolyShield"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_xn3l2"]
+script = ExtResource("5_5sdof")
+definition_id = &"SkillNode"
+data = {
+"category": 0,
+"cost": 1,
+"grants_ability": &"Slash",
+"name": "Bladework",
+"prerequisites": []
+}
+id = &"SkBladework"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_golyg"]
+script = ExtResource("5_5sdof")
+definition_id = &"SkillNode"
+data = {
+"category": 0,
+"cost": 2,
+"grants_ability": &"Cleave",
+"name": "Cleaving Strikes",
+"prerequisites": [&"SkBladework"]
+}
+id = &"SkCleave"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_ijvkv"]
+script = ExtResource("5_5sdof")
+definition_id = &"SkillNode"
+data = {
+"category": 1,
+"cost": 1,
+"grants_ability": &"ShieldBash",
+"name": "Guardian",
+"prerequisites": []
+}
+id = &"SkGuard"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_s7jpy"]
+script = ExtResource("5_5sdof")
+definition_id = &"SkillNode"
+data = {
+"category": 0,
+"cost": 2,
+"grants_ability": &"Fireball",
+"name": "Pyromancy",
+"prerequisites": []
+}
+id = &"SkPyromancy"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_m2omf"]
+script = ExtResource("5_5sdof")
+definition_id = &"SkillNode"
+data = {
+"category": 0,
+"cost": 3,
+"grants_ability": &"Blizzard",
+"name": "Inferno",
+"prerequisites": [&"SkPyromancy"]
+}
+id = &"SkInferno"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_7wl8a"]
+script = ExtResource("5_5sdof")
+definition_id = &"SkillNode"
+data = {
+"category": 0,
+"cost": 2,
+"grants_ability": &"Frostbolt",
+"name": "Cryomancy",
+"prerequisites": []
+}
+id = &"SkFrost"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_lnl2f"]
+script = ExtResource("5_5sdof")
+definition_id = &"SkillNode"
+data = {
+"category": 2,
+"cost": 1,
+"grants_ability": &"Heal",
+"name": "Faith",
+"prerequisites": []
+}
+id = &"SkFaith"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_0o1tg"]
+script = ExtResource("5_5sdof")
+definition_id = &"SkillNode"
+data = {
+"category": 2,
+"cost": 2,
+"grants_ability": &"Bless",
+"name": "Radiance",
+"prerequisites": [&"SkFaith"]
+}
+id = &"SkRadiance"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_ponyg"]
+script = ExtResource("5_5sdof")
+definition_id = &"SkillNode"
+data = {
+"category": 0,
+"cost": 2,
+"grants_ability": &"Backstab",
+"name": "Shadow Arts",
+"prerequisites": []
+}
+id = &"SkShadowArts"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_8dofd"]
+script = ExtResource("5_5sdof")
+definition_id = &"SkillNode"
+data = {
+"category": 0,
+"cost": 3,
+"grants_ability": &"RaiseDead",
+"name": "Necromancy",
+"prerequisites": [&"SkShadowArts"]
+}
+id = &"SkNecromancy"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_aies5"]
+script = ExtResource("5_5sdof")
+definition_id = &"LootTable"
+data = {
+"entries": {
+"HealthPotion": 50,
+"IronOre": 30,
+"RustySword": 40
+},
+"gold_max": 12,
+"gold_min": 2,
+"guaranteed": [&"HealthPotion"],
+"name": "Goblin Loot",
+"rolls": 1
+}
+id = &"GoblinLoot"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_6pcuw"]
+script = ExtResource("5_5sdof")
+definition_id = &"LootTable"
+data = {
+"entries": {
+"GoldRing": 10,
+"LeatherVest": 30,
+"ManaPotion": 40
+},
+"gold_max": 25,
+"gold_min": 5,
+"guaranteed": [],
+"name": "Bandit Loot",
+"rolls": 1
+}
+id = &"BanditLoot"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_uyyau"]
+script = ExtResource("5_5sdof")
+definition_id = &"LootTable"
+data = {
+"entries": {
+"ClothRobe": 35,
+"ElixirOfFire": 15,
+"Emberdust": 25
+},
+"gold_max": 30,
+"gold_min": 8,
+"guaranteed": [],
+"name": "Wraith Loot",
+"rolls": 2
+}
+id = &"WraithLoot"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_n7l2w"]
+script = ExtResource("5_5sdof")
+definition_id = &"LootTable"
+data = {
+"entries": {
+"DragonChest": 20,
+"DragonHelm": 20,
+"DragonScale": 60,
+"Flamebrand": 5
+},
+"gold_max": 600,
+"gold_min": 200,
+"guaranteed": [&"DragonScale"],
+"name": "Dragon Hoard",
+"rolls": 3
+}
+id = &"DragonLoot"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_7lp50"]
+script = ExtResource("5_5sdof")
+definition_id = &"Recipe"
+data = {
+"craft_time": 4.0,
+"ingredients": [&"IronOre"],
+"name": "Forge: Iron Sword",
+"quantities": {
+"IronOre": 3
+},
+"result": &"IronSword",
+"station": 1
+}
+id = &"ForgeIronSword"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_pdbex"]
+script = ExtResource("5_5sdof")
+definition_id = &"Recipe"
+data = {
+"craft_time": 3.0,
+"ingredients": [&"Emberdust", &"ManaPotion"],
+"name": "Brew: Elixir of Fire",
+"quantities": {
+"Emberdust": 2,
+"ManaPotion": 1
+},
+"result": &"ElixirOfFire",
+"station": 2
+}
+id = &"BrewElixirFire"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_2iqf3"]
+script = ExtResource("5_5sdof")
+definition_id = &"Recipe"
+data = {
+"craft_time": 10.0,
+"ingredients": [&"DragonScale", &"IronOre"],
+"name": "Craft: Dragonscale Helm",
+"quantities": {
+"DragonScale": 5,
+"IronOre": 4
+},
+"result": &"DragonHelm",
+"station": 1
+}
+id = &"CraftDragonHelm"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_jhrdw"]
+script = ExtResource("5_5sdof")
+definition_id = &"Enemy"
+data = {
+"abilities": [&"Slash"],
+"behavior": 2,
+"faction": 4,
+"health": 45,
+"is_boss": false,
+"level": 3,
+"loot_table": &"GoblinLoot",
+"name": "Goblin Raider",
+"tint": Color(0.3, 0.6, 0.2, 1)
+}
+id = &"Goblin"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_0yct1"]
+script = ExtResource("5_5sdof")
+definition_id = &"Enemy"
+data = {
+"abilities": [&"Frostbolt"],
+"behavior": 5,
+"faction": 4,
+"health": 60,
+"is_boss": false,
+"level": 5,
+"loot_table": &"GoblinLoot",
+"name": "Goblin Shaman",
+"tint": Color(0.35, 0.7, 0.3, 1)
+}
+id = &"GoblinShaman"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_6470y"]
+script = ExtResource("5_5sdof")
+definition_id = &"Enemy"
+data = {
+"abilities": [&"Backstab"],
+"behavior": 4,
+"faction": 3,
+"health": 70,
+"is_boss": false,
+"level": 5,
+"loot_table": &"BanditLoot",
+"name": "Bandit",
+"tint": Color(0.4, 0.3, 0.25, 1)
+}
+id = &"Bandit"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_jcwhl"]
+script = ExtResource("5_5sdof")
+definition_id = &"Enemy"
+data = {
+"abilities": [&"Backstab", &"Cleave"],
+"behavior": 2,
+"faction": 3,
+"health": 220,
+"is_boss": true,
+"level": 9,
+"loot_table": &"BanditLoot",
+"name": "Bandit Chief",
+"tint": Color(0.5, 0.25, 0.2, 1)
+}
+id = &"BanditChief"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_myy5w"]
+script = ExtResource("5_5sdof")
+definition_id = &"Enemy"
+data = {
+"abilities": [&"Frostbolt"],
+"behavior": 1,
+"faction": 4,
+"health": 140,
+"is_boss": false,
+"level": 12,
+"loot_table": &"WraithLoot",
+"name": "Frost Wraith",
+"tint": Color(0.5, 0.7, 0.95, 1)
+}
+id = &"FrostWraith"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_0xhxg"]
+script = ExtResource("5_5sdof")
+definition_id = &"Enemy"
+data = {
+"abilities": [&"PoisonBlade", &"Entangle"],
+"behavior": 4,
+"faction": 4,
+"health": 110,
+"is_boss": false,
+"level": 8,
+"loot_table": &"WraithLoot",
+"name": "Swamp Lurker",
+"tint": Color(0.3, 0.4, 0.2, 1)
+}
+id = &"SwampLurker"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_5w616"]
+script = ExtResource("5_5sdof")
+definition_id = &"Enemy"
+data = {
+"abilities": [&"Slash"],
+"behavior": 2,
+"faction": 4,
+"health": 55,
+"is_boss": false,
+"level": 6,
+"loot_table": &"GoblinLoot",
+"name": "Risen Skeleton",
+"tint": Color(0.8, 0.8, 0.75, 1)
+}
+id = &"Skeleton"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_kpaip"]
+script = ExtResource("5_5sdof")
+definition_id = &"Enemy"
+data = {
+"abilities": [&"Fireball", &"ArrowRain", &"Blizzard"],
+"behavior": 2,
+"faction": 4,
+"health": 3200,
+"is_boss": true,
+"level": 40,
+"loot_table": &"DragonLoot",
+"name": "Ancient Dragon",
+"tint": Color(0.7, 0.1, 0.1, 1)
+}
+id = &"Dragon"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_olgvj"]
+script = ExtResource("5_5sdof")
+definition_id = &"Character"
+data = {
+"char_class": 0,
+"name": "Garruk",
+"skills": [&"SkBladework", &"SkCleave"],
+"starting_abilities": [&"Slash"],
+"starting_weapon": &"IronSword",
+"stats": {
+"agility": 9,
+"intellect": 6,
+"strength": 14,
+"vitality": 12,
+"wisdom": 4
+}
+}
+id = &"HeroWarrior"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_hhn4a"]
+script = ExtResource("5_5sdof")
+definition_id = &"Character"
+data = {
+"char_class": 1,
+"name": "Lyra",
+"skills": [&"SkPyromancy", &"SkFrost"],
+"starting_abilities": [&"Fireball", &"Frostbolt"],
+"starting_weapon": &"StaffOfWisdom",
+"stats": {
+"agility": 6,
+"intellect": 16,
+"strength": 5,
+"vitality": 7,
+"wisdom": 9
+}
+}
+id = &"HeroMage"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_lik0k"]
+script = ExtResource("5_5sdof")
+definition_id = &"Character"
+data = {
+"char_class": 2,
+"name": "Vex",
+"skills": [&"SkShadowArts"],
+"starting_abilities": [&"Backstab", &"PoisonBlade"],
+"starting_weapon": &"ShadowDagger",
+"stats": {
+"agility": 15,
+"intellect": 6,
+"strength": 9,
+"vitality": 8,
+"wisdom": 5
+}
+}
+id = &"HeroRogue"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_g4md1"]
+script = ExtResource("5_5sdof")
+definition_id = &"Character"
+data = {
+"char_class": 3,
+"name": "Sister Anwen",
+"skills": [&"SkFaith", &"SkRadiance"],
+"starting_abilities": [&"Heal", &"Smite"],
+"starting_weapon": &"HolyMace",
+"stats": {
+"agility": 5,
+"intellect": 8,
+"strength": 7,
+"vitality": 11,
+"wisdom": 14
+}
+}
+id = &"HeroCleric"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_6ls7a"]
+script = ExtResource("5_5sdof")
+definition_id = &"Character"
+data = {
+"char_class": 4,
+"name": "Kael",
+"skills": [&"SkShadowArts"],
+"starting_abilities": [&"ArrowRain"],
+"starting_weapon": &"Longbow",
+"stats": {
+"agility": 14,
+"intellect": 7,
+"strength": 8,
+"vitality": 9,
+"wisdom": 8
+}
+}
+id = &"HeroRanger"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_x1hb7"]
+script = ExtResource("5_5sdof")
+definition_id = &"Character"
+data = {
+"char_class": 6,
+"name": "Mortis",
+"skills": [&"SkNecromancy"],
+"starting_abilities": [&"RaiseDead", &"DrainLife"],
+"starting_weapon": &"NecroWand",
+"stats": {
+"agility": 7,
+"intellect": 15,
+"strength": 6,
+"vitality": 8,
+"wisdom": 11
+}
+}
+id = &"HeroNecro"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_mk3fw"]
+script = ExtResource("5_5sdof")
+definition_id = &"FactionRelation"
+data = {
+"at_war": true,
+"faction_a": 0,
+"faction_b": 1,
+"modifiers": {
+"trade": -0.5
+},
+"standing": -80
+}
+id = &"AllianceHorde"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_uflab"]
+script = ExtResource("5_5sdof")
+definition_id = &"FactionRelation"
+data = {
+"at_war": false,
+"faction_a": 0,
+"faction_b": 5,
+"modifiers": {
+"trade": 0.2
+},
+"standing": 60
+}
+id = &"AllianceMerchants"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_gmq6m"]
+script = ExtResource("5_5sdof")
+definition_id = &"FactionRelation"
+data = {
+"at_war": true,
+"faction_a": 3,
+"faction_b": 0,
+"modifiers": {},
+"standing": -100
+}
+id = &"BanditAll"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_5qq7h"]
+script = ExtResource("5_5sdof")
+definition_id = &"FactionRelation"
+data = {
+"at_war": false,
+"faction_a": 6,
+"faction_b": 2,
+"modifiers": {
+"trade": 0.1
+},
+"standing": 20
+}
+id = &"ArcaneNeutral"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_yg6gf"]
+script = ExtResource("5_5sdof")
+definition_id = &"Merchant"
+data = {
+"close_hour": 20,
+"faction": 5,
+"inventory": [&"IronSword", &"WarAxe", &"MailHauberk"],
+"merchant_type": 1,
+"name": "Borin the Smith",
+"open_hour": 8,
+"price_overrides": {
+"IronSword": 40
+}
+}
+id = &"Smith"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_xmall"]
+script = ExtResource("5_5sdof")
+definition_id = &"Merchant"
+data = {
+"close_hour": 22,
+"faction": 6,
+"inventory": [&"HealthPotion", &"ManaPotion", &"ElixirOfFire", &"Antidote"],
+"merchant_type": 2,
+"name": "Mira the Alchemist",
+"open_hour": 6,
+"price_overrides": {
+"HealthPotion": 8
+}
+}
+id = &"Alchemist"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_huv7l"]
+script = ExtResource("5_5sdof")
+definition_id = &"Merchant"
+data = {
+"close_hour": 4,
+"faction": 3,
+"inventory": [&"ShadowDagger", &"GoldRing"],
+"merchant_type": 4,
+"name": "Sly Pete",
+"open_hour": 20,
+"price_overrides": {}
+}
+id = &"Fence"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_frxtx"]
+script = ExtResource("5_5sdof")
+definition_id = &"Merchant"
+data = {
+"close_hour": 21,
+"faction": 2,
+"inventory": [&"WoodArrow", &"IronBolt", &"HealthPotion", &"RustySword"],
+"merchant_type": 0,
+"name": "Tanner's Goods",
+"open_hour": 7,
+"price_overrides": {}
+}
+id = &"General"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_o1s66"]
+script = ExtResource("5_5sdof")
+definition_id = &"Quest"
+data = {
+"giver": &"Goblin",
+"name": "The Goblin Menace",
+"objectives": PackedStringArray("Slay 5 goblins", "Report to the captain"),
+"prerequisite": &"",
+"quest_type": 1,
+"reward_gold": 100,
+"reward_item": &"IronSword",
+"stage_flags": {
+"report": false,
+"slay": false
+},
+"turn_in_biome": 0
+}
+id = &"GoblinMenace"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_bb765"]
+script = ExtResource("5_5sdof")
+definition_id = &"Quest"
+data = {
+"giver": &"BanditChief",
+"name": "Bandit Trouble",
+"objectives": PackedStringArray("Clear the bandit camp", "Defeat the Bandit Chief"),
+"prerequisite": &"GoblinMenace",
+"quest_type": 1,
+"reward_gold": 180,
+"reward_item": &"LeatherVest",
+"stage_flags": {
+"camp": false,
+"chief": false
+},
+"turn_in_biome": 0
+}
+id = &"BanditTrouble"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_a7jx4"]
+script = ExtResource("5_5sdof")
+definition_id = &"Quest"
+data = {
+"giver": &"FrostWraith",
+"name": "Frozen Secrets",
+"objectives": PackedStringArray("Reach Frozen Peak", "Banish the Frost Wraith"),
+"prerequisite": &"BanditTrouble",
+"quest_type": 0,
+"reward_gold": 400,
+"reward_item": &"StaffOfWisdom",
+"stage_flags": {
+"banish": false,
+"reach": false
+},
+"turn_in_biome": 2
+}
+id = &"FrozenSecrets"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_8wig0"]
+script = ExtResource("5_5sdof")
+definition_id = &"Quest"
+data = {
+"giver": &"Dragon",
+"name": "Slay the Ancient Dragon",
+"objectives": PackedStringArray("Reach the Volcano", "Defeat the Ancient Dragon"),
+"prerequisite": &"FrozenSecrets",
+"quest_type": 0,
+"reward_gold": 5000,
+"reward_item": &"Flamebrand",
+"stage_flags": {
+"reach": false,
+"slain": false
+},
+"turn_in_biome": 3
+}
+id = &"SlayTheDragon"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_4v2nb"]
+script = ExtResource("5_5sdof")
+definition_id = &"Quest"
+data = {
+"giver": &"Skeleton",
+"name": "Bounty: Skeletons",
+"objectives": PackedStringArray("Destroy 10 skeletons"),
+"prerequisite": &"",
+"quest_type": 3,
+"reward_gold": 30,
+"reward_item": &"HealthPotion",
+"stage_flags": {
+"count": false
+},
+"turn_in_biome": 4
+}
+id = &"DailyBounty"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_buupx"]
+script = ExtResource("5_5sdof")
+definition_id = &"DialogueNode"
+data = {
+"mood": 0,
+"next_nodes": [&"CaptainAccept", &"CaptainRefuse"],
+"portrait": "res://icon.svg",
+"responses": {
+"I'll help.": "CaptainAccept",
+"Not my problem.": "CaptainRefuse"
+},
+"speaker": &"captain_reyes",
+"text": "The goblins grow bold. Will you help us?"
+}
+id = &"CaptainIntro"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_hjj1y"]
+script = ExtResource("5_5sdof")
+definition_id = &"DialogueNode"
+data = {
+"mood": 5,
+"next_nodes": [],
+"responses": {},
+"speaker": &"captain_reyes",
+"text": "Bless you, traveler. Clear the forest."
+}
+id = &"CaptainAccept"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_3wjr6"]
+script = ExtResource("5_5sdof")
+definition_id = &"DialogueNode"
+data = {
+"mood": 3,
+"next_nodes": [],
+"responses": {},
+"speaker": &"captain_reyes",
+"text": "Then we are doomed..."
+}
+id = &"CaptainRefuse"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_vfqwg"]
+script = ExtResource("5_5sdof")
+definition_id = &"DialogueNode"
+data = {
+"mood": 0,
+"next_nodes": [&"MiraShop"],
+"responses": {
+"Just browsing.": "",
+"Show me your wares.": "MiraShop"
+},
+"speaker": &"mira_alchemist",
+"text": "Fresh potions! What do you need?"
+}
+id = &"MiraGreet"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_rsgsh"]
+script = ExtResource("5_5sdof")
+definition_id = &"DialogueNode"
+data = {
+"mood": 0,
+"next_nodes": [],
+"responses": {},
+"speaker": &"mira_alchemist",
+"text": "Everything's fairly priced, I assure you."
+}
+id = &"MiraShop"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_6q5kv"]
+script = ExtResource("5_5sdof")
+definition_id = &"Zone"
+data = {
+"ambient_color": Color(0.2, 0.3, 0.2, 1),
+"biome": 0,
+"max_level": 8,
+"merchants": [&"General", &"Smith"],
+"min_level": 1,
+"name": "Darkwood Forest"
+}
+id = &"DarkForest"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_a7lp8"]
+script = ExtResource("5_5sdof")
+definition_id = &"Zone"
+data = {
+"ambient_color": Color(0.6, 0.7, 0.9, 1),
+"biome": 2,
+"max_level": 18,
+"merchants": [&"Alchemist"],
+"min_level": 10,
+"name": "Frozen Peak"
+}
+id = &"FrozenPeak"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_lm6vj"]
+script = ExtResource("5_5sdof")
+definition_id = &"Zone"
+data = {
+"ambient_color": Color(0.8, 0.2, 0.1, 1),
+"biome": 3,
+"max_level": 45,
+"merchants": [],
+"min_level": 35,
+"name": "Dragon's Lair"
+}
+id = &"DragonsLair"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_1e0gn"]
+script = ExtResource("5_5sdof")
+definition_id = &"Zone"
+data = {
+"ambient_color": Color(0.25, 0.35, 0.22, 1),
+"biome": 5,
+"max_level": 14,
+"merchants": [&"Fence"],
+"min_level": 6,
+"name": "Thornmarsh"
+}
+id = &"Thornmarsh"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_hw2q5"]
+script = ExtResource("5_5sdof")
+definition_id = &"Achievement"
+data = {
+"description": "Defeat your first enemy.",
+"hidden": false,
+"points": 10,
+"required_quest": &"",
+"reward_item": &"HealthPotion",
+"title": "First Blood"
+}
+id = &"FirstBlood"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_x7718"]
+script = ExtResource("5_5sdof")
+definition_id = &"Achievement"
+data = {
+"description": "Defeat the Ancient Dragon.",
+"hidden": false,
+"points": 100,
+"required_quest": &"SlayTheDragon",
+"reward_item": &"DragonScale",
+"title": "Dragonslayer"
+}
+id = &"DragonSlayer"
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_t8k3h"]
+script = ExtResource("5_5sdof")
+definition_id = &"Achievement"
+data = {
+"description": "Own one item of every rarity.",
+"hidden": true,
+"points": 50,
+"required_quest": &"",
+"reward_item": &"GoldRing",
+"title": "Collector"
+}
+id = &"Collector"
+tags = PackedStringArray()
+
+[resource]
+script = ExtResource("6_x05dw")
+version = 3
+format_version = 1
+patterns = {
+&"AIBehavior": SubResource("Resource_6q325"),
+&"Ability": SubResource("Resource_mnp74"),
+&"Achievement": SubResource("Resource_plhy6"),
+&"Alchemist": SubResource("Resource_xmall"),
+&"AllianceHorde": SubResource("Resource_mk3fw"),
+&"AllianceMerchants": SubResource("Resource_uflab"),
+&"Antidote": SubResource("Resource_ek1bh"),
+&"ArcaneMissiles": SubResource("Resource_baf7v"),
+&"ArcaneNeutral": SubResource("Resource_5qq7h"),
+&"Armor": SubResource("Resource_1jh6j"),
+&"ArmorMaterial": SubResource("Resource_tlt3b"),
+&"ArrowRain": SubResource("Resource_klqi3"),
+&"Backstab": SubResource("Resource_dw2nk"),
+&"Bandit": SubResource("Resource_6470y"),
+&"BanditAll": SubResource("Resource_gmq6m"),
+&"BanditChief": SubResource("Resource_jcwhl"),
+&"BanditLoot": SubResource("Resource_6pcuw"),
+&"BanditTrouble": SubResource("Resource_bb765"),
+&"Biome": SubResource("Resource_25gj1"),
+&"Bless": SubResource("Resource_8yuxv"),
+&"Blizzard": SubResource("Resource_dxpuk"),
+&"BrewElixirFire": SubResource("Resource_pdbex"),
+&"BuildInfo": SubResource("Resource_0ewt6"),
+&"Burn": SubResource("Resource_t35ku"),
+&"CameraRig": SubResource("Resource_dot4c"),
+&"CaptainAccept": SubResource("Resource_hjj1y"),
+&"CaptainIntro": SubResource("Resource_buupx"),
+&"CaptainRefuse": SubResource("Resource_3wjr6"),
+&"Character": SubResource("Resource_jkoee"),
+&"CharacterClass": SubResource("Resource_r1k82"),
+&"Chill": SubResource("Resource_5uscx"),
+&"Cleave": SubResource("Resource_yyaro"),
+&"ClothRobe": SubResource("Resource_ugmdk"),
+&"Collector": SubResource("Resource_t8k3h"),
+&"CombatTuning": SubResource("Resource_miijr"),
+&"Consumable": SubResource("Resource_6fa5u"),
+&"CraftDragonHelm": SubResource("Resource_2iqf3"),
+&"Crossbow": SubResource("Resource_q6mte"),
+&"DailyBounty": SubResource("Resource_4v2nb"),
+&"DamageType": SubResource("Resource_xw1sy"),
+&"DarkForest": SubResource("Resource_6q5kv"),
+&"DialogueNode": SubResource("Resource_urxri"),
+&"Dragon": SubResource("Resource_kpaip"),
+&"DragonChest": SubResource("Resource_jv8k8"),
+&"DragonGreaves": SubResource("Resource_wnp3n"),
+&"DragonHelm": SubResource("Resource_pfnsa"),
+&"DragonLoot": SubResource("Resource_n7l2w"),
+&"DragonScale": SubResource("Resource_ic8vy"),
+&"DragonSlayer": SubResource("Resource_x7718"),
+&"DragonsLair": SubResource("Resource_lm6vj"),
+&"DrainLife": SubResource("Resource_i8ueq"),
+&"DropRates": SubResource("Resource_erlnp"),
+&"Economy": SubResource("Resource_h8f2q"),
+&"ElixirOfFire": SubResource("Resource_cm0bu"),
+&"Emberdust": SubResource("Resource_g86sa"),
+&"Enemy": SubResource("Resource_rsjrs"),
+&"Entangle": SubResource("Resource_auel8"),
+&"EquipSlot": SubResource("Resource_rilsh"),
+&"Faction": SubResource("Resource_5dnmq"),
+&"FactionRelation": SubResource("Resource_66okn"),
+&"Fence": SubResource("Resource_huv7l"),
+&"Fireball": SubResource("Resource_q311k"),
+&"FirstBlood": SubResource("Resource_hw2q5"),
+&"Flamebrand": SubResource("Resource_i8npf"),
+&"ForgeIronSword": SubResource("Resource_7lp50"),
+&"FrostWraith": SubResource("Resource_myy5w"),
+&"Frostbolt": SubResource("Resource_iop35"),
+&"FrozenPeak": SubResource("Resource_a7lp8"),
+&"FrozenSecrets": SubResource("Resource_a7jx4"),
+&"GameBalance": SubResource("Resource_omf5m"),
+&"General": SubResource("Resource_frxtx"),
+&"Goblin": SubResource("Resource_jhrdw"),
+&"GoblinLoot": SubResource("Resource_aies5"),
+&"GoblinMenace": SubResource("Resource_o1s66"),
+&"GoblinShaman": SubResource("Resource_0yct1"),
+&"GoldRing": SubResource("Resource_h4x40"),
+&"GreaterHealthPotion": SubResource("Resource_w1v33"),
+&"HasteDraught": SubResource("Resource_d5hy5"),
+&"Heal": SubResource("Resource_gn1qv"),
+&"HealthPotion": SubResource("Resource_iugb3"),
+&"HeroCleric": SubResource("Resource_g4md1"),
+&"HeroMage": SubResource("Resource_hhn4a"),
+&"HeroNecro": SubResource("Resource_x1hb7"),
+&"HeroRanger": SubResource("Resource_6ls7a"),
+&"HeroRogue": SubResource("Resource_lik0k"),
+&"HeroWarrior": SubResource("Resource_olgvj"),
+&"HolyMace": SubResource("Resource_eqndm"),
+&"HolyShield": SubResource("Resource_gudo0"),
+&"HuntingBow": SubResource("Resource_jpfkb"),
+&"IronBolt": SubResource("Resource_117l7"),
+&"IronOre": SubResource("Resource_43stq"),
+&"IronSword": SubResource("Resource_4da11"),
+&"Item": SubResource("Resource_1mlby"),
+&"ItemRarity": SubResource("Resource_ipwha"),
+&"LeatherCap": SubResource("Resource_pllxa"),
+&"LeatherVest": SubResource("Resource_1sflt"),
+&"Longbow": SubResource("Resource_76wru"),
+&"LootTable": SubResource("Resource_da06i"),
+&"MailHauberk": SubResource("Resource_6n1xw"),
+&"ManaPotion": SubResource("Resource_f08w0"),
+&"Merchant": SubResource("Resource_jts4m"),
+&"MerchantType": SubResource("Resource_dkhv4"),
+&"MiraGreet": SubResource("Resource_vfqwg"),
+&"MiraShop": SubResource("Resource_rsgsh"),
+&"NecroWand": SubResource("Resource_bfwwl"),
+&"PlateGuard": SubResource("Resource_syhdi"),
+&"PoisonBlade": SubResource("Resource_s86di"),
+&"Quest": SubResource("Resource_jjacq"),
+&"QuestType": SubResource("Resource_xwb2e"),
+&"RaiseDead": SubResource("Resource_fb476"),
+&"RangedWeapon": SubResource("Resource_npcw6"),
+&"Recipe": SubResource("Resource_ga5c0"),
+&"RegenTonic": SubResource("Resource_chfqv"),
+&"Regeneration": SubResource("Resource_q30eb"),
+&"RustySword": SubResource("Resource_ccdka"),
+&"ShadowDagger": SubResource("Resource_alpwh"),
+&"ShieldBash": SubResource("Resource_sj7dc"),
+&"SkBladework": SubResource("Resource_xn3l2"),
+&"SkCleave": SubResource("Resource_golyg"),
+&"SkFaith": SubResource("Resource_lnl2f"),
+&"SkFrost": SubResource("Resource_7wl8a"),
+&"SkGuard": SubResource("Resource_ijvkv"),
+&"SkInferno": SubResource("Resource_m2omf"),
+&"SkNecromancy": SubResource("Resource_8dofd"),
+&"SkPyromancy": SubResource("Resource_s7jpy"),
+&"SkRadiance": SubResource("Resource_0o1tg"),
+&"SkShadowArts": SubResource("Resource_ponyg"),
+&"Skeleton": SubResource("Resource_5w616"),
+&"SkillCategory": SubResource("Resource_ljhr1"),
+&"SkillNode": SubResource("Resource_svlwg"),
+&"Slash": SubResource("Resource_tcmmt"),
+&"SlayTheDragon": SubResource("Resource_8wig0"),
+&"Smite": SubResource("Resource_eldl1"),
+&"Smith": SubResource("Resource_yg6gf"),
+&"StaffOfWisdom": SubResource("Resource_epq28"),
+&"StatusEffect": SubResource("Resource_wi5k1"),
+&"StatusEffectDef": SubResource("Resource_v24vf"),
+&"SwampLurker": SubResource("Resource_0xhxg"),
+&"Thornmarsh": SubResource("Resource_1e0gn"),
+&"TimeOfDay": SubResource("Resource_mskyi"),
+&"UITheme": SubResource("Resource_q5fc3"),
+&"Venom": SubResource("Resource_oka0h"),
+&"WarAxe": SubResource("Resource_1wf4r"),
+&"Weapon": SubResource("Resource_hn2cx"),
+&"WeaponType": SubResource("Resource_8lmc8"),
+&"Windforce": SubResource("Resource_uriwd"),
+&"WoodArrow": SubResource("Resource_uwhla"),
+&"WorldSettings": SubResource("Resource_vnuqp"),
+&"WraithLoot": SubResource("Resource_uyyau"),
+&"Zone": SubResource("Resource_gexbe")
+}
+meta_data = {
+"const_class": "consts",
+"enum_class": "enums",
+"export_dir": "res://data/generated",
+"name": "RPG Showcase",
+"note": "Generated by build_showcase_sample.gd — a feature tour, not a real game."
+}
+db_uid = "ed5dd44d021fbacca76f049"

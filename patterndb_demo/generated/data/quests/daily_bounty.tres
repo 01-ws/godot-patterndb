@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://cs1mj0s50q3ej" path="res://patterndb_demo/generated/model/quest.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "DailyBounty"
+name = "Bounty: Skeletons"
+quest_type = 3
+giver = &"Skeleton"
+prerequisite = &""
+reward_item = &"HealthPotion"
+reward_gold = 30
+objectives = PackedStringArray("Destroy 10 skeletons")
+stage_flags = {
+"count": false
+}
+turn_in_biome = 4

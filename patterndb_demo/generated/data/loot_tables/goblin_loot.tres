@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://b200o6wyv5dbk" path="res://patterndb_demo/generated/model/loot_table.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "GoblinLoot"
+name = "Goblin Loot"
+entries = {
+"HealthPotion": 50,
+"IronOre": 30,
+"RustySword": 40
+}
+guaranteed = [&"HealthPotion"]
+gold_min = 2
+gold_max = 12
+rolls = 1

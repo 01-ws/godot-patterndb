@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://b200o6wyv5dbk" path="res://patterndb_demo/generated/model/loot_table.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "DragonLoot"
+name = "Dragon Hoard"
+entries = {
+"DragonChest": 20,
+"DragonHelm": 20,
+"DragonScale": 60,
+"Flamebrand": 5
+}
+guaranteed = [&"DragonScale"]
+gold_min = 200
+gold_max = 600
+rolls = 3

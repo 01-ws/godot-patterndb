@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Achievement" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bsxlf4hg436nu" path="res://patterndb_demo/generated/model/achievement.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Collector"
+title = "Collector"
+description = "Own one item of every rarity."
+points = 50
+hidden = true
+reward_item = &"GoldRing"
+required_quest = &""

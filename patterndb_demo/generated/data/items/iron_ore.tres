@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bkgigbs4wgqxv" path="res://patterndb_demo/generated/model/item.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "IronOre"
+metadata/pdb_tags = PackedStringArray("material", "stackable")
+name = "Iron Ore"
+description = ""
+rarity = 0
+value = 6
+weight = 1.0
+is_unique = false
+tint = Color(1.0, 1.0, 1.0, 1.0)

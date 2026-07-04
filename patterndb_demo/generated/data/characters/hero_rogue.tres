@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bosjlw1bcej2u" path="res://patterndb_demo/generated/model/character.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "HeroRogue"
+name = "Vex"
+char_class = 2
+starting_weapon = &"ShadowDagger"
+starting_abilities = [&"Backstab", &"PoisonBlade"]
+skills = [&"SkShadowArts"]
+stats = {
+"agility": 15,
+"intellect": 6,
+"strength": 9,
+"vitality": 8,
+"wisdom": 5
+}

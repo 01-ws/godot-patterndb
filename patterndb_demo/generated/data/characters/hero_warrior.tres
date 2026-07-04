@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bosjlw1bcej2u" path="res://patterndb_demo/generated/model/character.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "HeroWarrior"
+name = "Garruk"
+char_class = 0
+starting_weapon = &"IronSword"
+starting_abilities = [&"Slash"]
+skills = [&"SkBladework", &"SkCleave"]
+stats = {
+"agility": 9,
+"intellect": 6,
+"strength": 14,
+"vitality": 12,
+"wisdom": 4
+}

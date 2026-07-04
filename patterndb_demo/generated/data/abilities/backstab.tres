@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bgrmm5l7p7vah" path="res://patterndb_demo/generated/model/ability.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Backstab"
+metadata/pdb_tags = PackedStringArray("dps", "melee", "stealth")
+name = "Backstab"
+description = "Massive damage from stealth."
+damage_type = 0
+power = 55.0
+mana_cost = 10
+cooldown = 4.0
+aoe_radius = 0.0
+required_class = 2
+applies_status = 0
+scaling = {
+"agility": 1.3
+}

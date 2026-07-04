@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Zone" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://cj447tg341bpx" path="res://patterndb_demo/generated/model/zone.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "DarkForest"
+name = "Darkwood Forest"
+biome = 0
+min_level = 1
+max_level = 8
+merchants = [&"General", &"Smith"]
+ambient_color = Color(0.20000000298023, 0.30000001192093, 0.20000000298023, 1.0)

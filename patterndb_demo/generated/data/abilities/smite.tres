@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bgrmm5l7p7vah" path="res://patterndb_demo/generated/model/ability.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Smite"
+metadata/pdb_tags = PackedStringArray("dps", "holy")
+name = "Smite"
+description = "Holy damage that burns the wicked."
+damage_type = 5
+power = 30.0
+mana_cost = 15
+cooldown = 2.5
+aoe_radius = 0.0
+required_class = 3
+applies_status = 0
+scaling = {
+"wisdom": 0.8
+}

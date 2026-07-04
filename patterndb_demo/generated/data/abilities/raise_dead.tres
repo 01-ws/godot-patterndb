@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bgrmm5l7p7vah" path="res://patterndb_demo/generated/model/ability.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "RaiseDead"
+metadata/pdb_tags = PackedStringArray("summon", "shadow", "ultimate")
+name = "Raise Dead"
+description = "Summons a skeletal minion."
+damage_type = 4
+power = 0.0
+mana_cost = 35
+cooldown = 20.0
+aoe_radius = 0.0
+required_class = 6
+applies_status = 0
+scaling = {
+"intellect": 1.2
+}

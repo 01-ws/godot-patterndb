@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://cs1mj0s50q3ej" path="res://patterndb_demo/generated/model/quest.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "BanditTrouble"
+name = "Bandit Trouble"
+quest_type = 1
+giver = &"BanditChief"
+prerequisite = &"GoblinMenace"
+reward_item = &"LeatherVest"
+reward_gold = 180
+objectives = PackedStringArray("Clear the bandit camp", "Defeat the Bandit Chief")
+stage_flags = {
+"camp": false,
+"chief": false
+}
+turn_in_biome = 0

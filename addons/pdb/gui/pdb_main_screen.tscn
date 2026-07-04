@@ -1,0 +1,415 @@
+[gd_scene format=3 uid="uid://dmq8v7n5yay2"]
+
+[ext_resource type="Script" uid="uid://badrhepyv5gb6" path="res://addons/pdb/gui/pdb_main_screen.gd" id="1_main_screen"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fd1oc"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10oos"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.27007, 0.27007, 0.27007, 1)
+border_width_bottom = 2
+border_color = Color(0.337, 0.62, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmv54"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.21134, 0.21134, 0.21134, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyhtl"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.29523998, 0.29523998, 0.29523998, 1)
+border_width_bottom = 2
+border_color = Color(0.337, 0.62, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcnnr"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qn2u4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fy67b"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cpni"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.27007, 0.27007, 0.27007, 1)
+border_width_bottom = 2
+border_color = Color(0.337, 0.62, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqqo2"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.21134, 0.21134, 0.21134, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g12mp"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.29523998, 0.29523998, 0.29523998, 1)
+border_width_bottom = 2
+border_color = Color(0.337, 0.62, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmniw"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1fph"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_is8ba"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvyiw"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.27007, 0.27007, 0.27007, 1)
+border_width_bottom = 2
+border_color = Color(0.337, 0.62, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6estk"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.21134, 0.21134, 0.21134, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urytx"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.29523998, 0.29523998, 0.29523998, 1)
+border_width_bottom = 2
+border_color = Color(0.337, 0.62, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kluad"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iif5p"]
+
+[node name="PdbMainScreen" type="Control" unique_id=423237910]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 1
+grow_vertical = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_main_screen")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1140427785]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.14902, 0.180392, 1)
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1080234683]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="VBox" unique_id=698729996]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="VBox/Header" unique_id=404174101]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBox" type="HBoxContainer" parent="VBox/Header/Margin" unique_id=446083590]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Logo" type="Label" parent="VBox/Header/Margin/HBox" unique_id=1931739861]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "PatternDB"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="VBox/Header/Margin/HBox" unique_id=2069376689]
+layout_mode = 2
+
+[node name="BtnFile" type="MenuButton" parent="VBox/Header/Margin/HBox" unique_id=110675984]
+layout_mode = 2
+tooltip_text = "New, open, save, import, export, validate"
+text = "File"
+item_count = 10
+popup/item_0/text = "New Database"
+popup/item_0/id = 0
+popup/item_1/text = "Open Database..."
+popup/item_1/id = 1
+popup/item_2/text = "Save"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+popup/item_3/text = "Save As..."
+popup/item_3/id = 3
+popup/item_3/disabled = true
+popup/item_4/text = "Close"
+popup/item_4/id = 4
+popup/item_4/disabled = true
+popup/item_5/id = -1
+popup/item_5/separator = true
+popup/item_6/text = "Import"
+popup/item_6/id = 104
+popup/item_6/disabled = true
+popup/item_7/text = "Export"
+popup/item_7/id = 204
+popup/item_7/disabled = true
+popup/item_8/id = -1
+popup/item_8/separator = true
+popup/item_9/text = "Validate Database"
+popup/item_9/id = 5
+popup/item_9/disabled = true
+
+[node name="VSeparator2" type="VSeparator" parent="VBox/Header/Margin/HBox" unique_id=1989993650]
+layout_mode = 2
+
+[node name="NavButtons" type="HBoxContainer" parent="VBox/Header/Margin/HBox" unique_id=1515293338]
+layout_mode = 2
+
+[node name="BtnData" type="Button" parent="VBox/Header/Margin/HBox/NavButtons" unique_id=1820774934]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+tooltip_text = "Data Forge"
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0.3)
+theme_override_styles/normal = SubResource("StyleBoxFlat_fd1oc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_10oos")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qmv54")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_gyhtl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_gcnnr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qn2u4")
+toggle_mode = true
+button_pressed = true
+text = "Data Forge"
+metadata/view = Object(HSplitContainer,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":2,"size_flags_horizontal":3,"size_flags_vertical":3,"size_flags_stretch_ratio":1.0,"localize_numeral_system":true,"tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":1,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","split_offsets":PackedInt32Array(280),"collapsed":false,"dragging_enabled":true,"dragger_visibility":0,"touch_dragger_enabled":false,"drag_area_margin_begin":0,"drag_area_margin_end":0,"drag_area_offset":0,"drag_area_highlight_in_editor":false,"split_offset":280,"script":null,"metadata/_tab_index":0)
+
+
+[node name="BtnSchema" type="Button" parent="VBox/Header/Margin/HBox/NavButtons" unique_id=800272188]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+tooltip_text = "Schema"
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0.3)
+theme_override_styles/normal = SubResource("StyleBoxFlat_fy67b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7cpni")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xqqo2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_g12mp")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_gmniw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o1fph")
+disabled = true
+toggle_mode = true
+text = "Schema"
+metadata/view = Object(HSplitContainer,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":false,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":2,"size_flags_horizontal":3,"size_flags_vertical":3,"size_flags_stretch_ratio":1.0,"localize_numeral_system":true,"tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":1,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","split_offsets":PackedInt32Array(250),"collapsed":false,"dragging_enabled":true,"dragger_visibility":0,"touch_dragger_enabled":false,"drag_area_margin_begin":0,"drag_area_margin_end":0,"drag_area_offset":0,"drag_area_highlight_in_editor":false,"split_offset":250,"script":null,"metadata/_tab_index":1)
+
+
+[node name="BtnSettings" type="Button" parent="VBox/Header/Margin/HBox/NavButtons" unique_id=1208742029]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+tooltip_text = "Settings"
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0.3)
+theme_override_styles/normal = SubResource("StyleBoxFlat_is8ba")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vvyiw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6estk")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_urytx")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_kluad")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iif5p")
+toggle_mode = true
+text = "Settings"
+metadata/view = Object(VBoxContainer,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":false,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":2,"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"localize_numeral_system":true,"tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":1,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","theme_override_constants/separation":8,"alignment":0,"script":null,"metadata/_tab_index":2)
+
+
+[node name="Spacer" type="Control" parent="VBox/Header/Margin/HBox" unique_id=1928318215]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContentArea" type="MarginContainer" parent="VBox" unique_id=1381394953]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Views" type="TabContainer" parent="VBox/ContentArea" unique_id=243113310]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="DataView" type="HSplitContainer" parent="VBox/ContentArea/Views" unique_id=639282893]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offsets = PackedInt32Array(280)
+split_offset = 280
+metadata/_tab_index = 0
+
+[node name="Sidebar" type="VBoxContainer" parent="VBox/ContentArea/Views/DataView" unique_id=1224196587]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="DataToolbar" type="HBoxContainer" parent="VBox/ContentArea/Views/DataView/Sidebar" unique_id=662192115]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="VBox/ContentArea/Views/DataView/Sidebar/DataToolbar" unique_id=334682763]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Filter patterns and tags by name"
+placeholder_text = "Filter..."
+
+[node name="BtnAddData" type="MenuButton" parent="VBox/ContentArea/Views/DataView/Sidebar/DataToolbar" unique_id=562096749]
+layout_mode = 2
+tooltip_text = "Add a constant, enum, definition, or instance"
+disabled = true
+text = "+ Add"
+item_count = 7
+popup/item_0/text = "Constant"
+popup/item_0/id = 0
+popup/item_1/text = "Enum"
+popup/item_1/id = 1
+popup/item_2/id = -1
+popup/item_2/separator = true
+popup/item_3/text = "Model Definition"
+popup/item_3/id = 2
+popup/item_4/text = "Model Instance"
+popup/item_4/id = 3
+popup/item_5/id = -1
+popup/item_5/separator = true
+popup/item_6/text = "Instance from Definition..."
+popup/item_6/id = 4
+
+[node name="Tree" type="Tree" parent="VBox/ContentArea/Views/DataView/Sidebar" unique_id=946338446]
+layout_mode = 2
+size_flags_vertical = 3
+allow_rmb_select = true
+hide_root = true
+select_mode = 1
+
+[node name="Workspace" type="PanelContainer" parent="VBox/ContentArea/Views/DataView" unique_id=93158461]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SchemaView" type="HSplitContainer" parent="VBox/ContentArea/Views" unique_id=1589198552]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offsets = PackedInt32Array(250)
+split_offset = 250
+metadata/_tab_index = 1
+
+[node name="DefinitionList" type="ItemList" parent="VBox/ContentArea/Views/SchemaView" unique_id=1000231188]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="CodePreview" type="CodeEdit" parent="VBox/ContentArea/Views/SchemaView" unique_id=100762379]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="SettingsView" type="VBoxContainer" parent="VBox/ContentArea/Views" unique_id=1571408739]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+metadata/_tab_index = 2
+
+[node name="Label" type="Label" parent="VBox/ContentArea/Views/SettingsView" unique_id=1218857111]
+layout_mode = 2
+text = "Export Settings"
+
+[node name="Footer" type="PanelContainer" parent="VBox" unique_id=1885908782]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="VBox/Footer" unique_id=1709415229]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBox" type="HBoxContainer" parent="VBox/Footer/Margin" unique_id=2083123615]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Status" type="Label" parent="VBox/Footer/Margin/HBox" unique_id=2071860123]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.55)
+text = "No database open"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="VBox/Footer/Margin/HBox" unique_id=1725230854]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Counts" type="Label" parent="VBox/Footer/Margin/HBox" unique_id=2084599357]
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="SaveConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=1882662942]
+title = "Unsaved Changes"
+initial_position = 2
+size = Vector2i(400, 109)
+ok_button_text = "Save & Continue"

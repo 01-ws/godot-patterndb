@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://3olu5ufucxgw" path="res://patterndb_demo/generated/model/weapon.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Flamebrand"
+metadata/pdb_tags = PackedStringArray("fire", "weapon", "unique")
+weapon_type = 0
+damage_type = 1
+base_damage = 42.0
+attack_speed = 1.0
+two_handed = true
+granted_ability = &"Fireball"

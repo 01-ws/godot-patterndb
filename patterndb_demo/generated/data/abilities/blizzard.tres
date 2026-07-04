@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bgrmm5l7p7vah" path="res://patterndb_demo/generated/model/ability.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Blizzard"
+metadata/pdb_tags = PackedStringArray("dps", "frost", "aoe", "ultimate")
+name = "Blizzard"
+description = "A storm of ice over a wide area."
+damage_type = 2
+power = 55.0
+mana_cost = 40
+cooldown = 10.0
+aoe_radius = 6.0
+required_class = 1
+applies_status = 10
+scaling = {
+"intellect": 1.4
+}

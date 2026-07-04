@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusEffectDef" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://4l835ahe2ol5" path="res://patterndb_demo/generated/model/status_effect_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Venom"
+name = "Poisoned"
+effect = 3
+tick_damage = 4.0
+duration = 6.0
+stacks = true
+modifiers = {}

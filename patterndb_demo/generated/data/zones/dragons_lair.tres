@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Zone" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://cj447tg341bpx" path="res://patterndb_demo/generated/model/zone.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "DragonsLair"
+name = "Dragon's Lair"
+biome = 3
+min_level = 35
+max_level = 45
+merchants = []
+ambient_color = Color(0.80000001192093, 0.20000000298023, 0.10000000149012, 1.0)

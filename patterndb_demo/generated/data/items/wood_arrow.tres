@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bkgigbs4wgqxv" path="res://patterndb_demo/generated/model/item.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "WoodArrow"
+metadata/pdb_tags = PackedStringArray("ammo", "stackable")
+name = "Wooden Arrow"
+description = ""
+rarity = 0
+value = 1
+weight = 0.05
+is_unique = false
+tint = Color(1.0, 1.0, 1.0, 1.0)

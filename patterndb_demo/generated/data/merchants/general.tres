@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Merchant" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://d036kfuu2svaj" path="res://patterndb_demo/generated/model/merchant.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "General"
+name = "Tanner's Goods"
+merchant_type = 0
+faction = 2
+inventory = [&"WoodArrow", &"IronBolt", &"HealthPotion", &"RustySword"]
+price_overrides = {}
+open_hour = 7
+close_hour = 21

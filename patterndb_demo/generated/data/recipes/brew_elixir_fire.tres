@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://wltnpp4lhrtk" path="res://patterndb_demo/generated/model/recipe.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "BrewElixirFire"
+name = "Brew: Elixir of Fire"
+result = &"ElixirOfFire"
+ingredients = [&"Emberdust", &"ManaPotion"]
+quantities = {
+"Emberdust": 2,
+"ManaPotion": 1
+}
+station = 2
+craft_time = 3.0

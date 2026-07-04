@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RangedWeapon" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://rng88q1hof8t" path="res://patterndb_demo/generated/model/ranged_weapon.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "Windforce"
+metadata/pdb_tags = PackedStringArray("weapon", "ranged", "lightning", "unique")
+range = 40.0
+projectile_speed = 70.0
+spread_degrees = 1.5
+ammo_item = &"WoodArrow"

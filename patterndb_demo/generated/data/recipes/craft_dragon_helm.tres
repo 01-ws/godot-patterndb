@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://wltnpp4lhrtk" path="res://patterndb_demo/generated/model/recipe.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "CraftDragonHelm"
+name = "Craft: Dragonscale Helm"
+result = &"DragonHelm"
+ingredients = [&"DragonScale", &"IronOre"]
+quantities = {
+"DragonScale": 5,
+"IronOre": 4
+}
+station = 1
+craft_time = 10.0

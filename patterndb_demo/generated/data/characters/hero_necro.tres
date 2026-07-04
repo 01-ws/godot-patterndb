@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bosjlw1bcej2u" path="res://patterndb_demo/generated/model/character.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "HeroNecro"
+name = "Mortis"
+char_class = 6
+starting_weapon = &"NecroWand"
+starting_abilities = [&"RaiseDead", &"DrainLife"]
+skills = [&"SkNecromancy"]
+stats = {
+"agility": 7,
+"intellect": 15,
+"strength": 6,
+"vitality": 8,
+"wisdom": 11
+}

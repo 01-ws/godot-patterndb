@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://b200o6wyv5dbk" path="res://patterndb_demo/generated/model/loot_table.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "WraithLoot"
+name = "Wraith Loot"
+entries = {
+"ClothRobe": 35,
+"ElixirOfFire": 15,
+"Emberdust": 25
+}
+guaranteed = []
+gold_min = 8
+gold_max = 30
+rolls = 2

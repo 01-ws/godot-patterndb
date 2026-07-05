@@ -53,3 +53,5 @@ intentions, not dated commitments; scope may shift as the beta matures.
   one file's history to two arbitrary sources (`.pdb`, JSON, or `.gd`/`.tres`).
 - **Localization.** First-class handling of translatable string fields and
   locale variants, so writers can manage copy alongside the rest of the data.
+- **Performance tests and competetive validation.** Created some performance 
+  tests against sqlite, json, .pdb vs .tres.
